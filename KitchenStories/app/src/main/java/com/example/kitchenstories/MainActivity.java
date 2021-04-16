@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         //
         transparentStatusAndNavigation();
 
-        
+
         //
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -75,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
     public void transparentStatusAndNavigation() {
         //make full transparent statusBar
         if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
-            setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
+            setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, true);
         }
         if (Build.VERSION.SDK_INT >= 19) {
             getWindow().getDecorView().setSystemUiVisibility(
@@ -85,9 +86,10 @@ public class MainActivity extends AppCompatActivity {
             );
         }
         if (Build.VERSION.SDK_INT >= 21) {
-            setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+            setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, false);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
-
+            getWindow().setNavigationBarColor(Color.TRANSPARENT);
         }
     }
 
