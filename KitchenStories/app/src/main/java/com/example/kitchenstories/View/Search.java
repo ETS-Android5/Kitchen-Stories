@@ -14,7 +14,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.kitchenstories.R;
-import com.example.kitchenstories.View.Fragment.FragmentContact;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Search extends AppCompatActivity {

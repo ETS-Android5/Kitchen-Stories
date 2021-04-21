@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kitchenstories.Model.Contact;
+import com.example.kitchenstories.Model.Recipe;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.View.Cooking_Recipes;
 
@@ -20,9 +21,9 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     Context mContext;
-    List<Contact> mData;
+    List<Recipe> mData;
 
-    public RecyclerViewAdapter(Context mContext, List<Contact> mData) {
+    public RecyclerViewAdapter(Context mContext, List<Recipe> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -30,8 +31,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View v;
-        v = LayoutInflater.from(mContext).inflate(R.layout.items_contact, parent, false);
+        v = LayoutInflater.from(mContext).inflate(R.layout.item_recipe, parent, false);
         MyViewHolder vHolder = new MyViewHolder(v);
 
         return vHolder;
@@ -39,9 +41,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.txt_name.setText(mData.get(position).getName());
-        holder.txt_phone.setText(mData.get(position).getPhone());
-        holder.ima.setImageResource(mData.get(position).getPhoto());
+
+        holder.image_cooking_recipe.setImageResource(mData.get(position).getImage_CookingRecipe());
+        holder.image_author.setImageResource(mData.get(position).getImage_author());
+        holder.name_cooking_recipe.setText(mData.get(position).getName_cooking_recipe());
+        holder.author_recipe.setText(mData.get(position).getAuthor_recipe());
+        holder.authorGroup_recipe.setText(mData.get(position).getAuthorGroup_recipe());
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,16 +67,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView txt_name;
-        private TextView txt_phone;
-        private ImageView ima;
+        private ImageView image_cooking_recipe;
+        private TextView name_cooking_recipe;
+        private ImageView image_author;
+        private TextView author_recipe;
+        private TextView authorGroup_recipe;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            txt_name = (TextView) itemView.findViewById(R.id.name_contact);
-            txt_phone = (TextView) itemView.findViewById(R.id.phone_contact);
-            ima = (ImageView) itemView.findViewById(R.id.ima_contact);
+            image_cooking_recipe = (ImageView) itemView.findViewById(R.id.image_cooking_recipe);
+            image_author = (ImageView) itemView.findViewById(R.id.image_author);
+            name_cooking_recipe = (TextView) itemView.findViewById(R.id.name_cooking_recipe);
+            author_recipe = (TextView) itemView.findViewById(R.id.author_recipe);
+            authorGroup_recipe = (TextView) itemView.findViewById(R.id.authorGroup_recipe);
 
         }
     }
