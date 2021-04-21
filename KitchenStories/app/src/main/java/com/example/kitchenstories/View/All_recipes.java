@@ -1,8 +1,10 @@
 package com.example.kitchenstories.View;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
@@ -14,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.View.Fragment.fm_recipe_tab_1;
@@ -29,6 +32,7 @@ public class All_recipes extends AppCompatActivity {
     private ViewPagerAdapter viewPagerAdapter;
     private BottomNavigationView bottomNavigationView;
 
+    private Toolbar toolbar;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -48,9 +52,25 @@ public class All_recipes extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         tabLayout = findViewById(R.id.tabs);
         viewPager = findViewById(R.id.view_pager);
+        toolbar = findViewById(R.id.topAppBar);
 
 
 
+
+        //
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+        // add Fragment here
+        viewPagerAdapter.AddFragment(new fm_recipe_tab_1(), "Kitchen Stories");
+        viewPagerAdapter.AddFragment(new fm_recipe_tab_2(), "Community");
+
+        // View
+        viewPager.setAdapter(viewPagerAdapter);
+
+        tabLayout.setupWithViewPager(viewPager);
+
+
+        // Navigation bottom
         bottomNavigationView.setSelectedItemId(R.id.search);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -84,17 +104,15 @@ public class All_recipes extends AppCompatActivity {
         });
 
 
-        //
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        // Navigation Icon Clicked
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+                //Toast.makeText(getBaseContext(), "hello", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        // add Fragment here
-        viewPagerAdapter.AddFragment(new fm_recipe_tab_1(), "Kitchen Stories");
-        viewPagerAdapter.AddFragment(new fm_recipe_tab_2(), "Community");
-
-        // View
-        viewPager.setAdapter(viewPagerAdapter);
-
-        tabLayout.setupWithViewPager(viewPager);
 
 
 
