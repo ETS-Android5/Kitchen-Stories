@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/today"
+        android:title="Today"
+        android:icon="@drawable/ic_baseline_home"/>
+
+    <item
+        android:id="@+id/search"
+        android:title="Search"
+        android:icon="@drawable/ic_baseline_search"/>
+
+    <item
+        android:id="@+id/create"
+        android:title="Create"
+        android:icon="@drawable/ic_baseline_add_circle"/>
+
+    <item
+        android:id="@+id/shopping"
+        android:title="Shopping"
+        android:icon="@drawable/ic_baseline_list"/>
+
+    <item
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_baseline_person"/>
+
+
+</menu>
