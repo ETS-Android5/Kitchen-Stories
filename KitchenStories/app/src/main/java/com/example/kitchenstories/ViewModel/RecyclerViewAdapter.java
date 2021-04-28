@@ -11,10 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.kitchenstories.Model.Contact;
+import com.example.kitchenstories.View.CookingRecipe;
 import com.example.kitchenstories.Model.Recipe;
 import com.example.kitchenstories.R;
-import com.example.kitchenstories.View.Cooking_Recipes;
 
 import java.util.List;
 
@@ -53,7 +52,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext, Cooking_Recipes.class);
+                Intent intent = new Intent(mContext, CookingRecipe.class);
                 mContext.startActivity(intent);
             }
         });

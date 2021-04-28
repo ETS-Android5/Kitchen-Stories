@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.Cooking_Recipes"></activity>
+
+        <activity android:name=".View.CookingRecipe"
+            >
+        </activity>
+
         <activity android:name=".View.All_recipes" />
         <activity android:name=".View.Test" />
         <activity android:name=".View.Shopping" />
