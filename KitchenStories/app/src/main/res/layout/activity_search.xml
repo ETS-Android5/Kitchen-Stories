@@ -2,78 +2,67 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_Search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".View.Search"
-    android:id="@+id/activity_Search"
-    android:fitsSystemWindows="true"
-
     >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp">
 
         <TextView
             android:id="@+id/txtSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/lora_bold"
             android:text="Search"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textColor="@color/black"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/btnSortBy"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtSearch"
-
+            android:fontFamily="@font/source_sans_pro_regular"
             android:padding="10dp"
             android:text="Hungry"
             android:textAlignment="textStart"
-
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/Gray700"
-
             android:textSize="20dp"
             app:icon="@drawable/ic_baseline_search"
-
             app:iconTint="@color/Gray700"
             app:strokeColor="@color/black"
-
-            app:strokeWidth="1dp" />
+            app:strokeWidth="1dp"
+            />
 
         <Button
             android:id="@+id/btnFindOnWeb"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btnSortBy"
-
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-
             android:backgroundTint="@color/orange50"
             android:padding="10dp"
             android:text="Find recipes on the web"
-
+            android:fontFamily="@font/source_sans_pro_regular"
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-
             android:textColor="@color/black"
-
             android:textSize="17dp"
-
-            app:cornerRadius="10dp" />
+            app:cornerRadius="10dp"
+            android:elevation="0dp"/>
 
         <TableLayout
             android:id="@+id/TableLayout_Recipies"
@@ -428,7 +417,6 @@
                 </com.google.android.material.card.MaterialCardView>
             </TableRow>
 
-
         </TableLayout>
 
         <Button
@@ -436,7 +424,9 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/TableLayout_Recipies"
+            android:fontFamily="@font/source_sans_pro_semi_bold"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:text="All recipes"
             android:textAlignment="textStart"
             android:textAllCaps="false"
@@ -444,14 +434,23 @@
             app:icon="@drawable/ic_baseline_arrow_forward"
             app:iconGravity="end"
             app:iconTint="@color/black"
+            app:rippleColor="@color/Gray400"
             app:strokeColor="@android:color/transparent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+
+            android:background="@color/Gray300" />
 
         <Button
             android:id="@+id/btn_AllStories"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_AllRecipes"
+            android:fontFamily="@font/source_sans_pro_semi_bold"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:text="All stories"
             android:textAlignment="textStart"
             android:textAllCaps="false"
@@ -459,19 +458,36 @@
             app:icon="@drawable/ic_baseline_arrow_forward"
             app:iconGravity="end"
             app:iconTint="@color/black"
+            app:rippleColor="@color/Gray500"
+
             app:strokeColor="@android:color/transparent" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:itemBackground="@color/Gray200"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
-        app:menu="@menu/menu_navigation" />
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Gray300" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:itemBackground="@color/Gray100"
+            app:itemIconTint="@drawable/selector"
+            app:itemTextColor="@drawable/selector"
+            app:menu="@menu/menu_navigation"
+            app:itemIconSize="27dp"
+            />
+
+    </LinearLayout>
+
+
 </RelativeLayout>
 

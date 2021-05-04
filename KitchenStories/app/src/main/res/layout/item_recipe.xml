@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            app:cardCornerRadius="30dp"
+            app:cardCornerRadius="20dp"
             android:layout_marginTop="20dp">
 
 
@@ -37,8 +37,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:gravity="center"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_gravity="left"
             android:orientation="vertical">
 
             <TextView
@@ -46,7 +47,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Make chicken"
-                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/source_sans_pro_semi_bold"
+                android:textSize="15sp"
                 />
 
         </LinearLayout>
@@ -55,6 +58,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             >
 
             <com.google.android.material.card.MaterialCardView
@@ -85,13 +89,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
-                    android:text="ThangTran" />
+                    android:text="ThangTran"
+                    android:fontFamily="@font/source_sans_pro_semi_bold"
+                    android:textColor="@color/Indigo900"
+                    android:textSize="13sp"/>
 
                 <TextView
                     android:id="@+id/authorGroup_recipe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kitchen Stories" />
+                    android:text="Kitchen Stories"
+                    android:fontFamily="@font/source_sans_pro_regular"
+                    android:textColor="@color/Gray700"
+                    android:textSize="13sp"/>
 
             </LinearLayout>
 

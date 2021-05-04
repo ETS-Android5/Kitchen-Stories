@@ -84,16 +84,22 @@ public class fm_recipe_tab_1 extends Fragment {
 
         mData = new ArrayList<>();
 
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
 
     }
 
