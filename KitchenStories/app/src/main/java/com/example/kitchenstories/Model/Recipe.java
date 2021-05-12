@@ -5,16 +5,16 @@ public class Recipe {
     private int image_CookingRecipe;
     private String name_cooking_recipe;
     private int image_author;
-    private String author_recipe;
-    private String authorGroup_recipe;
+    private String name_author;
+    private String name_authorGroup;
 
 
-    public Recipe(int image_CookingRecipe, String name_cooking_recipe, int image_author, String author_recipe, String authorGroup_recipe) {
+    public Recipe(int image_CookingRecipe, String name_cooking_recipe, int image_author, String name_author, String name_authorGroup) {
         this.image_CookingRecipe = image_CookingRecipe;
         this.name_cooking_recipe = name_cooking_recipe;
         this.image_author = image_author;
-        this.author_recipe = author_recipe;
-        this.authorGroup_recipe = authorGroup_recipe;
+        this.name_author = name_author;
+        this.name_authorGroup = name_authorGroup;
     }
 
     public int getImage_CookingRecipe() {
@@ -41,19 +41,19 @@ public class Recipe {
         this.image_author = image_author;
     }
 
-    public String getAuthor_recipe() {
-        return author_recipe;
+    public String getName_author() {
+        return name_author;
     }
 
-    public void setAuthor_recipe(String author_recipe) {
-        this.author_recipe = author_recipe;
+    public void setName_author(String name_author) {
+        this.name_author = name_author;
     }
 
-    public String getAuthorGroup_recipe() {
-        return authorGroup_recipe;
+    public String getName_authorGroup() {
+        return name_authorGroup;
     }
 
-    public void setAuthorGroup_recipe(String authorGroup_recipe) {
-        this.authorGroup_recipe = authorGroup_recipe;
+    public void setName_authorGroup(String name_authorGroup) {
+        this.name_authorGroup = name_authorGroup;
     }
 }

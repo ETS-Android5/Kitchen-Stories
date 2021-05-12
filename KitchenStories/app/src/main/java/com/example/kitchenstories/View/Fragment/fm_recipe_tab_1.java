@@ -69,10 +69,10 @@ public class fm_recipe_tab_1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fm_recipe_tab_1, container, false);
 
         recyclerView = view.findViewById(R.id.recipe_recycleview_tab1);
+
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
+        initData();
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), mData);
-
         recyclerView.setAdapter(adapter);
 
         return view;
@@ -81,6 +81,10 @@ public class fm_recipe_tab_1 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+    }
+
+    private void initData(){
 
         mData = new ArrayList<>();
 

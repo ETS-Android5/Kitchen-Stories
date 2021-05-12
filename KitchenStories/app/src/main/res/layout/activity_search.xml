@@ -477,14 +477,16 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
+            style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             app:itemBackground="@color/Gray100"
+            app:itemIconSize="25dp"
             app:itemIconTint="@drawable/selector"
             app:itemTextColor="@drawable/selector"
-            app:menu="@menu/menu_navigation"
-            app:itemIconSize="27dp"
-            />
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/menu_navigation" />
 
     </LinearLayout>
 

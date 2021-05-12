@@ -3,6 +3,8 @@ package com.example.kitchenstories.View;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Notification;
 import android.graphics.Color;
@@ -12,14 +14,19 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.kitchenstories.Model.Recipe;
 import com.example.kitchenstories.R;
+import com.example.kitchenstories.ViewModel.RecyclerViewAdapter;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class CookingRecipe extends AppCompatActivity {
 
     private Toolbar toolbar;
 
+    private RecyclerView recyclerView_MoreRecipes;
+    private ArrayList<Recipe> mData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +37,37 @@ public class CookingRecipe extends AppCompatActivity {
 
 
         //set up notitle
-        toolbar = findViewById(R.id.toolbar1);
+        toolbar = findViewById(R.id.toolbar_CookingRecipe_Activity);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+
+        // FIND VIEW BY ID
+        recyclerView_MoreRecipes = findViewById(R.id.recyclerView_MoreRecipes_CookingRecipe_Activity);
+
+
+
+
+        // RecyclerView_MoreRecipes
+        recyclerView_MoreRecipes.setLayoutManager(new GridLayoutManager(this, 2));
+        initData();
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mData);
+        recyclerView_MoreRecipes.setAdapter(adapter);
+
+
+    }
+
+    private void initData(){
+
+        mData = new ArrayList<>();
+
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
 
     }
 
