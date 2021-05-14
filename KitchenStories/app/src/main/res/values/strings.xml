@@ -29,6 +29,7 @@
     <string name="reviews">REVIEWS</string>
     <string name="utensils">UTENSILS</string>
     <string name="nutrition_per_serving">NUTRITION PER SERVING</string>
+    <string name="make_this_today">Make This Today</string>
 
 
 </resources>

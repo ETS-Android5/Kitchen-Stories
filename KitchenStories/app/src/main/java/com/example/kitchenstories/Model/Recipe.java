@@ -17,6 +17,11 @@ public class Recipe {
         this.name_authorGroup = name_authorGroup;
     }
 
+    public Recipe(int image_CookingRecipe, String name_cooking_recipe) {
+        this.image_CookingRecipe = image_CookingRecipe;
+        this.name_cooking_recipe = name_cooking_recipe;
+    }
+
     public int getImage_CookingRecipe() {
         return image_CookingRecipe;
     }

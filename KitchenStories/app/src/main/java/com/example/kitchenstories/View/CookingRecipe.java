@@ -32,8 +32,17 @@ public class CookingRecipe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cooking_recipe);
 
-        //
-        transparentStatusAndNavigation();
+        //TransparentStatusAndNavigation
+        //transparentStatusAndNavigation();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //Transparent status bar
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //Transparent navigation bar
+            //getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            //getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.Gray50));
+        }
+
 
 
         //set up notitle

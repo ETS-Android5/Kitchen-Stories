@@ -18,10 +18,9 @@
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/Gray200"
+            android:background="@color/Gray50"
             android:elevation="4dp"
             app:menu="@menu/top_app_bar"
-
             app:navigationIcon="@drawable/ic_baseline_arrow_back"
             app:navigationIconTint="@color/black"
             app:title="All recipes"
@@ -49,14 +48,17 @@
         android:layout_marginTop="50dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:itemBackground="@color/Gray200"
+        app:itemBackground="@color/Gray100"
+        app:itemIconSize="25dp"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/menu_navigation" />
 
 </RelativeLayout>

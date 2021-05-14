@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
         android:layout_marginStart="17dp"
         android:layout_marginEnd="3dp"
-        >
+        android:gravity="center"
+        android:orientation="vertical">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
@@ -32,32 +31,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="false"
+                android:layout_gravity="bottom"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:text="5006"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
+                android:textSize="20sp"
                 app:icon="@drawable/ic_favorite"
                 app:iconGravity="textStart"
-                app:iconTint="@color/white"
-                android:layout_gravity="bottom"
-                android:textSize="20sp"
-                />
+                app:iconTint="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="20 min."
-                android:fontFamily="@font/source_sans_pro_regular"
-                android:textColor="@color/white"
-                android:textSize="20sp"
                 android:layout_gravity="right|bottom"
-                android:padding="12dp"/>
-
+                android:fontFamily="@font/source_sans_pro_regular"
+                android:padding="12dp"
+                android:text="20 min."
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
 
         </com.google.android.material.card.MaterialCardView>
-
-
 
 
         <LinearLayout

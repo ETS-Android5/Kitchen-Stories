@@ -46,9 +46,13 @@ public class All_recipes extends AppCompatActivity {
         Window window = All_recipes.this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(ContextCompat.getColor(All_recipes.this, R.color.Gray200));
+        window.setStatusBarColor(ContextCompat.getColor(All_recipes.this, R.color.Gray50));
 
-        //
+
+
+
+
+        // FIND VIEW BY ID
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         tabLayout = findViewById(R.id.tabs);
         viewPager = findViewById(R.id.view_pager);
@@ -141,7 +145,7 @@ public class All_recipes extends AppCompatActivity {
             setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
                     | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, false);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
-            getWindow().setNavigationBarColor(Color.TRANSPARENT);
+            //getWindow().setNavigationBarColor(Color.TRANSPARENT);
         }
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);

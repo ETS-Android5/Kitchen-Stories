@@ -1,5 +1,6 @@
 package com.example.kitchenstories.View;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +34,7 @@ import com.example.kitchenstories.Model.Recipe;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_LargeItem;
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Medium;
+import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_part13;
 import com.example.kitchenstories.aOthersClass.DotsIndicatorDecoration;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -49,8 +51,11 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private Toolbar toolbar;
+
     private VideoView videoView_part2;
     private VideoView videoView_part6;
+    private VideoView videoView_part8;
+
     private NestedScrollView nestedScrollView;
     private MediaController mediaController;
 
@@ -63,7 +68,20 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView_part7;
     private ArrayList<Recipe> mData_part7;
 
+    private RecyclerView recyclerView_part9;
+    private ArrayList<Recipe> mData_part9;
 
+    private RecyclerView recyclerView_part10;
+    private ArrayList<Recipe> mData_part10;
+
+    private RecyclerView recyclerView_part11;
+    private ArrayList<Recipe> mData_part11;
+
+    private RecyclerView recyclerView_part12;
+    private ArrayList<Recipe> mData_part12;
+
+    private RecyclerView recyclerView_part13;
+    private ArrayList<Recipe> mData_part13;
 
     // CREATE A DOT INDICATOR FOR RECYCLERVIEW
 //    int radius;
@@ -72,22 +90,29 @@ public class MainActivity extends AppCompatActivity {
 //    int colorActive;
 
 
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //
-        transparentStatusAndNavigation();
+        //transparentStatusAndNavigation();
+
+        //TransparentStatusAndNavigation
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //Transparent status bar
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //Transparent navigation bar
+            //getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            //getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.Gray50));
+        }
 
 
 
 
         // FIND VIEW BY ID
-        toolbar = findViewById(R.id.toolbar_today_activity);
+        //toolbar = findViewById(R.id.toolbar_today_activity);
 
         videoView_part2 = findViewById(R.id.videoView_part2_today_activity);
 
@@ -103,13 +128,23 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView_part7 = findViewById(R.id.recyclerView_part7_today_activity);
 
+        videoView_part8 = findViewById(R.id.videoView_part8_today_activity);
+
+        recyclerView_part9 = findViewById(R.id.recyclerView_part9_today_activity);
+
+        recyclerView_part10 = findViewById(R.id.recyclerView_part10_today_activity);
+
+        recyclerView_part11 = findViewById(R.id.recyclerView_part11_today_activity);
+
+        recyclerView_part12 = findViewById(R.id.recyclerView_part12_today_activity);
+
+        recyclerView_part13 = findViewById(R.id.recyclerView_part13_today_activity);
 
 
         //set up notitle
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
+//        toolbar.setTitle("");
+//        setSupportActionBar(toolbar);
+//        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 
         // BOTTOM NAVIGATION
@@ -118,29 +153,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
 
                     case R.id.today:
                         return true;
 
                     case R.id.search:
                         startActivity(new Intent(getApplicationContext(), Search.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.create:
                         startActivity(new Intent(getApplicationContext(), Create.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.shopping:
                         startActivity(new Intent(getApplicationContext(), Shopping.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(), Profile.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
 
@@ -150,19 +185,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        // PART 1: RecyclerView_part1
-        recyclerView_part1.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-        init_mData_part1();
-        RecyclerViewAdapter_Medium adapter_medium = new RecyclerViewAdapter_Medium(MainActivity.this,mData_part1);
-        recyclerView_part1.setAdapter(adapter_medium);
-
-
-
-
-
-
         // PART2: VIDEO VIEW
-        String videoPath = "android.resource://" + getPackageName() +"/"+R.raw.mtp_video;
+        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.mtp_video;
         Uri uri = Uri.parse(videoPath);
         videoView_part2.setVideoURI(uri);
         videoView_part2.requestFocus();
@@ -173,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
             public void onPrepared(MediaPlayer mp) {
 
                 // VOLUME
-                mp.setVolume(0f,0f);
+                mp.setVolume(0f, 0f);
                 mp.setLooping(true);
 
 
@@ -193,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // PART 6: VIDEOVIEW
-        String videoPath_part6= "android.resource://" + getPackageName() +"/"+R.raw.chillies_mv;
+        String videoPath_part6 = "android.resource://" + getPackageName() + "/" + R.raw.chillies_mv;
         Uri uri_part6 = Uri.parse(videoPath_part6);
         videoView_part6.setVideoURI(uri_part6);
         videoView_part6.requestFocus();
@@ -211,6 +235,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        // PART8: VIDEOVIEW
+        String videoPath_part8 = "android.resource://" + getPackageName() + "/" + R.raw.chillies_mv;
+        Uri uri_part8 = Uri.parse(videoPath_part8);
+        videoView_part8.setVideoURI(uri_part8);
+        videoView_part8.requestFocus();
+
+        videoView_part8.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+
+                mp.setVolume(0f, 0f);
+                mp.setLooping(true);
+            }
+        });
 
 
         // videoView in localVisible of NestedScroll
@@ -222,9 +260,9 @@ public class MainActivity extends AppCompatActivity {
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
 
                 // VIDEOVIEW PART 2 is autoplayed
-                if(videoView_part2 != null){
+                if (videoView_part2 != null) {
 
-                    if(videoView_part2.getLocalVisibleRect(scrollBounds)){
+                    if (videoView_part2.getLocalVisibleRect(scrollBounds)) {
 
                         //Toast.makeText(MainActivity.this, "VIDEOVIEW APPEAR FULLY", Toast.LENGTH_SHORT).show();
 
@@ -245,8 +283,7 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         }.start();
-                    }
-                    else{
+                    } else {
 
                         videoView_part2.pause();
                         //Toast.makeText(MainActivity.this, "VIDEOVIEW NO APPEAR", Toast.LENGTH_SHORT).show();
@@ -254,12 +291,12 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-                 //VIDEOVIEW PART 6 is autoplayed
-                if(videoView_part6 != null){
+                //VIDEOVIEW PART 6 is autoplayed
+                if (videoView_part6 != null) {
 
-                    if(videoView_part6.getLocalVisibleRect(scrollBounds)){
+                    if (videoView_part6.getLocalVisibleRect(scrollBounds)) {
 
-                        new CountDownTimer(2000,1000){
+                        new CountDownTimer(2000, 1000) {
 
                             @Override
                             public void onTick(long millisUntilFinished) {
@@ -271,16 +308,39 @@ public class MainActivity extends AppCompatActivity {
                                 videoView_part6.start();
                             }
                         }.start();
-                    }
-                    else{
+                    } else {
                         videoView_part6.pause();
                     }
                 }
+
+                // VIDEOVIEW PART 8 is autoplayed
+                if (videoView_part8 != null) {
+
+                    if (videoView_part8.getLocalVisibleRect(scrollBounds)) {
+
+                        new CountDownTimer(2000, 1000) {
+
+                            @Override
+                            public void onTick(long millisUntilFinished) {
+
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                videoView_part8.start();
+                            }
+                        }.start();
+                    } else {
+                        videoView_part8.pause();
+                    }
+                }
+
 
             }
         });
 
 
+        // RECYCLERVIEW
 
         // CREATE A DOT INDICATOR FOR RECYCLERVIEW
         final int radius = getResources().getDimensionPixelSize(R.dimen.radius);
@@ -288,6 +348,12 @@ public class MainActivity extends AppCompatActivity {
         final int colorInactive = ContextCompat.getColor(MainActivity.this, R.color.Gray500);
         final int colorActive = ContextCompat.getColor(MainActivity.this, R.color.black);
 
+
+        // PART 1: RecyclerView_part1
+        recyclerView_part1.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        init_mData_part1();
+        RecyclerViewAdapter_Medium adapter_medium = new RecyclerViewAdapter_Medium(MainActivity.this, mData_part1);
+        recyclerView_part1.setAdapter(adapter_medium);
 
 
         // PART 4: RecyclerView
@@ -301,7 +367,6 @@ public class MainActivity extends AppCompatActivity {
         new PagerSnapHelper().attachToRecyclerView(recyclerView_part4);
 
 
-
         // PART 7: RecyclerView
         recyclerView_part7.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
         init_mData_part7();
@@ -312,11 +377,50 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_part7.addItemDecoration(new DotsIndicatorDecoration(radius, radius * 4, dotsHeight, colorInactive, colorActive));
         new PagerSnapHelper().attachToRecyclerView(recyclerView_part7);
 
+
+        // PART 9: RecylerView
+        recyclerView_part9.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        init_mData_part9();
+        RecyclerViewAdapter_Medium adapter_part9 = new RecyclerViewAdapter_Medium(this, mData_part9);
+        recyclerView_part9.setAdapter(adapter_part9);
+
+
+        // PART 10: Recyclerview
+        recyclerView_part10.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        init_mData_part10();
+        RecyclerViewAdapter_LargeItem adapter_part10 = new RecyclerViewAdapter_LargeItem(this, mData_part10);
+        recyclerView_part10.setAdapter(adapter_part10);
+
+        // CREATE A DOT INDICATOR FOR RECYCLERVIEW
+        recyclerView_part10.addItemDecoration(new DotsIndicatorDecoration(radius, radius * 4, dotsHeight, colorInactive, colorActive));
+        new PagerSnapHelper().attachToRecyclerView(recyclerView_part10);
+
+
+        // PART 11: RecylerView
+        recyclerView_part11.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        init_mData_part11();
+        RecyclerViewAdapter_Medium adapter_part11 = new RecyclerViewAdapter_Medium(this, mData_part11);
+        recyclerView_part11.setAdapter(adapter_part11);
+
+
+        // PART 12: RecylerView
+        recyclerView_part12.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        init_mData_part12();
+        RecyclerViewAdapter_Medium adapter_part12 = new RecyclerViewAdapter_Medium(this, mData_part12);
+        recyclerView_part12.setAdapter(adapter_part12);
+
+
+        // PART 13: RecyclerView
+        recyclerView_part13.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        init_mData_part13();
+        RecyclerViewAdapter_part13 adapter_part13 = new RecyclerViewAdapter_part13(this, mData_part13);
+        recyclerView_part13.setAdapter(adapter_part13);
+
+
     }
 
 
-
-    private void init_mData_part1(){
+    private void init_mData_part1() {
 
         mData_part1 = new ArrayList<>();
 
@@ -329,7 +433,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void init_mData_part4(){
+    private void init_mData_part4() {
 
         mData_part4 = new ArrayList<>();
 
@@ -342,7 +446,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void init_mData_part7(){
+    private void init_mData_part7() {
 
         mData_part7 = new ArrayList<>();
 
@@ -355,6 +459,71 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void init_mData_part9() {
+
+        mData_part9 = new ArrayList<>();
+
+        mData_part9.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part9.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part9.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part9.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part9.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part9.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+
+    }
+
+    private void init_mData_part10() {
+
+        mData_part10 = new ArrayList<>();
+
+        mData_part10.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part10.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part10.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part10.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part10.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part10.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+
+    }
+
+    private void init_mData_part11() {
+
+        mData_part11 = new ArrayList<>();
+
+        mData_part11.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part11.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part11.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part11.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part11.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part11.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+
+    }
+
+    private void init_mData_part12() {
+
+        mData_part12 = new ArrayList<>();
+
+        mData_part12.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part12.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part12.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part12.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part12.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        mData_part12.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+
+    }
+
+    private void init_mData_part13() {
+
+        mData_part13 = new ArrayList<>();
+
+        mData_part13.add(new Recipe(R.drawable.ic_launcher_background, "Strawberry Season"));
+        mData_part13.add(new Recipe(R.drawable.ic_launcher_background, "Breakfast"));
+        mData_part13.add(new Recipe(R.drawable.ic_launcher_background, "BBQ"));
+        mData_part13.add(new Recipe(R.drawable.ic_launcher_background, "Asparagus"));
+        mData_part13.add(new Recipe(R.drawable.ic_launcher_background, "Vegan"));
+        mData_part13.add(new Recipe(R.drawable.ic_launcher_background, "Recipes for Spring"));
+        mData_part13.add(new Recipe(R.drawable.ic_launcher_background, "One-Pot"));
+
+    }
 
     // Transparent Status Bar part 1
     public void transparentStatusAndNavigation() {
@@ -377,8 +546,11 @@ public class MainActivity extends AppCompatActivity {
             getWindow().setNavigationBarColor(Color.TRANSPARENT);
         }
 
+        //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
 
     }
+
     // Transparent Status Bar part 2
     public void setWindowFlag(final int bits, boolean on) {
         Window win = getWindow();
@@ -390,6 +562,13 @@ public class MainActivity extends AppCompatActivity {
         }
         win.setAttributes(winParams);
     }
+
+
+
+
+
+
+
 
 
 
