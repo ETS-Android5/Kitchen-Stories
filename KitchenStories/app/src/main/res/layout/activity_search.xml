@@ -21,8 +21,8 @@
             android:id="@+id/txtSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="25dp"
             android:fontFamily="@font/lora_bold"
             android:text="Search"
             android:textColor="@color/black"
@@ -34,17 +34,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/source_sans_pro_regular"
-            android:padding="10dp"
+            android:padding="13dp"
             android:text="Hungry"
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/Gray700"
             android:textSize="20dp"
+            app:cornerRadius="10dp"
             app:icon="@drawable/ic_baseline_search"
             app:iconTint="@color/Gray700"
             app:strokeColor="@color/black"
-            app:strokeWidth="1dp"
-            />
+            app:strokeWidth="1dp" />
 
         <Button
             android:id="@+id/btnFindOnWeb"
@@ -435,7 +435,8 @@
             app:iconGravity="end"
             app:iconTint="@color/black"
             app:rippleColor="@color/Gray400"
-            app:strokeColor="@android:color/transparent" />
+            app:strokeColor="@android:color/transparent"
+            app:iconSize="15dp"/>
 
         <View
             android:layout_width="match_parent"
@@ -459,7 +460,7 @@
             app:iconGravity="end"
             app:iconTint="@color/black"
             app:rippleColor="@color/Gray500"
-
+            app:iconSize="15dp"
             app:strokeColor="@android:color/transparent" />
 
     </LinearLayout>

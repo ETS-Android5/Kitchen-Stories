@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:orientation="vertical">
+
+    <!--
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/source_sans_pro_bold"
+                android:text="MAIN INGREDIENTS"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+
+            <Button
+                android:id="@+id/button__MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/source_sans_pro_bold"
+                android:textAllCaps="false"
+                android:textColor="@color/Gray600"
+                app:icon="@drawable/ic_baseline_keyboard_arrow_down_24"
+                app:iconGravity="textEnd"
+                app:iconPadding="3dp"
+                app:iconSize="20dp"
+                app:iconTint="@color/DeepPurpleA700" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_MainIngredients_Filter_Activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_Vegetables_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="@string/vegetables"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconPadding="4dp"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Chicken_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="@string/chicken"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Pasta_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Pasta"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Beef_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Beef"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Seafood_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Seafood"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Pork_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Pork"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Fruit_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Fruit"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Cheese_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Cheese"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/source_sans_pro_bold"
+                android:text="OCCASION"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+
+            <Button
+                android:id="@+id/button_Occasion_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/source_sans_pro_bold"
+                android:textAllCaps="false"
+                android:textColor="@color/Gray600"
+                app:icon="@drawable/ic_baseline_keyboard_arrow_down_24"
+                app:iconGravity="textEnd"
+                app:iconPadding="3dp"
+                app:iconSize="20dp"
+                app:iconTint="@color/DeepPurpleA700" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_Occasion_Filter_Activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_WeeknightDinner_Occasion_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Weeknight-dinner"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconPadding="4dp"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Prepare_ahead_Occasion_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Prepare-ahead"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_CrowdPleaser_Occasion_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Crowd-pleaser"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_OnTheGo_Occasion_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="On-the-go"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_ComfortFood_Occasion_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Comfort-food"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_KidFriendly_Occasion_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Kid-friendly"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_FingerFood_Occasion_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Finger-food"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Barbecue_Occasion_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Barbecue"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Christmas_Occasion_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Christmas"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Easter_Occasion_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Easter"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+
+            <Button
+                android:id="@+id/btn_ValentinesDay_Occasion_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Valentine's Day"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Halloween_Occasion_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Halloween"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Octoberfest_Occasion_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Octoberfest"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

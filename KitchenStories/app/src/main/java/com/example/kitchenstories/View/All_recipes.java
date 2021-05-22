@@ -34,6 +34,7 @@ public class All_recipes extends AppCompatActivity {
 
     private Toolbar toolbar;
 
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,7 @@ public class All_recipes extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         tabLayout = findViewById(R.id.tabs);
         viewPager = findViewById(R.id.view_pager);
-        toolbar = findViewById(R.id.topAppBar);
+        toolbar = findViewById(R.id.topAppBar_All_Recipes_Activity);
 
 
 
@@ -108,7 +109,7 @@ public class All_recipes extends AppCompatActivity {
         });
 
 
-        // Navigation Icon Clicked
+        // Navigation Icon is Clicked
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,10 +120,36 @@ public class All_recipes extends AppCompatActivity {
 
 
 
+        // Filter Icon is clicked
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                switch (item.getItemId()){
+                    case R.id.filter_all_recipe_activity:
+                        openFilterRecipe();
+                        return true;
+
+                }
+                return false;
+            }
+        });
 
 
 
 
+
+
+
+    }
+
+
+    public void openFilterRecipe(){
+
+        Intent intent = new Intent(this, Filter_Recipe.class);
+        startActivity(intent);
+        //overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
+        overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_null);
     }
 
     // Transparent Status Bar

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SORT"
+                android:textSize="17sp"
+                android:fontFamily="@font/source_sans_pro_bold"
+                android:textColor="@color/black"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Relevance"
+                android:textSize="17sp"
+                android:fontFamily="@font/source_sans_pro_bold"
+                android:textColor="@color/Gray600"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="60dp"
+                android:layout_centerVertical="true"/>
+
+            <Button
+                android:id="@+id/button_sort_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/source_sans_pro_bold"
+                android:textAllCaps="false"
+                android:textColor="@color/Gray600"
+                app:icon="@drawable/ic_baseline_keyboard_arrow_down_24"
+                app:iconSize="20dp"
+                app:iconGravity="textEnd"
+                app:iconPadding="3dp"
+                app:iconTint="@color/DeepPurpleA700" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/linearlayout_sort_Filter_Activity">
+
+            <Button
+                android:id="@+id/btn_relevance_Sort_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:text="@string/relevance"
+                android:textAllCaps="false"
+                android:textColor="@drawable/selector_color_filter_activity"
+                app:icon="@drawable/selector_icon_relevance_filter_activity"
+                app:iconPadding="20dp"
+                app:iconTint="@drawable/selector_color_filter_activity"
+                app:rippleColor="@android:color/transparent"
+                android:fontFamily="@font/source_sans_pro_regular"
+                android:textSize="17sp"/>
+
+            <Button
+                android:id="@+id/btn_likes_Sort_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:text="@string/likes"
+                android:textAllCaps="false"
+                android:textColor="@drawable/selector_color_filter_activity"
+                app:icon="@drawable/selector_icon_like_filter_activity"
+                app:iconPadding="20dp"
+                app:iconTint="@drawable/selector_color_filter_activity"
+                app:rippleColor="@android:color/transparent"
+                android:fontFamily="@font/source_sans_pro_regular"
+                android:textSize="17sp"/>
+
+            <Button
+                android:id="@+id/btn_rating_Sort_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:text="@string/rating"
+                android:textAllCaps="false"
+                android:textColor="@drawable/selector_color_filter_activity"
+                app:icon="@drawable/selector_icon_rating_filter_activity"
+                app:iconPadding="20dp"
+                app:iconTint="@drawable/selector_color_filter_activity"
+                app:rippleColor="@android:color/transparent"
+                android:fontFamily="@font/source_sans_pro_regular"
+                android:textSize="17sp"/>
+
+            <Button
+                android:id="@+id/btn_commented_Sort_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:text="Commented"
+                android:textAllCaps="false"
+                android:textColor="@drawable/selector_color_filter_activity"
+                app:icon="@drawable/selector_icon_commented_filter_activity"
+                app:iconPadding="20dp"
+                app:iconTint="@drawable/selector_color_filter_activity"
+                app:rippleColor="@android:color/transparent"
+                android:fontFamily="@font/source_sans_pro_regular"
+                android:textSize="17sp"/>
+
+
+            <Button
+                android:id="@+id/btn_calories_Sort_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:text="@string/calories"
+                android:textAllCaps="false"
+                android:textColor="@drawable/selector_color_filter_activity"
+                app:icon="@drawable/selector_icon_calories_filter_activity"
+                app:iconPadding="20dp"
+                app:iconTint="@drawable/selector_color_filter_activity"
+                app:rippleColor="@android:color/transparent"
+                android:fontFamily="@font/source_sans_pro_regular"
+                android:textSize="17sp"/>
+
+
+            <Button
+                android:id="@+id/btn_preparationTime_Sort_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:text="@string/preparation_time"
+                android:textAllCaps="false"
+                android:textColor="@drawable/selector_color_filter_activity"
+                app:icon="@drawable/selector_preparation_time_filter_activity"
+                app:iconPadding="20dp"
+                app:iconTint="@drawable/selector_color_filter_activity"
+                app:rippleColor="@android:color/transparent"
+                android:fontFamily="@font/source_sans_pro_regular"
+                android:textSize="17sp"/>
+
+            <Button
+                android:id="@+id/btn_releaseDate_Sort_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:text="@string/release_date"
+                android:textAllCaps="false"
+                android:textColor="@drawable/selector_color_filter_activity"
+                app:icon="@drawable/selector_icon_releasedate_filter_activity"
+                app:iconPadding="20dp"
+                app:iconTint="@drawable/selector_color_filter_activity"
+                app:rippleColor="@android:color/transparent"
+                android:fontFamily="@font/source_sans_pro_regular"
+                android:textSize="17sp"/>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

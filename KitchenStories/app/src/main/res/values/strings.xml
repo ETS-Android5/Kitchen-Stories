@@ -30,6 +30,34 @@
     <string name="utensils">UTENSILS</string>
     <string name="nutrition_per_serving">NUTRITION PER SERVING</string>
     <string name="make_this_today">Make This Today</string>
+    <string name="done">Done</string>
+    <string name="category">CATEGORY</string>
+    <string name="diet">DIET</string>
+    <string name="likes">Likes</string>
+    <string name="relevance">Relevance</string>
+    <string name="rating">Rating</string>
+    <string name="calories">Calories</string>
+    <string name="preparation_time">Preparation time</string>
+    <string name="release_date">Release date</string>
+    <string name="cuisine">CUISINE</string>
+    <string name="vegetables">Vegetables</string>
+    <string name="chicken">Chicken</string>
+    <string name="title_activity_filter__recipe">Filter_Recipe</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
 
 </resources>
