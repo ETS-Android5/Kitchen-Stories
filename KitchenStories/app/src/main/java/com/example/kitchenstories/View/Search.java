@@ -1,17 +1,24 @@
 package com.example.kitchenstories.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.Fade;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.kitchenstories.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,7 +26,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class Search extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+
     private Button btn_All_recipes;
+    private Button btn_search_by_Search_Activity;
+
+    private TextView txtSearch_Search_Activity;
+    private Animation animationHide_Button_SearchBy;
+    private Animation animationHide_textView;
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +45,27 @@ public class Search extends AppCompatActivity {
         transparentStatusAndNavigation();
 
 
+        Fade fade = new Fade();
+        View decor = getWindow().getDecorView();
+        fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
+        fade.excludeTarget(android.R.id.statusBarBackground, true);
+        fade.excludeTarget(android.R.id.navigationBarBackground, true);
+
+        getWindow().setEnterTransition(fade);
+        getWindow().setExitTransition(fade);
 
         // find View by ID
         btn_All_recipes = findViewById(R.id.btn_AllRecipes);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        btn_search_by_Search_Activity = findViewById(R.id.btn_search_by_Search_Activity);
+
+        txtSearch_Search_Activity = findViewById(R.id.txtSearch_Search_Activity);
+
+
+        // animation
+        animationHide_Button_SearchBy = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_up_300);
+        animationHide_textView = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_up_300);
 
 
         //
@@ -72,18 +105,49 @@ public class Search extends AppCompatActivity {
         btn_All_recipes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                open_Activity_All_recipes();
+                openAllRecipesActivity();
             }
         });
 
 
+        btn_search_by_Search_Activity.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                openFilterInSearchActivity();
+
+
+            }
+        });
+
+
+
+
+
+
+
     }
 
-    public void open_Activity_All_recipes(){
+
+    public void openAllRecipesActivity(){
 
         Intent intent = new Intent(this, All_recipes.class);
         startActivity(intent);
     }
+
+    public void openFilterInSearchActivity(){
+        Intent intent = new Intent(this, FilterInSearch.class);
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btn_search_by_Search_Activity, ViewCompat.getTransitionName(btn_search_by_Search_Activity));
+
+        startActivity(intent, options.toBundle());
+
+//        txtSearch_Search_Activity.startAnimation(animationHide_Button_SearchBy);
+//        btn_search_by_Search_Activity.startAnimation(animationHide_textView);
+
+        //overridePendingTransition(R.anim.test2_null,R.anim.test1);
+    }
+
 
     // Transparent Status Bar
     public void transparentStatusAndNavigation() {

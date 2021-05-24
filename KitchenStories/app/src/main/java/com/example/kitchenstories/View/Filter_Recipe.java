@@ -266,13 +266,15 @@ public class Filter_Recipe extends AppCompatActivity {
         // VISIBILITY LINEAR LAYOUT
 
         button_Sort.setOnClickListener(new View.OnClickListener() {
-            boolean isClicked = false;
+            //boolean isClicked = false;
+
+
             @Override
             public void onClick(View v) {
 
-                isClicked = !isClicked;
+                isClicked_linearlayout_sort = !isClicked_linearlayout_sort;
 
-                if (isClicked){
+                if (isClicked_linearlayout_sort){
 
                     button_Sort.setSelected(true);
 
@@ -337,6 +339,8 @@ public class Filter_Recipe extends AppCompatActivity {
                     }
                 }.start();
 
+                button_Sort.setSelected(false);
+
                 isClicked_linearlayout_sort =! isClicked_linearlayout_sort;
 
                 txtview_name_sort_Filter_Activity.setText(btn_relevance_Sort_Filter_Activity.getText());
@@ -372,6 +376,8 @@ public class Filter_Recipe extends AppCompatActivity {
                         linearlayout_sort.setVisibility(View.GONE);
                     }
                 }.start();
+
+                button_Sort.setSelected(false);
 
                 isClicked_linearlayout_sort =! isClicked_linearlayout_sort;
 
@@ -410,6 +416,8 @@ public class Filter_Recipe extends AppCompatActivity {
                     }
                 }.start();
 
+                button_Sort.setSelected(false);
+
                 isClicked_linearlayout_sort =! isClicked_linearlayout_sort;
 
                 txtview_name_sort_Filter_Activity.setText(btn_rating_Sort_Filter_Activity.getText());
@@ -447,6 +455,8 @@ public class Filter_Recipe extends AppCompatActivity {
                     }
                 }.start();
 
+                button_Sort.setSelected(false);
+
                 isClicked_linearlayout_sort =! isClicked_linearlayout_sort;
 
                 txtview_name_sort_Filter_Activity.setText(btn_commented_Sort_Filter_Activity.getText());
@@ -482,6 +492,8 @@ public class Filter_Recipe extends AppCompatActivity {
                         linearlayout_sort.setVisibility(View.GONE);
                     }
                 }.start();
+
+                button_Sort.setSelected(false);
 
                 isClicked_linearlayout_sort =! isClicked_linearlayout_sort;
 
@@ -520,6 +532,8 @@ public class Filter_Recipe extends AppCompatActivity {
                     }
                 }.start();
 
+                button_Sort.setSelected(false);
+
                 isClicked_linearlayout_sort =! isClicked_linearlayout_sort;
 
                 txtview_name_sort_Filter_Activity.setText(btn_preparationTime_Sort_Filter_Activity.getText());
@@ -556,12 +570,23 @@ public class Filter_Recipe extends AppCompatActivity {
                     }
                 }.start();
 
+                button_Sort.setSelected(false);
+
                 isClicked_linearlayout_sort =! isClicked_linearlayout_sort;
 
                 txtview_name_sort_Filter_Activity.setText(btn_releaseDate_Sort_Filter_Activity.getText());
 
             }
         });
+
+
+
+
+
+
+
+
+
 
 
 
