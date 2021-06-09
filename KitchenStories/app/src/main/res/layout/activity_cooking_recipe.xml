@@ -37,11 +37,11 @@
 
                 <ImageView
                     android:id="@+id/image_recipe_collapsingToolbar_CookingRecipe_Activity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
                     android:contentDescription="@string/content_description_media"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/pizza"
+                    android:src="@drawable/ic_launcher_background"
                     app:layout_collapseMode="parallax" />
 
                 <TextView
@@ -59,11 +59,11 @@
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_gravity="bottom"
-                    android:background="@drawable/title_background" />
+                <!--                <View-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="30dp"-->
+                <!--                    android:layout_gravity="bottom"-->
+                <!--                    android:background="@drawable/title_background" />-->
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar_CookingRecipe_Activity"
@@ -94,7 +94,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 >
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -196,7 +195,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/source_sans_pro_regular"
-                            android:text="Shape"
+                            android:text="Share"
                             android:textAllCaps="false"
                             android:textColor="@color/Gray700"
                             app:icon="@drawable/ic_outline_open_in_browser"
@@ -218,8 +217,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp">
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -308,8 +307,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp">
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -435,8 +434,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp">
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -447,6 +446,7 @@
                         android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/tv_difficulty_Level_Recipe_CookingRecipe"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/source_sans_pro_regular"
@@ -469,8 +469,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp">
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -600,8 +600,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp">
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -655,17 +655,29 @@
 
                     </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ListView"
-                        android:textSize="18sp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/recyclerView_amountOfIngredients_CookingRecipe"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/recyclerView_amountOfIngredients_CookingRecipe"
+                            android:id="@+id/recyclerView_Ingredients_CookingRecipe"
+                            android:layout_marginStart="30dp"/>
+                    </RelativeLayout>
 
                     <Button
                         android:id="@+id/btn_AddToShoppingList_Ingredients_CookingRecipe_Activity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="25dp"
                         android:padding="15dp"
                         android:text="@string/add_to_shopping_list" />
 
@@ -718,8 +730,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp">
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -753,8 +765,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp">
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -893,7 +905,7 @@
                                 android:textSize="15sp" />
 
                             <TextView
-                                android:id="@+id/txt_CardAmount_Nutrition_CookingRecipe_Activity"
+                                android:id="@+id/txt_CarbAmount_Nutrition_CookingRecipe_Activity"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/source_sans_pro_regular"
@@ -913,501 +925,11 @@
                     android:layout_marginTop="20dp"
                     android:background="@color/Gray400" />
 
-
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+                    android:id="@+id/recyclerView_Steps_CookingRecipe"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/orange50"
-                        android:fontFamily="@font/source_sans_pro_bold"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp"
-                        android:text="STEP 1/5"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:paddingStart="15dp"/>
-
-
-                    <ImageView
-                        android:id="@+id/image_step1_Step_CookingRecipe_Activity"
-                        android:layout_width="420dp"
-                        android:layout_height="420dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_launcher_background" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:orientation="horizontal">
-
-                            <View
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="@drawable/ic_outline_shopping_basket_24"
-                                android:backgroundTint="@color/black" />
-
-
-                            <TextView
-                                android:id="@+id/txt_ingredients_step1_Step_CookingRecipe_Activity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
-                                android:fontFamily="@font/source_sans_pro_regular"
-                                android:text="Hello"
-                                android:textColor="@color/black"
-                                android:textSize="15sp"
-                                android:layout_marginTop="5dp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="15dp"
-                            android:orientation="horizontal">
-
-                            <View
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="@drawable/ic_outline_room_service_24"
-                                android:backgroundTint="@color/black" />
-
-
-                            <TextView
-                                android:id="@+id/txt_utensils_step1_Step_CookingRecipe_Activity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
-                                android:fontFamily="@font/source_sans_pro_regular"
-                                android:text="Hello"
-                                android:textColor="@color/black"
-                                android:textSize="15sp"
-                                android:layout_marginTop="5dp"/>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/txt_description_step1_Step_CookingRecipe_Activity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/source_sans_pro_regular"
-                            android:text="@string/dummy_content"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            android:layout_marginBottom="15dp"/>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/orange50"
-                        android:fontFamily="@font/source_sans_pro_bold"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp"
-                        android:text="STEP 2/5"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:paddingStart="15dp"/>
-
-
-                    <ImageView
-                        android:id="@+id/image_step2_Step_CookingRecipe_Activity"
-                        android:layout_width="420dp"
-                        android:layout_height="420dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_launcher_background" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:orientation="horizontal">
-
-                            <View
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="@drawable/ic_outline_shopping_basket_24"
-                                android:backgroundTint="@color/black" />
-
-
-                            <TextView
-                                android:id="@+id/txt_ingredients_step2_Step_CookingRecipe_Activity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
-                                android:fontFamily="@font/source_sans_pro_regular"
-                                android:text="Hello"
-                                android:textColor="@color/black"
-                                android:textSize="15sp"
-                                android:layout_marginTop="5dp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="15dp"
-                            android:orientation="horizontal">
-
-                            <View
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="@drawable/ic_outline_room_service_24"
-                                android:backgroundTint="@color/black" />
-
-
-                            <TextView
-                                android:id="@+id/txt_utensils_step2_Step_CookingRecipe_Activity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
-                                android:fontFamily="@font/source_sans_pro_regular"
-                                android:text="Hello"
-                                android:textColor="@color/black"
-                                android:textSize="15sp"
-                                android:layout_marginTop="5dp"/>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/txt_description_step2_Step_CookingRecipe_Activity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/source_sans_pro_regular"
-                            android:text="@string/dummy_content"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            android:layout_marginBottom="15dp"/>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/orange50"
-                        android:fontFamily="@font/source_sans_pro_bold"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp"
-                        android:text="STEP 3/5"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:paddingStart="15dp"/>
-
-
-                    <ImageView
-                        android:id="@+id/image_step3_Step_CookingRecipe_Activity"
-                        android:layout_width="420dp"
-                        android:layout_height="420dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_launcher_background" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:orientation="horizontal">
-
-                            <View
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="@drawable/ic_outline_shopping_basket_24"
-                                android:backgroundTint="@color/black" />
-
-
-                            <TextView
-                                android:id="@+id/txt_ingredients_step3_Step_CookingRecipe_Activity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
-                                android:fontFamily="@font/source_sans_pro_regular"
-                                android:text="Hello"
-                                android:textColor="@color/black"
-                                android:textSize="15sp"
-                                android:layout_marginTop="5dp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="15dp"
-                            android:orientation="horizontal">
-
-                            <View
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="@drawable/ic_outline_room_service_24"
-                                android:backgroundTint="@color/black" />
-
-
-                            <TextView
-                                android:id="@+id/txt_utensils_step3_Step_CookingRecipe_Activity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
-                                android:fontFamily="@font/source_sans_pro_regular"
-                                android:text="Hello"
-                                android:textColor="@color/black"
-                                android:textSize="15sp"
-                                android:layout_marginTop="5dp"/>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/txt_description_step3_Step_CookingRecipe_Activity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/source_sans_pro_regular"
-                            android:text="@string/dummy_content"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            android:layout_marginBottom="15dp"/>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/orange50"
-                        android:fontFamily="@font/source_sans_pro_bold"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp"
-                        android:text="STEP 4/5"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:paddingStart="15dp"/>
-
-
-                    <ImageView
-                        android:id="@+id/image_step4_Step_CookingRecipe_Activity"
-                        android:layout_width="420dp"
-                        android:layout_height="420dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_launcher_background" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:orientation="horizontal">
-
-                            <View
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="@drawable/ic_outline_shopping_basket_24"
-                                android:backgroundTint="@color/black" />
-
-
-                            <TextView
-                                android:id="@+id/txt_ingredients_step4_Step_CookingRecipe_Activity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
-                                android:fontFamily="@font/source_sans_pro_regular"
-                                android:text="Hello"
-                                android:textColor="@color/black"
-                                android:textSize="15sp"
-                                android:layout_marginTop="5dp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="15dp"
-                            android:orientation="horizontal">
-
-                            <View
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="@drawable/ic_outline_room_service_24"
-                                android:backgroundTint="@color/black" />
-
-
-                            <TextView
-                                android:id="@+id/txt_utensils_step4_Step_CookingRecipe_Activity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
-                                android:fontFamily="@font/source_sans_pro_regular"
-                                android:text="Hello"
-                                android:textColor="@color/black"
-                                android:textSize="15sp"
-                                android:layout_marginTop="5dp"/>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/txt_description_step4_Step_CookingRecipe_Activity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/source_sans_pro_regular"
-                            android:text="@string/dummy_content"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            android:layout_marginBottom="15dp"/>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/orange50"
-                        android:fontFamily="@font/source_sans_pro_bold"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp"
-                        android:text="STEP 5/5"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:paddingStart="15dp"/>
-
-
-                    <ImageView
-                        android:id="@+id/image_step5_Step_CookingRecipe_Activity"
-                        android:layout_width="420dp"
-                        android:layout_height="420dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_launcher_background" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:orientation="horizontal">
-
-                            <View
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="@drawable/ic_outline_shopping_basket_24"
-                                android:backgroundTint="@color/black" />
-
-
-                            <TextView
-                                android:id="@+id/txt_ingredients_step5_Step_CookingRecipe_Activity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
-                                android:fontFamily="@font/source_sans_pro_regular"
-                                android:text="Hello"
-                                android:textColor="@color/black"
-                                android:textSize="15sp"
-                                android:layout_marginTop="5dp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="15dp"
-                            android:orientation="horizontal">
-
-                            <View
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="@drawable/ic_outline_room_service_24"
-                                android:backgroundTint="@color/black" />
-
-
-                            <TextView
-                                android:id="@+id/txt_utensils_step5_Step_CookingRecipe_Activity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
-                                android:fontFamily="@font/source_sans_pro_regular"
-                                android:text="Hello"
-                                android:textColor="@color/black"
-                                android:textSize="15sp"
-                                android:layout_marginTop="5dp"/>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/txt_description_step5_Step_CookingRecipe_Activity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/source_sans_pro_regular"
-                            android:text="@string/dummy_content"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            android:layout_marginBottom="15dp"/>
-                    </LinearLayout>
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1446,12 +968,23 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="20dp"/>
 
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp">
+                        >
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -1508,13 +1041,11 @@
 
                     </LinearLayout>
 
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp">
+                        >
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -1571,7 +1102,6 @@
 
 
                     </LinearLayout>
-
                 </LinearLayout>
 
                 <View
@@ -1593,9 +1123,9 @@
                         android:fontFamily="@font/source_sans_pro_bold"
                         android:textColor="@color/black"
                         android:textSize="18sp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"/>
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
@@ -1617,8 +1147,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp">
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -1629,12 +1159,13 @@
                         android:textSize="18sp"/>
 
                     <TextView
+                        android:id="@+id/txt_Tags_CookingRecipe_Activity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="List View with --custom text button icon-- "
-                        android:fontFamily="@font/source_sans_pro_bold"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"/>
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
+                        android:textColor="@color/DeepPurple900"
+                        android:textSize="16sp"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"

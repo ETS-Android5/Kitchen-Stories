@@ -50,8 +50,9 @@ public class MainLoginActivity extends AppCompatActivity {
         auth=FirebaseAuth.getInstance();
         InitiallizeGoogleLogin();
         InitiallizeFacebook();
+
         if(auth.getCurrentUser()!=null){
-            startActivity(new Intent( MainLoginActivity.this,HomeLoginActivity.class));
+            startActivity(new Intent( MainLoginActivity.this,MainActivity.class));
             finish();
         }
     }

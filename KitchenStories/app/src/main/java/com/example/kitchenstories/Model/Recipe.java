@@ -1,12 +1,64 @@
 package com.example.kitchenstories.Model;
 
+import java.util.ArrayList;
+
 public class Recipe {
 
     private int image_CookingRecipe;
     private String name_cooking_recipe;
+    private String url_image_CookingRecipe;
+
     private int image_author;
     private String name_author;
     private String name_authorGroup;
+
+    private String difficulty_Level_Recipe;
+    private ArrayList<String> periodCooking;
+    private ArrayList<String> ingredients;
+    private ArrayList<String> amountOfIngredients;
+    private String utensils;
+    private ArrayList<String> nutritionPerServing;
+    private ArrayList<String> tags;
+
+
+
+
+    public Recipe() {
+    }
+
+    public Recipe(String name_cooking_recipe, String url_image_CookingRecipe) {
+        this.name_cooking_recipe = name_cooking_recipe;
+        this.url_image_CookingRecipe = url_image_CookingRecipe;
+    }
+
+    // doing
+    public Recipe(int image_CookingRecipe,
+                  String name_cooking_recipe,
+                  String url_image_CookingRecipe,
+                  int image_author,
+                  String name_author,
+                  String name_authorGroup,
+                  String difficulty_Level_Recipe,
+                  ArrayList<String> periodCooking,
+                  ArrayList<String> ingredients,
+                  ArrayList<String> amountOfIngredients,
+                  String utensils,
+                  ArrayList<String> nutritionPerServing,
+                  ArrayList<String> tags) {
+        this.image_CookingRecipe = image_CookingRecipe;
+        this.name_cooking_recipe = name_cooking_recipe;
+        this.url_image_CookingRecipe = url_image_CookingRecipe;
+        this.image_author = image_author;
+        this.name_author = name_author;
+        this.name_authorGroup = name_authorGroup;
+        this.difficulty_Level_Recipe = difficulty_Level_Recipe;
+        this.periodCooking = periodCooking;
+        this.ingredients = ingredients;
+        this.amountOfIngredients = amountOfIngredients;
+        this.utensils = utensils;
+        this.nutritionPerServing = nutritionPerServing;
+        this.tags = tags;
+    }
 
 
     public Recipe(int image_CookingRecipe, String name_cooking_recipe, int image_author, String name_author, String name_authorGroup) {
@@ -44,6 +96,14 @@ public class Recipe {
         this.name_cooking_recipe = name_cooking_recipe;
     }
 
+    public String getUrl_image_CookingRecipe() {
+        return url_image_CookingRecipe;
+    }
+
+    public void setUrl_image_CookingRecipe(String url_image_CookingRecipe) {
+        this.url_image_CookingRecipe = url_image_CookingRecipe;
+    }
+
     public int getImage_author() {
         return image_author;
     }
@@ -66,5 +126,63 @@ public class Recipe {
 
     public void setName_authorGroup(String name_authorGroup) {
         this.name_authorGroup = name_authorGroup;
+    }
+
+    public String getDifficulty_Level_Recipe() {
+        return difficulty_Level_Recipe;
+    }
+
+    public void setDifficulty_Level_Recipe(String difficulty_Level_Recipe) {
+        this.difficulty_Level_Recipe = difficulty_Level_Recipe;
+    }
+
+
+
+    public String getUtensils() {
+        return utensils;
+    }
+
+    public void setUtensils(String utensils) {
+        this.utensils = utensils;
+    }
+
+    public ArrayList<String> getPeriodCooking() {
+        return periodCooking;
+    }
+
+    public void setPeriodCooking(ArrayList<String> periodCooking) {
+        this.periodCooking = periodCooking;
+    }
+
+    public ArrayList<String> getNutritionPerServing() {
+        return nutritionPerServing;
+    }
+
+    public void setNutritionPerServing(ArrayList<String> nutritionPerServing) {
+        this.nutritionPerServing = nutritionPerServing;
+    }
+
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(ArrayList<String> tags) {
+        this.tags = tags;
+    }
+
+    public ArrayList<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(ArrayList<String> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public ArrayList<String> getAmountOfIngredients() {
+        return amountOfIngredients;
+    }
+
+    public void setAmountOfIngredients(ArrayList<String> amountOfIngredients) {
+        this.amountOfIngredients = amountOfIngredients;
     }
 }

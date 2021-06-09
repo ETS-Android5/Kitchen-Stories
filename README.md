@@ -1,8 +1,8 @@
 # Kitchen-Stories
 
-This is Kitchen Stories Mobile Application
+PROJECT: KitchenStories
 
-Members of my team:
+Members Of KitchenStories's Team:
 Tran Quoc Thang
 Nguyen Huu Phat
 Truong Xuan Tam

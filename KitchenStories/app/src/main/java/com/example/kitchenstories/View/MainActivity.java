@@ -37,6 +37,7 @@ import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_M
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_part13;
 import com.example.kitchenstories.aOthersClass.DotsIndicatorDecoration;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -89,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
 //    int colorInactive;
 //    int colorActive;
 
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -108,6 +111,106 @@ public class MainActivity extends AppCompatActivity {
             //getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.Gray50));
         }
 
+//        String name_cooking_recipe ="name4";
+//        String url_image_CookingRecipe ="https://firebasestorage.googleapis.com/v0/b/loginapp-319bc.appspot.com/o/Recipe%2FRecipe1%2Fmain.jpeg?alt=media&token=4c033c30-a64e-49da-b7aa-57911098e53d";
+//        int image_CookingRecipe = 4;
+//
+//        int image_author = 4;
+//        String name_author = "name_author4";
+//        String name_authorGroup ="name_authorGroup4";
+//
+//        String difficulty_Level_Recipe ="difficulty_Level_Recipe4";
+//        String utensils = "utensils4";
+//
+//        ArrayList<String> periodCooking = new ArrayList<>();
+//        periodCooking.add("25 mins.");
+//        periodCooking.add("0 min.");
+//        periodCooking.add("0 min.");
+//
+//        ArrayList<String> nutritionPerServing = new ArrayList<>();
+//        nutritionPerServing.add("650");
+//        nutritionPerServing.add("20 g");
+//        nutritionPerServing.add("19 g");
+//        nutritionPerServing.add("101 g");
+//
+//        ArrayList<String> tags = new ArrayList<>();
+//        tags.add("main");
+//        tags.add("lactose free");
+//        tags.add("weeknight dinner");
+//        tags.add("italian");
+//        tags.add("meatless");
+//        tags.add("pasta");
+//        tags.add("asian");
+//
+//
+//        ArrayList<String> ingredients = new ArrayList<>();
+//        ingredients.add("cherry tomatoes");
+//        ingredients.add("white miso paste");
+//        ingredients.add("weeknight dinner");
+//        ingredients.add("linguine");
+//        ingredients.add("garlic");
+//        ingredients.add("scallions");
+//        ingredients.add("chili");
+//        ingredients.add("parsley");
+//        ingredients.add("water");
+//        ingredients.add("toasted sesame oil");
+//        ingredients.add("panko breadcrumbs");
+//        ingredients.add("olive oil");
+//        ingredients.add("honey");
+//        ingredients.add("anchovies");
+//        ingredients.add("unsalted butter");
+//
+//        ArrayList<String> amountOfIngredients = new ArrayList<>();
+//        amountOfIngredients.add("350 g");
+//        amountOfIngredients.add("2 tbsp");
+//        amountOfIngredients.add("200 g");
+//        amountOfIngredients.add("3 cloves");
+//        amountOfIngredients.add("2");
+//        amountOfIngredients.add("1");
+//        amountOfIngredients.add("5 g");
+//        amountOfIngredients.add("4 tbsp");
+//        amountOfIngredients.add("1½ tsp");
+//        amountOfIngredients.add("5 tbsp");
+//        amountOfIngredients.add("2 tsp");
+//        amountOfIngredients.add("1½ tsp");
+//        amountOfIngredients.add("2 tsp");
+//        amountOfIngredients.add("2");
+//        amountOfIngredients.add("1 tbsp");
+//
+//
+//        Recipe recipe4 = new Recipe(image_CookingRecipe,
+//                name_cooking_recipe,
+//                url_image_CookingRecipe,
+//                image_author,
+//                name_author,
+//                name_authorGroup,
+//                difficulty_Level_Recipe,
+//                periodCooking,
+//                ingredients,
+//                amountOfIngredients,
+//                utensils,
+//                nutritionPerServing,
+//                tags);
+//
+//        firebaseFirestore.collection("Recipe").document("Recipe6")
+//                .set(recipe4);
+
+//        Map<String,String> map = new HashMap<>();
+//
+//        map.put("hello1", "hello");
+//        map.put("hello2", "hello");
+//        map.put("hello3", "hello");
+
+//        String step = "3/4";
+//        String url_image = "url_image3";
+//        String ingredientsForPerStep ="200 g linguine1½ tsp olive oil2 anchovies2 tsp honey";
+//        String utensilsForPerStep ="";
+//        String scriptForDescription ="Cook pasta according to package instructions until al dente. While the pasta is cooking, make the sauce: Add olive oil to a frying pan over medium heat. Once heated, add anchovies, sliced chili, garlic and fry until anchovies have 'dissolved', approx. 2 min. Add whole cherry tomatoes and the honey, and increase heat to high. Shake the pan now and then and let tomatoes wrinkle up and begin to char, approx. 4 min.";
+//
+//        StepsForRecipe stepsForRecipe = new StepsForRecipe(step, url_image,ingredientsForPerStep,utensilsForPerStep,scriptForDescription);
+//
+//        firebaseFirestore.collection("Recipe").document("Recipe6")
+//                .collection("Steps").document("Step3").set(stepsForRecipe);
 
 
 
