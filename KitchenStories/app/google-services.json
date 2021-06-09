@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "29834095943",
+    "project_id": "loginapp-319bc",
+    "storage_bucket": "loginapp-319bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29834095943:android:c9431080e985dcdf757062",
+        "android_client_info": {
+          "package_name": "com.example.kitchenstories"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "29834095943-8p0m3ffjeeu3f3nrvfk1cn7nb64gpb46.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kitchenstories",
+            "certificate_hash": "e2da1788c8b68844f876498429dd926628d44d2b"
+          }
+        },
+        {
+          "client_id": "29834095943-t5g3etd3trqinotl8mbsn49e7pp3n8uq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa3sREDsTBr395VjBA7tYCHMWso_dZ87s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "29834095943-t5g3etd3trqinotl8mbsn49e7pp3n8uq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

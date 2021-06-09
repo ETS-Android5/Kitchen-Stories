@@ -58,6 +58,8 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
-
+    <!-- login -->
+    <string name="facebook_app_id">531850061176574</string>
+    <string name="fb_login_protocol_scheme">fb531850061176574</string>
 
 </resources>
