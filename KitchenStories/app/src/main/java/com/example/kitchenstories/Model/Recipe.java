@@ -11,6 +11,12 @@ public class Recipe {
     private int image_author;
     private String name_author;
     private String name_authorGroup;
+    private String contact_author;
+    private String author_description;
+    private String url_image_author;
+
+    private String likeAmount;
+    private String ratingAmount;
 
     private String difficulty_Level_Recipe;
     private ArrayList<String> periodCooking;
@@ -19,6 +25,8 @@ public class Recipe {
     private String utensils;
     private ArrayList<String> nutritionPerServing;
     private ArrayList<String> tags;
+
+    //private ArrayList<StepsForRecipe> steps;
 
 
 
@@ -31,13 +39,16 @@ public class Recipe {
         this.url_image_CookingRecipe = url_image_CookingRecipe;
     }
 
-    // doing
-    public Recipe(int image_CookingRecipe,
-                  String name_cooking_recipe,
+    // doing Firebase
+    public Recipe(String name_cooking_recipe,
                   String url_image_CookingRecipe,
-                  int image_author,
                   String name_author,
                   String name_authorGroup,
+                  String contact_author,
+                  String author_description,
+                  String url_image_author,
+                  String likeAmount,
+                  String ratingAmount,
                   String difficulty_Level_Recipe,
                   ArrayList<String> periodCooking,
                   ArrayList<String> ingredients,
@@ -45,12 +56,15 @@ public class Recipe {
                   String utensils,
                   ArrayList<String> nutritionPerServing,
                   ArrayList<String> tags) {
-        this.image_CookingRecipe = image_CookingRecipe;
         this.name_cooking_recipe = name_cooking_recipe;
         this.url_image_CookingRecipe = url_image_CookingRecipe;
-        this.image_author = image_author;
         this.name_author = name_author;
         this.name_authorGroup = name_authorGroup;
+        this.contact_author = contact_author;
+        this.author_description = author_description;
+        this.url_image_author = url_image_author;
+        this.likeAmount = likeAmount;
+        this.ratingAmount = ratingAmount;
         this.difficulty_Level_Recipe = difficulty_Level_Recipe;
         this.periodCooking = periodCooking;
         this.ingredients = ingredients;
@@ -61,6 +75,7 @@ public class Recipe {
     }
 
 
+    // default
     public Recipe(int image_CookingRecipe, String name_cooking_recipe, int image_author, String name_author, String name_authorGroup) {
         this.image_CookingRecipe = image_CookingRecipe;
         this.name_cooking_recipe = name_cooking_recipe;
@@ -184,5 +199,45 @@ public class Recipe {
 
     public void setAmountOfIngredients(ArrayList<String> amountOfIngredients) {
         this.amountOfIngredients = amountOfIngredients;
+    }
+
+    public String getContact_author() {
+        return contact_author;
+    }
+
+    public void setContact_author(String contact_author) {
+        this.contact_author = contact_author;
+    }
+
+    public String getAuthor_description() {
+        return author_description;
+    }
+
+    public void setAuthor_description(String author_description) {
+        this.author_description = author_description;
+    }
+
+    public String getUrl_image_author() {
+        return url_image_author;
+    }
+
+    public void setUrl_image_author(String url_image_author) {
+        this.url_image_author = url_image_author;
+    }
+
+    public String getLikeAmount() {
+        return likeAmount;
+    }
+
+    public void setLikeAmount(String likeAmount) {
+        this.likeAmount = likeAmount;
+    }
+
+    public String getRatingAmount() {
+        return ratingAmount;
+    }
+
+    public void setRatingAmount(String ratingAmount) {
+        this.ratingAmount = ratingAmount;
     }
 }

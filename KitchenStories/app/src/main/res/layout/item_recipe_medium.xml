@@ -26,6 +26,13 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_background" />
 
+            <View
+                android:layout_width="240dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="260dp"
+                android:background="@drawable/item_view_background"/>
+
+
             <Button
                 style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                 android:layout_width="wrap_content"

@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,8 +52,19 @@ public class CookingRecipe extends AppCompatActivity {
 
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
+
+    private Button btn_numberOfLikes_CookingRecipe_Activity;
+    private TextView numberOfRating_CookingRecipe_Activity;
+
     private ImageView image_recipe_collapsingToolbar_CookingRecipe_Activity;
     private TextView name_recipe_collapsingToolbar_CookingRecipe_Activity;
+
+    private ImageView image_author_CookingRecipe_Activity;
+    private TextView name_author_CookingRecipe_Activity;
+    private TextView name_authorGroup_CookingRecipe_Activity;
+    private TextView name_authorContact_CookingRecipe_Activity;
+    private TextView txt_authorStory_CookingRecipe_Activity;
+
     private TextView tv_difficulty_Level_Recipe_CookingRecipe;
     private TextView txt_utensils_Utensils_CookingRecipe_Activity;
 
@@ -119,8 +131,18 @@ public class CookingRecipe extends AppCompatActivity {
 
     public void findByIdForComponents(){
 
+        btn_numberOfLikes_CookingRecipe_Activity = findViewById(R.id.btn_numberOfLikes_CookingRecipe_Activity);
+        numberOfRating_CookingRecipe_Activity = findViewById(R.id.numberOfRating_CookingRecipe_Activity);
+
         image_recipe_collapsingToolbar_CookingRecipe_Activity = findViewById(R.id.image_recipe_collapsingToolbar_CookingRecipe_Activity);
         name_recipe_collapsingToolbar_CookingRecipe_Activity = findViewById(R.id.name_recipe_collapsingToolbar_CookingRecipe_Activity);
+
+        image_author_CookingRecipe_Activity = findViewById(R.id.image_author_CookingRecipe_Activity);
+        name_author_CookingRecipe_Activity = findViewById(R.id.name_author_CookingRecipe_Activity);
+        name_authorGroup_CookingRecipe_Activity = findViewById(R.id.name_authorGroup_CookingRecipe_Activity);
+        name_authorContact_CookingRecipe_Activity = findViewById(R.id.name_authorContact_CookingRecipe_Activity);
+        txt_authorStory_CookingRecipe_Activity = findViewById(R.id.txt_authorStory_CookingRecipe_Activity);
+
         tv_difficulty_Level_Recipe_CookingRecipe = findViewById(R.id.tv_difficulty_Level_Recipe_CookingRecipe);
         txt_utensils_Utensils_CookingRecipe_Activity = findViewById(R.id.txt_utensils_Utensils_CookingRecipe_Activity);
 
@@ -160,7 +182,7 @@ public class CookingRecipe extends AppCompatActivity {
 
     public void setDataForComponents(){
 
-        firebaseFirestore.collection("Recipe").document("Recipe6")
+        firebaseFirestore.collection("Recipe").document("Recipe5")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -170,17 +192,28 @@ public class CookingRecipe extends AppCompatActivity {
                             Recipe recipe = documentSnapshot.toObject(Recipe.class);
 
                             //String hello = recipe.getName_cooking_recipe();
+                            btn_numberOfLikes_CookingRecipe_Activity.setText(recipe.getLikeAmount());
+                            numberOfRating_CookingRecipe_Activity.setText(recipe.getRatingAmount() + " ratings");
 
                             Glide.with(CookingRecipe.this)
                                     .load(recipe.getUrl_image_CookingRecipe())
                                     .into(image_recipe_collapsingToolbar_CookingRecipe_Activity);
 
                             name_recipe_collapsingToolbar_CookingRecipe_Activity.setText(recipe.getName_cooking_recipe());
+
+                            Glide.with(CookingRecipe.this)
+                                    .load(recipe.getUrl_image_author())
+                                    .into(image_author_CookingRecipe_Activity);
+                            name_author_CookingRecipe_Activity.setText(recipe.getName_author());
+                            name_authorGroup_CookingRecipe_Activity.setText(recipe.getName_authorGroup());
+                            name_authorContact_CookingRecipe_Activity.setText(recipe.getContact_author());
+                            txt_authorStory_CookingRecipe_Activity.setText(recipe.getAuthor_description());
+
                             tv_difficulty_Level_Recipe_CookingRecipe.setText(recipe.getDifficulty_Level_Recipe());
 
-                            txt_CookingTime_Time_CookingRecipe_Activity.setText(recipe.getPeriodCooking().get(0));
-                            txt_BakingTime_Time_CookingRecipe_Activity.setText(recipe.getPeriodCooking().get(1));
-                            txt_RestingTime_Time_CookingRecipe_Activity.setText(recipe.getPeriodCooking().get(2));
+                            txt_CookingTime_Time_CookingRecipe_Activity.setText(recipe.getPeriodCooking().get(0) + " mins.");
+                            txt_BakingTime_Time_CookingRecipe_Activity.setText(recipe.getPeriodCooking().get(1) + " mins.");
+                            txt_RestingTime_Time_CookingRecipe_Activity.setText(recipe.getPeriodCooking().get(2) + " mins.");
 
                             setupRecyclerView_amountOfIngredients(recipe.getAmountOfIngredients());
                             setupRecyclerView_Ingredients(recipe.getIngredients());
@@ -227,7 +260,7 @@ public class CookingRecipe extends AppCompatActivity {
 
     public void setDataForComponents_Steps(){
 
-        Query query = firebaseFirestore.collection("Recipe").document("Recipe6").collection("Steps");
+        Query query = firebaseFirestore.collection("Recipe").document("Recipe5").collection("Steps");
 
         FirestoreRecyclerOptions<StepsForRecipe> options = new FirestoreRecyclerOptions.Builder<StepsForRecipe>()
                 .setQuery(query, StepsForRecipe.class)

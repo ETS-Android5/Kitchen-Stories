@@ -83,19 +83,15 @@
                     android:layout_below="@+id/btnFindOnWeb"
                     android:layout_margin="5dp"
                     android:layout_marginTop="30dp"
-                    android:layout_weight="1"
-
                     android:backgroundTint="@color/orange50"
-
+                    android:layout_weight="1"
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:baselineAligned="false"
                         android:gravity="center"
-
                         android:orientation="vertical"
                         android:padding="10dp">
 
@@ -107,9 +103,10 @@
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_launcher_background" />
+                                android:layout_margin="5dp"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:src="@drawable/pasta_search" />
 
                         </LinearLayout>
 
@@ -159,13 +156,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:layout_weight="1"
+
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_launcher_background" />
+                                android:layout_margin="5dp"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:src="@drawable/asian_search" />
 
                         </LinearLayout>
 
@@ -215,13 +213,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:layout_weight="1"
+
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_launcher_background" />
+                                android:layout_margin="5dp"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:src="@drawable/main_search" />
 
                         </LinearLayout>
 
@@ -282,9 +281,10 @@
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_launcher_background" />
+                                android:layout_margin="5dp"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:src="@drawable/quick_search" />
 
                         </LinearLayout>
 
@@ -337,9 +337,10 @@
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_launcher_background" />
+                                android:layout_margin="5dp"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:src="@drawable/meatless_search" />
 
                         </LinearLayout>
 
@@ -392,9 +393,10 @@
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_launcher_background" />
+                                android:layout_margin="5dp"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:src="@drawable/dessert_search" />
 
                         </LinearLayout>
 

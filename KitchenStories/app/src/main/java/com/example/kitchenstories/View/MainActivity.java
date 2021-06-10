@@ -31,6 +31,7 @@ import android.widget.VideoView;
 
 
 import com.example.kitchenstories.Model.Recipe;
+import com.example.kitchenstories.Model.StepsForRecipe;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_LargeItem;
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Medium;
@@ -111,106 +112,164 @@ public class MainActivity extends AppCompatActivity {
             //getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.Gray50));
         }
 
-//        String name_cooking_recipe ="name4";
-//        String url_image_CookingRecipe ="https://firebasestorage.googleapis.com/v0/b/loginapp-319bc.appspot.com/o/Recipe%2FRecipe1%2Fmain.jpeg?alt=media&token=4c033c30-a64e-49da-b7aa-57911098e53d";
-//        int image_CookingRecipe = 4;
-//
-//        int image_author = 4;
-//        String name_author = "name_author4";
-//        String name_authorGroup ="name_authorGroup4";
-//
-//        String difficulty_Level_Recipe ="difficulty_Level_Recipe4";
-//        String utensils = "utensils4";
-//
-//        ArrayList<String> periodCooking = new ArrayList<>();
-//        periodCooking.add("25 mins.");
-//        periodCooking.add("0 min.");
-//        periodCooking.add("0 min.");
-//
-//        ArrayList<String> nutritionPerServing = new ArrayList<>();
-//        nutritionPerServing.add("650");
-//        nutritionPerServing.add("20 g");
-//        nutritionPerServing.add("19 g");
-//        nutritionPerServing.add("101 g");
-//
-//        ArrayList<String> tags = new ArrayList<>();
-//        tags.add("main");
-//        tags.add("lactose free");
-//        tags.add("weeknight dinner");
-//        tags.add("italian");
-//        tags.add("meatless");
-//        tags.add("pasta");
-//        tags.add("asian");
-//
-//
-//        ArrayList<String> ingredients = new ArrayList<>();
-//        ingredients.add("cherry tomatoes");
-//        ingredients.add("white miso paste");
-//        ingredients.add("weeknight dinner");
-//        ingredients.add("linguine");
-//        ingredients.add("garlic");
-//        ingredients.add("scallions");
-//        ingredients.add("chili");
-//        ingredients.add("parsley");
-//        ingredients.add("water");
-//        ingredients.add("toasted sesame oil");
-//        ingredients.add("panko breadcrumbs");
-//        ingredients.add("olive oil");
-//        ingredients.add("honey");
-//        ingredients.add("anchovies");
-//        ingredients.add("unsalted butter");
-//
-//        ArrayList<String> amountOfIngredients = new ArrayList<>();
-//        amountOfIngredients.add("350 g");
-//        amountOfIngredients.add("2 tbsp");
-//        amountOfIngredients.add("200 g");
-//        amountOfIngredients.add("3 cloves");
-//        amountOfIngredients.add("2");
-//        amountOfIngredients.add("1");
-//        amountOfIngredients.add("5 g");
+
+        /*
+
+        // set recipe into firebase
+
+        String name_cooking_recipe ="5-ingredient creamy orecchiette with peas and crispy Parma ham";
+        String url_image_CookingRecipe ="null";
+
+        String name_author = "Ruby Goss";
+        String name_authorGroup ="Senior Food Editor at Kitchen Stories";
+        String contact_author ="instagram.com/ruby.goss/";
+        String author_description ="“This 20-minute, 5-ingredient dinner still feels a little fancy. This weekday friendly pasta combines orecchiette in a creamy sauce with sweet, springy peas (I personally find the way the peas get caught in the little pasta ears to be frankly adorable) and Parma ham (make sure to buy one that is edged with fat) that’s been crisped up in a pan. I wouldn’t usually add scallions to pasta—but here they add a real “spring” to your proverbial step! You can take this basic recipe further by adding your favorite spring herbs, lemon zest, and deglazing the pan with a little white wine before adding the crème fraîche!”";
+        String url_image_author ="null";
+
+        String likeAmount = "2323";
+        String ratingAmount = "12";
+
+        String difficulty_Level_Recipe ="Easy";
+
+        ArrayList<String> periodCooking = new ArrayList<>();
+        periodCooking.add("20");
+        periodCooking.add("0");
+        periodCooking.add("0");
+
+        ArrayList<String> ingredients = new ArrayList<>();
+        ingredients.add("orecchiette");
+        ingredients.add("peas");
+        ingredients.add("crème fraîche");
+        ingredients.add("Prosciutto di Parma");
+        ingredients.add("garlic");
+        ingredients.add("scallions (for serving)");
+
+
+
+
+
+        ArrayList<String> amountOfIngredients = new ArrayList<>();
+        amountOfIngredients.add("200 g ");
+        amountOfIngredients.add("150 g ");
+        amountOfIngredients.add("2 tbsp ");
+        amountOfIngredients.add("3 slices ");
+        amountOfIngredients.add("2 cloves  ");
+        amountOfIngredients.add("2 ");
 //        amountOfIngredients.add("4 tbsp");
-//        amountOfIngredients.add("1½ tsp");
-//        amountOfIngredients.add("5 tbsp");
-//        amountOfIngredients.add("2 tsp");
-//        amountOfIngredients.add("1½ tsp");
-//        amountOfIngredients.add("2 tsp");
-//        amountOfIngredients.add("2");
+//        amountOfIngredients.add("4 tbsp");
+//        amountOfIngredients.add("2 tbsp");
 //        amountOfIngredients.add("1 tbsp");
-//
-//
-//        Recipe recipe4 = new Recipe(image_CookingRecipe,
-//                name_cooking_recipe,
-//                url_image_CookingRecipe,
-//                image_author,
-//                name_author,
-//                name_authorGroup,
-//                difficulty_Level_Recipe,
-//                periodCooking,
-//                ingredients,
-//                amountOfIngredients,
-//                utensils,
-//                nutritionPerServing,
-//                tags);
-//
-//        firebaseFirestore.collection("Recipe").document("Recipe6")
-//                .set(recipe4);
+//        amountOfIngredients.add("1 tbsp");
+//        amountOfIngredients.add("2 tbsp");
+//        amountOfIngredients.add("2 ");
 
-//        Map<String,String> map = new HashMap<>();
-//
-//        map.put("hello1", "hello");
-//        map.put("hello2", "hello");
-//        map.put("hello3", "hello");
 
-//        String step = "3/4";
-//        String url_image = "url_image3";
-//        String ingredientsForPerStep ="200 g linguine1½ tsp olive oil2 anchovies2 tsp honey";
-//        String utensilsForPerStep ="";
-//        String scriptForDescription ="Cook pasta according to package instructions until al dente. While the pasta is cooking, make the sauce: Add olive oil to a frying pan over medium heat. Once heated, add anchovies, sliced chili, garlic and fry until anchovies have 'dissolved', approx. 2 min. Add whole cherry tomatoes and the honey, and increase heat to high. Shake the pan now and then and let tomatoes wrinkle up and begin to char, approx. 4 min.";
+        String utensils = "large pot - cutting board - knife - fine grater - colander - frying pan - spatula - plate - paper towels";
+
+        ArrayList<String> nutritionPerServing = new ArrayList<>();
+        nutritionPerServing.add("551");
+        nutritionPerServing.add("25 g");
+        nutritionPerServing.add("10 g");
+        nutritionPerServing.add("89 g");
+
+        ArrayList<String> tags = new ArrayList<>();
+        tags.add("kid friendly");
+        tags.add("pork");
+        tags.add("main");
+        tags.add("cheese");
+        tags.add("italian");
+        tags.add("pasta");
+        //tags.add("");
+//        tags.add("lactose free");
+//        tags.add("kid friendly");
+        tags.add("weeknight dinner");
+//        tags.add("asian");
+
+
+
+        Recipe recipe = new Recipe(
+                name_cooking_recipe,
+                url_image_CookingRecipe,
+                name_author,
+                name_authorGroup,
+                contact_author,
+                author_description,
+                url_image_author,
+                likeAmount,
+                ratingAmount,
+                difficulty_Level_Recipe,
+                periodCooking,
+                ingredients,
+                amountOfIngredients,
+                utensils,
+                nutritionPerServing,
+                tags);
+
+
 //
-//        StepsForRecipe stepsForRecipe = new StepsForRecipe(step, url_image,ingredientsForPerStep,utensilsForPerStep,scriptForDescription);
-//
-//        firebaseFirestore.collection("Recipe").document("Recipe6")
-//                .collection("Steps").document("Step3").set(stepsForRecipe);
+//        firebaseFirestore.collection("Recipe").document("Recipe5")
+//                .set(recipe);
+
+
+        // add steps
+
+        String step1 = "1/3";
+        String url_image1 = "null";
+        String ingredientsForPerStep1 ="2 cloves garlic - 2 scallions (for serving) - Parmesan cheese (for serving)";
+        String utensilsForPerStep1 ="large pot - cutting board - knife - fine grater";
+        String scriptForDescription1 ="Set a large pot over high heat for the pasta. Thinly slice garlic and scallions. Finely grate Parmesan cheese.";
+
+
+        StepsForRecipe stepsForRecipe1 = new StepsForRecipe(step1, url_image1,ingredientsForPerStep1,utensilsForPerStep1,scriptForDescription1);
+
+        String step2 = "2/3";
+        String url_image2 = "null";
+        String ingredientsForPerStep2 ="200 g orecchiette - 150 g peas - 3 slices Prosciutto di Parma - olive oil - salt";
+        String utensilsForPerStep2 ="colander frying pan spatula plate paper towels";
+        String scriptForDescription2 ="Cook pasta according to package instructions until al dente. Approx 2 min. before the end of cooking time, add the peas. Once the peas are warmed through, reserve a large mug of pasta water then drain the pasta and peas in a colander. While the pasta is cooking, add slices of Parma ham to a cold pan. Heat over medium heat until crisp on one side, then flip and repeat. If your Parma ham is quite lean, add a little olive oil to help crisp it up. Remove ham once crispy and let drain on a paper towel-lined plate.";
+
+
+        StepsForRecipe stepsForRecipe2 = new StepsForRecipe(step2, url_image2,ingredientsForPerStep2,utensilsForPerStep2,scriptForDescription2);
+
+
+        String step3 = "3/3";
+        String url_image3 = "null";
+        String ingredientsForPerStep3 ="olive oil2 tbsp crème fraîchepepper";
+        String utensilsForPerStep3 ="";
+        String scriptForDescription3 ="Add a little olive oil to the same pan used for the ham and fry the garlic until almost golden, over medium heat, approx. 2 min. Add pasta and peas into the pan, followed by crème fraîche. Toss well until you have a silky sauce, adding some pasta water to help coat the pasta. Season generously with pepper. Once off the heat, add a generous amount of grated Parmesan on top and stir though. Serve in bowls and break pieces of crispy Parma ham over the top, garnishing with scallions and extra Parmesan, if desired. Enjoy!";
+
+
+        StepsForRecipe stepsForRecipe3 = new StepsForRecipe(step3, url_image3,ingredientsForPerStep3,utensilsForPerStep3,scriptForDescription3);
+
+
+
+        String step4 = "4/5";
+        String url_image4 = "url_image3";
+        String ingredientsForPerStep4 ="120 g ramen noodles";
+        String utensilsForPerStep4 ="pot - colander";
+        String scriptForDescription4 ="For a 2-person portion, add 200 ml/0,8 cup of the dashi broth and bring to boil. Reduce the heat and continue to simmer gently. In the meantime, prepare the ramen noodles according to the packing instructions. In the last minute, add the pak choi, blanch and drain.";
+
+        StepsForRecipe stepsForRecipe4 = new StepsForRecipe(step4, url_image4,ingredientsForPerStep4,utensilsForPerStep4,scriptForDescription4);
+
+        String step5 = "5/5";
+        String url_image5 = "url_image3";
+        String ingredientsForPerStep5 ="scallion (for garnish) - cilantro (for garnish)";
+        String utensilsForPerStep5 ="";
+        String scriptForDescription5 ="Divide the noodles and pak choi between two serving bowls. Pour the broth evenly on top. Garnish with shiitake mushrooms, halved waxy eggs and the green of the spring onions. Finish with fresh herbs, such as coriander, and gomasio (sesame salt) if you have it, or more sesame seeds. Enjoy!";
+
+        StepsForRecipe stepsForRecipe5 = new StepsForRecipe(step5, url_image5,ingredientsForPerStep5,utensilsForPerStep5,scriptForDescription5);
+
+
+        // ------------------------------------------------------------fix recipe---fix step1----------
+//        firebaseFirestore.collection("Recipe").document("Recipe5")
+//                .collection("Steps").document("Step1").set(stepsForRecipe1);
+//        firebaseFirestore.collection("Recipe").document("Recipe5")
+//                .collection("Steps").document("Step2").set(stepsForRecipe2);
+//        firebaseFirestore.collection("Recipe").document("Recipe5")
+//                .collection("Steps").document("Step3").set(stepsForRecipe3);
+
+
+*/
 
 
 

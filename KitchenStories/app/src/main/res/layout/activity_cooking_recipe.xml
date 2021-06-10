@@ -456,6 +456,13 @@
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
+                    <View
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/ic_round_done_all_24"
+                        android:backgroundTint="@color/Green500"
+                        />
+
                 </LinearLayout>
 
                 <View
@@ -622,7 +629,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/source_sans_pro_semi_bold"
-                            android:text="4 servings"
+                            android:text="2 servings"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
