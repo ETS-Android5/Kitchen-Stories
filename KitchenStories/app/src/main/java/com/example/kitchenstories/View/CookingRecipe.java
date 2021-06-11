@@ -40,6 +40,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class CookingRecipe extends AppCompatActivity {
@@ -91,6 +93,9 @@ public class CookingRecipe extends AppCompatActivity {
 
     private ImageView image_FinalRecipe_CookingRecipe_Activity;
 
+    private String idRecipe;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,23 +112,34 @@ public class CookingRecipe extends AppCompatActivity {
             //getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.Gray50));
         }
 
-
-
         //set up notitle
         toolbar = findViewById(R.id.toolbar_CookingRecipe_Activity);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+
+
+        // get KeyID_Recipe for each Cooking Recipe
+        if(getIntent().hasExtra("KeyID_Recipe")){
+            idRecipe = getIntent().getExtras().getString("KeyID_Recipe");
+        }
 
         //
         findByIdForComponents();
 
         //
-        setDataForComponents();
+        setDataForComponents(idRecipe);
 
         //
-        setDataForComponents_Steps();
+        setDataForComponents_Steps(idRecipe);
 
 
 
@@ -178,11 +194,9 @@ public class CookingRecipe extends AppCompatActivity {
 
     }
 
+    public void setDataForComponents(String idRecipe){
 
-
-    public void setDataForComponents(){
-
-        firebaseFirestore.collection("Recipe").document("Recipe5")
+        firebaseFirestore.collection("Recipe").document(idRecipe)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -230,12 +244,15 @@ public class CookingRecipe extends AppCompatActivity {
                                     .load(recipe.getUrl_image_CookingRecipe())
                                     .into(image_FinalRecipe_CookingRecipe_Activity);
 
-                            String tags_string = "";
                             // get tags
-                            for(int i=0;i<recipe.getTags().size();i++){
-                                tags_string += "#" + recipe.getTags().get(i) +"     ";
+                            String tags_string = "";
+                            Map<String, Boolean> map = new HashMap<>();
+                            map = recipe.getTags();
+                            for (String item : map.keySet()){
+                                tags_string += "#" + item +"     ";
                             }
                             txt_Tags_CookingRecipe_Activity.setText(tags_string);
+
 
 
                         }
@@ -257,10 +274,9 @@ public class CookingRecipe extends AppCompatActivity {
         //name_recipe_collapsingToolbar_CookingRecipe_Activity
     }
 
+    public void setDataForComponents_Steps(String idRecipe){
 
-    public void setDataForComponents_Steps(){
-
-        Query query = firebaseFirestore.collection("Recipe").document("Recipe5").collection("Steps");
+        Query query = firebaseFirestore.collection("Recipe").document(idRecipe).collection("Steps");
 
         FirestoreRecyclerOptions<StepsForRecipe> options = new FirestoreRecyclerOptions.Builder<StepsForRecipe>()
                 .setQuery(query, StepsForRecipe.class)

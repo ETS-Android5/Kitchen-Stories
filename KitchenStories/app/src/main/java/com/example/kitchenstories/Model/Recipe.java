@@ -1,6 +1,7 @@
 package com.example.kitchenstories.Model;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Recipe {
 
@@ -24,7 +25,7 @@ public class Recipe {
     private ArrayList<String> amountOfIngredients;
     private String utensils;
     private ArrayList<String> nutritionPerServing;
-    private ArrayList<String> tags;
+    private Map<String, Boolean> tags;
 
     //private ArrayList<StepsForRecipe> steps;
 
@@ -55,7 +56,7 @@ public class Recipe {
                   ArrayList<String> amountOfIngredients,
                   String utensils,
                   ArrayList<String> nutritionPerServing,
-                  ArrayList<String> tags) {
+                  Map<String, Boolean> tags) {
         this.name_cooking_recipe = name_cooking_recipe;
         this.url_image_CookingRecipe = url_image_CookingRecipe;
         this.name_author = name_author;
@@ -177,11 +178,11 @@ public class Recipe {
         this.nutritionPerServing = nutritionPerServing;
     }
 
-    public ArrayList<String> getTags() {
+    public Map<String, Boolean> getTags() {
         return tags;
     }
 
-    public void setTags(ArrayList<String> tags) {
+    public void setTags(Map<String, Boolean> tags) {
         this.tags = tags;
     }
 

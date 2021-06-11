@@ -19,18 +19,24 @@ import com.example.kitchenstories.Model.Recipe;
 import com.example.kitchenstories.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
 public class RecyclerViewAdapter_OptionFireStore extends FirestoreRecyclerAdapter<Recipe, RecyclerViewAdapter_OptionFireStore.MyViewHolder> {
 
-
-    public interface OnItemClickListener {
-        void onItemClick(int position);
-    }
-
     Context mContext;
     OnItemClickListener listener;
+
+
+    public interface OnItemClickListener {
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
+
 
     public RecyclerViewAdapter_OptionFireStore(Context mContext, @NonNull @NotNull FirestoreRecyclerOptions<Recipe> options, OnItemClickListener listener) {
         super(options);
@@ -57,19 +63,10 @@ public class RecyclerViewAdapter_OptionFireStore extends FirestoreRecyclerAdapte
                 + Integer.valueOf(model.getPeriodCooking().get(2));
 
 
-
         holder.tv_periodCooking_itemRecipe.setText(String.valueOf(countPeriodTime) + " mins.");
 
         holder.btn_likeAmount_itemRecipe.setText(model.getLikeAmount());
 
-        if(listener != null){
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.onItemClick(holder.getAdapterPosition());
-                }
-            });
-        }
 
     }
 
@@ -102,6 +99,17 @@ public class RecyclerViewAdapter_OptionFireStore extends FirestoreRecyclerAdapte
             authorGroup_recipe = itemView.findViewById(R.id.authorGroup_recipe);
             tv_periodCooking_itemRecipe = itemView.findViewById(R.id.tv_periodCooking_itemRecipe);
             btn_likeAmount_itemRecipe = itemView.findViewById(R.id.btn_likeAmount_itemRecipe);
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != -1 && listener != null){
+                        listener.onItemClick(getSnapshots().getSnapshot(position), position);
+                    }
+                }
+            });
         }
     }
 }

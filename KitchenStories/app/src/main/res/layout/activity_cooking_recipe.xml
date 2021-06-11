@@ -41,7 +41,7 @@
                     android:layout_height="500dp"
                     android:contentDescription="@string/content_description_media"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background"
+                    android:src="@drawable/ic_baseline_add_24"
                     app:layout_collapseMode="parallax" />
 
                 <TextView
@@ -235,7 +235,7 @@
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/mybaby"
+                                android:src="@drawable/ic_baseline_add_24"
 
                                 />
 

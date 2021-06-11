@@ -41,6 +41,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -113,78 +115,82 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        /*
+
 
         // set recipe into firebase
 
-        String name_cooking_recipe ="5-ingredient creamy orecchiette with peas and crispy Parma ham";
+        String name_cooking_recipe ="Strawberries and cream tart";
         String url_image_CookingRecipe ="null";
 
-        String name_author = "Ruby Goss";
-        String name_authorGroup ="Senior Food Editor at Kitchen Stories";
-        String contact_author ="instagram.com/ruby.goss/";
-        String author_description ="“This 20-minute, 5-ingredient dinner still feels a little fancy. This weekday friendly pasta combines orecchiette in a creamy sauce with sweet, springy peas (I personally find the way the peas get caught in the little pasta ears to be frankly adorable) and Parma ham (make sure to buy one that is edged with fat) that’s been crisped up in a pan. I wouldn’t usually add scallions to pasta—but here they add a real “spring” to your proverbial step! You can take this basic recipe further by adding your favorite spring herbs, lemon zest, and deglazing the pan with a little white wine before adding the crème fraîche!”";
+        String name_author = "Hanna Reder";
+        String name_authorGroup ="Test Kitchen Manager and Chef at Kitchen Stories";
+        String contact_author ="instagram.com/wasissthanna";
+        String author_description ="“An easy, breezy strawberry cake that all ages will love! Mixing simple vanilla pudding powder with whipped cream creates a creme patissiere-like filling without the fuss and the cloud-like texture is the perfect foil for the crunchy, almondy baked base. Take time to create the strawberry pattern by starting around the outer edge and spiralling your way to the middle. You can garnish the tart with lemon zest or even herbs like lemon balm. Have fun!”";
         String url_image_author ="null";
 
-        String likeAmount = "2323";
-        String ratingAmount = "12";
+        String likeAmount = "2090";
+        String ratingAmount = "8";
 
-        String difficulty_Level_Recipe ="Easy";
+        String difficulty_Level_Recipe ="Medium";
 
         ArrayList<String> periodCooking = new ArrayList<>();
-        periodCooking.add("20");
-        periodCooking.add("0");
-        periodCooking.add("0");
+        periodCooking.add("25");
+        periodCooking.add("40");
+        periodCooking.add("100");
 
         ArrayList<String> ingredients = new ArrayList<>();
-        ingredients.add("orecchiette");
-        ingredients.add("peas");
-        ingredients.add("crème fraîche");
-        ingredients.add("Prosciutto di Parma");
-        ingredients.add("garlic");
-        ingredients.add("scallions (for serving)");
-
-
+        ingredients.add("strawberries");
+        ingredients.add("flour");
+        ingredients.add("whole-grain flour");
+        ingredients.add("almond flour");
+        ingredients.add("baking powder");
+        ingredients.add("butter");
+        ingredients.add("sugar");
+        ingredients.add("egg");
+        ingredients.add("milk");
+        ingredients.add("cream");
+        ingredients.add("vanilla pudding powder");
+        ingredients.add("vanilla extract");
+        ingredients.add("coconut sugar");
+        ingredients.add("lemon zest");
 
 
 
         ArrayList<String> amountOfIngredients = new ArrayList<>();
-        amountOfIngredients.add("200 g ");
+        amountOfIngredients.add("700 g ");
         amountOfIngredients.add("150 g ");
-        amountOfIngredients.add("2 tbsp ");
-        amountOfIngredients.add("3 slices ");
-        amountOfIngredients.add("2 cloves  ");
-        amountOfIngredients.add("2 ");
-//        amountOfIngredients.add("4 tbsp");
-//        amountOfIngredients.add("4 tbsp");
-//        amountOfIngredients.add("2 tbsp");
-//        amountOfIngredients.add("1 tbsp");
-//        amountOfIngredients.add("1 tbsp");
-//        amountOfIngredients.add("2 tbsp");
-//        amountOfIngredients.add("2 ");
+        amountOfIngredients.add("50 g ");
+        amountOfIngredients.add("50 g");
+        amountOfIngredients.add("1 tsp");
+        amountOfIngredients.add("200 g");
+        amountOfIngredients.add("170 g ");
+        amountOfIngredients.add("1 ");
+        amountOfIngredients.add("400 ml ");
+        amountOfIngredients.add("200 ml");
+        amountOfIngredients.add("1 package ");
+        amountOfIngredients.add("1 tsp ");
+        amountOfIngredients.add("1 tbsp ");
+        amountOfIngredients.add("1 ");
 
 
-        String utensils = "large pot - cutting board - knife - fine grater - colander - frying pan - spatula - plate - paper towels";
+        String utensils = "3 bowls (large) - cutting board - knife - plastic wrap - pot (small) - whisk - rubber -  spatula - bowl (small) - oven - parchment pape - rrolling pin - pie dish (10 in.)pie weights - hand mixer with beaters - fine grater";
 
         ArrayList<String> nutritionPerServing = new ArrayList<>();
-        nutritionPerServing.add("551");
-        nutritionPerServing.add("25 g");
-        nutritionPerServing.add("10 g");
-        nutritionPerServing.add("89 g");
+        nutritionPerServing.add("506");
+        nutritionPerServing.add("8 g");
+        nutritionPerServing.add("30 g");
+        nutritionPerServing.add("54 g");
 
-        ArrayList<String> tags = new ArrayList<>();
-        tags.add("kid friendly");
-        tags.add("pork");
-        tags.add("main");
-        tags.add("cheese");
-        tags.add("italian");
-        tags.add("pasta");
-        //tags.add("");
-//        tags.add("lactose free");
-//        tags.add("kid friendly");
-        tags.add("weeknight dinner");
-//        tags.add("asian");
-
+        Map<String, Boolean> tags = new HashMap<>();
+        tags.put("pastry and doughs", true);
+        tags.put("comfort food", true);
+        tags.put("berries", true);
+        tags.put("crowd pleaser", true);
+        tags.put("baking", true);
+        tags.put("kid friendly", true);
+        tags.put("sweet", true);
+        tags.put("dessert", true);
+        tags.put("cake", true);
 
 
         Recipe recipe = new Recipe(
@@ -207,69 +213,71 @@ public class MainActivity extends AppCompatActivity {
 
 
 //
-//        firebaseFirestore.collection("Recipe").document("Recipe5")
+//        firebaseFirestore.collection("Recipe").document("Recipe7")
 //                .set(recipe);
 
 
         // add steps
 
-        String step1 = "1/3";
+        String step1 = "1/4";
         String url_image1 = "null";
-        String ingredientsForPerStep1 ="2 cloves garlic - 2 scallions (for serving) - Parmesan cheese (for serving)";
-        String utensilsForPerStep1 ="large pot - cutting board - knife - fine grater";
-        String scriptForDescription1 ="Set a large pot over high heat for the pasta. Thinly slice garlic and scallions. Finely grate Parmesan cheese.";
+        String ingredientsForPerStep1 ="150 g flour - 50 g whole-grain flour - 50 g almond flour - 200 g butter - 100 g sugar - 1 tsp baking powder - 1 eggsalt";
+        String utensilsForPerStep1 ="bowl (large) - cutting board - knifep - lastic wrap";
+        String scriptForDescription1 ="For the dough, add flour, whole-grain flour and almond flour to a large bowl. Cube the cold butter, add to the flour mix and knead with your hands to a sand-like consistency. Now add some sugar, baking powder, salt and the egg, and knead into a smooth dough. Shape into a ball, wrap in cling film, and leave to rest for approx. 1 hr.";
 
 
         StepsForRecipe stepsForRecipe1 = new StepsForRecipe(step1, url_image1,ingredientsForPerStep1,utensilsForPerStep1,scriptForDescription1);
 
-        String step2 = "2/3";
+
+        String step2 = "2/4";
         String url_image2 = "null";
-        String ingredientsForPerStep2 ="200 g orecchiette - 150 g peas - 3 slices Prosciutto di Parma - olive oil - salt";
-        String utensilsForPerStep2 ="colander frying pan spatula plate paper towels";
-        String scriptForDescription2 ="Cook pasta according to package instructions until al dente. Approx 2 min. before the end of cooking time, add the peas. Once the peas are warmed through, reserve a large mug of pasta water then drain the pasta and peas in a colander. While the pasta is cooking, add slices of Parma ham to a cold pan. Heat over medium heat until crisp on one side, then flip and repeat. If your Parma ham is quite lean, add a little olive oil to help crisp it up. Remove ham once crispy and let drain on a paper towel-lined plate.";
+        String ingredientsForPerStep2 ="400 ml milk - 70 g sugar - 20 ml cream - 1 package vanilla pudding powder";
+        String utensilsForPerStep2 ="pot (small) - whisk - rubber spatula - bowl (large) - bowl (small)";
+        String scriptForDescription2 ="For the filling, heat milk with the remaining sugar in a small saucepan. In a separate bowl, mix some of the cream with the pudding powder. When the milk starts to boil, stir in the pudding mixture until dissolved, and let simmer for approx. 2 min. Then pour into a bowl, cover the surface of the pudding with cling film, and leave to cool in the fridge.";
 
 
         StepsForRecipe stepsForRecipe2 = new StepsForRecipe(step2, url_image2,ingredientsForPerStep2,utensilsForPerStep2,scriptForDescription2);
 
 
-        String step3 = "3/3";
+        String step3 = "3/4";
         String url_image3 = "null";
-        String ingredientsForPerStep3 ="olive oil2 tbsp crème fraîchepepper";
-        String utensilsForPerStep3 ="";
-        String scriptForDescription3 ="Add a little olive oil to the same pan used for the ham and fry the garlic until almost golden, over medium heat, approx. 2 min. Add pasta and peas into the pan, followed by crème fraîche. Toss well until you have a silky sauce, adding some pasta water to help coat the pasta. Season generously with pepper. Once off the heat, add a generous amount of grated Parmesan on top and stir though. Serve in bowls and break pieces of crispy Parma ham over the top, garnishing with scallions and extra Parmesan, if desired. Enjoy!";
+        String ingredientsForPerStep3 ="butter (for greasing)";
+        String utensilsForPerStep3 ="oven - parchment paper - rolling pin - pie dish (10 in.) - pie weights";
+        String scriptForDescription3 ="Preheat the oven to 180°C/356°F. Roll out the dough between two sheets of parchment paper, place in a greased pie dish, trim the edges if needed, and prick all over with a fork. Place a sheet of parchment paper on top, fill with pie weights and bake in the preheated oven for 20 min. Remove from the oven and let cool completely.";
 
 
         StepsForRecipe stepsForRecipe3 = new StepsForRecipe(step3, url_image3,ingredientsForPerStep3,utensilsForPerStep3,scriptForDescription3);
 
 
-
-        String step4 = "4/5";
-        String url_image4 = "url_image3";
-        String ingredientsForPerStep4 ="120 g ramen noodles";
-        String utensilsForPerStep4 ="pot - colander";
-        String scriptForDescription4 ="For a 2-person portion, add 200 ml/0,8 cup of the dashi broth and bring to boil. Reduce the heat and continue to simmer gently. In the meantime, prepare the ramen noodles according to the packing instructions. In the last minute, add the pak choi, blanch and drain.";
+        String step4 = "4/4";
+        String url_image4 = "null";
+        String ingredientsForPerStep4 ="180 ml cream - 700 g strawberries - 1 tsp vanilla extract - 1 tbsp coconut sugar - 1 lemon zest";
+        String utensilsForPerStep4 ="hand mixer with beaters - bowl (large) - fine grater";
+        String scriptForDescription4 ="Whip the remaining cream with a hand mixer until stiff. Then whip the cooled vanilla pudding briefly with the hand mixer and fold in the whipped cream with a rubber spatula. Remove the tart base from the pie dish and fill with the vanilla pudding cream. Slice the strawberries into quarters and toss in a bowl with the vanilla extract, coconut sugar and lemon zest. Arrange the strawberries in a circle around the outside edge and work your way into the middle, with the cut edge facing downwards. Finally let chill for approx. another 1 hr. before serving. Serve cold or at room temperature and enjoy!";
 
         StepsForRecipe stepsForRecipe4 = new StepsForRecipe(step4, url_image4,ingredientsForPerStep4,utensilsForPerStep4,scriptForDescription4);
 
-        String step5 = "5/5";
-        String url_image5 = "url_image3";
-        String ingredientsForPerStep5 ="scallion (for garnish) - cilantro (for garnish)";
-        String utensilsForPerStep5 ="";
-        String scriptForDescription5 ="Divide the noodles and pak choi between two serving bowls. Pour the broth evenly on top. Garnish with shiitake mushrooms, halved waxy eggs and the green of the spring onions. Finish with fresh herbs, such as coriander, and gomasio (sesame salt) if you have it, or more sesame seeds. Enjoy!";
-
-        StepsForRecipe stepsForRecipe5 = new StepsForRecipe(step5, url_image5,ingredientsForPerStep5,utensilsForPerStep5,scriptForDescription5);
+//        String step5 = "5/5";
+//        String url_image5 = "url_image3";
+//        String ingredientsForPerStep5 ="scallion (for garnish) - cilantro (for garnish)";
+//        String utensilsForPerStep5 ="";
+//        String scriptForDescription5 ="Divide the noodles and pak choi between two serving bowls. Pour the broth evenly on top. Garnish with shiitake mushrooms, halved waxy eggs and the green of the spring onions. Finish with fresh herbs, such as coriander, and gomasio (sesame salt) if you have it, or more sesame seeds. Enjoy!";
+//
+//        StepsForRecipe stepsForRecipe5 = new StepsForRecipe(step5, url_image5,ingredientsForPerStep5,utensilsForPerStep5,scriptForDescription5);
 
 
         // ------------------------------------------------------------fix recipe---fix step1----------
-//        firebaseFirestore.collection("Recipe").document("Recipe5")
+//        firebaseFirestore.collection("Recipe").document("Recipe7")
 //                .collection("Steps").document("Step1").set(stepsForRecipe1);
-//        firebaseFirestore.collection("Recipe").document("Recipe5")
+//        firebaseFirestore.collection("Recipe").document("Recipe7")
 //                .collection("Steps").document("Step2").set(stepsForRecipe2);
-//        firebaseFirestore.collection("Recipe").document("Recipe5")
+//        firebaseFirestore.collection("Recipe").document("Recipe7")
 //                .collection("Steps").document("Step3").set(stepsForRecipe3);
+//        firebaseFirestore.collection("Recipe").document("Recipe7")
+//                .collection("Steps").document("Step4").set(stepsForRecipe4);
 
 
-*/
+
 
 
 

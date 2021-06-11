@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +19,11 @@ import android.widget.Button;
 import com.example.kitchenstories.Model.Recipe;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.ViewModel.SearchActivity.RecyclerViewAdapter_FilterInSearch;
+import com.example.kitchenstories.ViewModel.SearchActivity.RecyclerViewAdapter_Option_FilterInSearch;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 
@@ -26,11 +32,14 @@ public class FilterInSearch extends AppCompatActivity {
     private ArrayList<Recipe> mData;
 
     private SearchView searchView;
-
     private RecyclerView recyclerView_FilterInSearch;
     private RecyclerViewAdapter_FilterInSearch adapter_filterInSearch;
 
+    private RecyclerViewAdapter_Option_FilterInSearch adapter_option_filterInSearch;
+
     private Button button_back_FilterInSearch;
+
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 
@@ -53,13 +62,7 @@ public class FilterInSearch extends AppCompatActivity {
 
 
         // FIND BY ID
-        recyclerView_FilterInSearch = findViewById(R.id.recyclerView_FilterInSearch);
-
-        button_back_FilterInSearch = findViewById(R.id.button_back_FilterInSearch);
-
-        searchView = findViewById(R.id.searchView_FilterInSearch);
-
-
+        findByIdForComponents();
 
         button_back_FilterInSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,27 +71,94 @@ public class FilterInSearch extends AppCompatActivity {
             }
         });
 
-
-
         recyclerView_FilterInSearch.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        initData();
-        adapter_filterInSearch = new RecyclerViewAdapter_FilterInSearch(this, mData);
-        recyclerView_FilterInSearch.setAdapter(adapter_filterInSearch);
+//        initData();
+//        adapter_filterInSearch = new RecyclerViewAdapter_FilterInSearch(this, mData);
+//        recyclerView_FilterInSearch.setAdapter(adapter_filterInSearch);
+
+
+        Query query = firebaseFirestore.collection("Recipe");
+
+        FirestoreRecyclerOptions<Recipe> options = new FirestoreRecyclerOptions.Builder<Recipe>()
+                .setQuery(query, Recipe.class)
+                .build();
+
+        adapter_option_filterInSearch = new RecyclerViewAdapter_Option_FilterInSearch(FilterInSearch.this, options, new RecyclerViewAdapter_Option_FilterInSearch.OnItemClickListener() {
+            @Override
+            public void onClickListener(DocumentSnapshot documentSnapshot, int position) {
+
+                Intent intent = new Intent(FilterInSearch.this, CookingRecipe.class);
+                intent.putExtra("KeyID_Recipe", documentSnapshot.getId());
+                startActivity(intent);
+            }
+        });
+
+        recyclerView_FilterInSearch.setAdapter(adapter_option_filterInSearch);
+
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
+                Intent intent = new Intent(FilterInSearch.this, FilterInSearchAllRecipe.class);
+                intent.putExtra("KEYSEARCH_FOR_ALLRECIPE", query);
+                startActivity(intent);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                adapter_filterInSearch.getFilter().filter(newText);
+//                adapter_filterInSearch.getFilter().filter(newText);
+//
+//                Query query1 = firebaseFirestore.collection("Recipe");
+//
+//                FirestoreRecyclerOptions<Recipe> options1 = new FirestoreRecyclerOptions.Builder<Recipe>()
+//                        .setQuery(query1, Recipe.class)
+//                        .build();
+//
+//                adapter_option_filterInSearch.updateOptions(options1);
+
+                Query query1;
+
+                if(newText.isEmpty()){
+                    query1 = firebaseFirestore.collection("Recipe");
+                }
+                else{
+                    query1 = firebaseFirestore.collection("Recipe")
+                            .whereEqualTo("tags." + newText.toString(), true);
+                }
+
+                FirestoreRecyclerOptions<Recipe> options1 = new FirestoreRecyclerOptions.Builder<Recipe>()
+                        .setQuery(query1, Recipe.class)
+                        .build();
+
+                adapter_option_filterInSearch.updateOptions(options1);
+
                 return false;
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter_option_filterInSearch.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter_option_filterInSearch.stopListening();
+    }
+
+    public void findByIdForComponents(){
+        recyclerView_FilterInSearch = findViewById(R.id.recyclerView_FilterInSearch);
+
+        button_back_FilterInSearch = findViewById(R.id.button_back_FilterInSearch);
+
+        searchView = findViewById(R.id.searchView_FilterInSearch);
     }
 
 

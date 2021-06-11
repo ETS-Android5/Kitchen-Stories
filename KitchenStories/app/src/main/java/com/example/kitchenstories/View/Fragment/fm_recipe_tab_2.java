@@ -1,18 +1,27 @@
 package com.example.kitchenstories.View.Fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kitchenstories.Model.Recipe;
 import com.example.kitchenstories.R;
+import com.example.kitchenstories.View.CookingRecipe;
 import com.example.kitchenstories.ViewModel.RecyclerViewAdapter;
+import com.example.kitchenstories.ViewModel.RecyclerViewAdapter_OptionFireStore;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,39 +67,89 @@ public class fm_recipe_tab_2 extends Fragment {
     private RecyclerView recyclerView;
     private List<Recipe> mData;
 
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+
+    RecyclerViewAdapter_OptionFireStore adapter_optionFireStore;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fm_recipe_tab_2, container, false);
 
+
+
         recyclerView = view.findViewById(R.id.recipe_recycleview_tab2);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+//        //initData();
+//        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), mData);
+//
+//        recyclerView.setAdapter(adapter);
 
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), mData);
+        Query query = firebaseFirestore.collection("Recipe");
 
-        recyclerView.setAdapter(adapter);
+        FirestoreRecyclerOptions<Recipe> options = new FirestoreRecyclerOptions.Builder<Recipe>()
+                .setQuery(query, Recipe.class)
+                .build();
+
+        adapter_optionFireStore = new RecyclerViewAdapter_OptionFireStore(getContext(), options, new RecyclerViewAdapter_OptionFireStore.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+//                String id = documentSnapshot.getId();
+//                Toast.makeText(getContext(), "id; " + id, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getContext(), CookingRecipe.class);
+                intent.putExtra("KeyID_Recipe", documentSnapshot.getId());
+                startActivity(intent);
+            }
+        });
+
+        recyclerView.setAdapter(adapter_optionFireStore);
 
 
         return view;
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        adapter_optionFireStore.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter_optionFireStore.stopListening();
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mData = new ArrayList<>();
-
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "chicken", R.drawable.ic_launcher_background, "Thang", "Kitchen Stories"));
-
-
     }
+
+
+    //    public void initData(){
+//
+//        mData = new ArrayList<>();
+//
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+//
+//    }
 }
