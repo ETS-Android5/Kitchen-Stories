@@ -9,26 +9,32 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-
         >
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar_FilterInSearch_All_Recipes_Activity"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:background="@color/Gray50"
             android:elevation="4dp"
             app:menu="@menu/top_app_bar"
             app:navigationIcon="@drawable/ic_baseline_arrow_back"
             app:navigationIconTint="@color/black"
-            app:title="All recipes Search"
-            app:titleMarginStart="100dp"
             app:titleTextColor="@color/black"
 
             >
 
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView_FilterInSearchAllRecipe"
+                android:layout_width="270dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/shape_bg_search"
+                app:iconifiedByDefault="false"
+                app:queryBackground="@null"
+                app:queryHint="Search here"
+                app:searchHintIcon="@drawable/ic_baseline_search" />
 
         </com.google.android.material.appbar.MaterialToolbar>
 
@@ -39,6 +45,8 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             app:tabSelectedTextColor="@color/colorPrimary" />
+
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager

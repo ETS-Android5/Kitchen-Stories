@@ -315,7 +315,6 @@
                     android:layout_margin="5dp"
                     android:layout_marginTop="30dp"
                     android:layout_weight="1"
-
                     android:backgroundTint="@color/orange50"
                     app:cardCornerRadius="10dp">
 

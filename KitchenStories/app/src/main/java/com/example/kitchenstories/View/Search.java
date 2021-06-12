@@ -3,6 +3,7 @@ package com.example.kitchenstories.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
 
@@ -34,6 +35,14 @@ public class Search extends AppCompatActivity {
     private Animation animationHide_Button_SearchBy;
     private Animation animationHide_textView;
 
+    private CardView card_Recipes_Pasta;
+    private CardView card_Recipes_Asian;
+    private CardView card_Recipes_Main;
+    private CardView card_Recipes_Quick;
+    private CardView card_Recipes_Meatless;
+    private CardView card_Recipes_Dessert;
+
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 
     @Override
@@ -55,12 +64,7 @@ public class Search extends AppCompatActivity {
         getWindow().setExitTransition(fade);
 
         // find View by ID
-        btn_All_recipes = findViewById(R.id.btn_AllRecipes);
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        btn_search_by_Search_Activity = findViewById(R.id.btn_search_by_Search_Activity);
-
-        txtSearch_Search_Activity = findViewById(R.id.txtSearch_Search_Activity);
+        findByIdForComponents();
 
 
         // animation
@@ -121,13 +125,91 @@ public class Search extends AppCompatActivity {
         });
 
 
-
+        // click cardview to open FilterInSearchAllRecipe activity
+        openActivity_CardViewClick();
 
 
 
 
     }
 
+    public void findByIdForComponents(){
+
+        btn_All_recipes = findViewById(R.id.btn_AllRecipes);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        btn_search_by_Search_Activity = findViewById(R.id.btn_search_by_Search_Activity);
+
+        txtSearch_Search_Activity = findViewById(R.id.txtSearch_Search_Activity);
+
+        card_Recipes_Pasta = findViewById(R.id.card_Recipes_Pasta);
+        card_Recipes_Asian = findViewById(R.id.card_Recipes_Asian);
+        card_Recipes_Main = findViewById(R.id.card_Recipes_Main);
+        card_Recipes_Quick = findViewById(R.id.card_Recipes_Quick);
+        card_Recipes_Meatless = findViewById(R.id.card_Recipes_Meatless);
+        card_Recipes_Dessert = findViewById(R.id.card_Recipes_Dessert);
+
+    }
+
+    public void openActivity_CardViewClick(){
+
+        card_Recipes_Pasta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Search.this, FilterInSearchAllRecipe.class);
+                intent.putExtra("KEYSEARCH_FOR_ALLRECIPE", "pasta");
+                startActivity(intent);
+            }
+        });
+        card_Recipes_Asian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Search.this, FilterInSearchAllRecipe.class);
+                intent.putExtra("KEYSEARCH_FOR_ALLRECIPE", "asian");
+                startActivity(intent);
+            }
+        });
+        card_Recipes_Main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Search.this, FilterInSearchAllRecipe.class);
+                intent.putExtra("KEYSEARCH_FOR_ALLRECIPE", "main");
+                startActivity(intent);
+            }
+        });
+        card_Recipes_Quick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Search.this, FilterInSearchAllRecipe.class);
+                intent.putExtra("KEYSEARCH_FOR_ALLRECIPE", "quick");
+                startActivity(intent);
+            }
+        });
+        card_Recipes_Meatless.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Search.this, FilterInSearchAllRecipe.class);
+                intent.putExtra("KEYSEARCH_FOR_ALLRECIPE", "meatless");
+                startActivity(intent);
+            }
+        });
+        card_Recipes_Dessert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Search.this, FilterInSearchAllRecipe.class);
+                intent.putExtra("KEYSEARCH_FOR_ALLRECIPE", "dessert");
+                startActivity(intent);
+            }
+        });
+
+
+    }
 
     public void openAllRecipesActivity(){
 

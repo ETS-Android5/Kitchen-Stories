@@ -3,6 +3,7 @@ package com.example.kitchenstories.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
@@ -19,14 +20,18 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.kitchenstories.Model.Recipe;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.View.Fragment.fm_filterinsearch_recipe_tab1;
 import com.example.kitchenstories.View.Fragment.fm_filterinsearch_recipe_tab2;
 import com.example.kitchenstories.View.Fragment.fm_recipe_tab_1;
 import com.example.kitchenstories.View.Fragment.fm_recipe_tab_2;
 import com.example.kitchenstories.ViewModel.ViewPagerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class FilterInSearchAllRecipe extends AppCompatActivity {
 
@@ -36,8 +41,11 @@ public class FilterInSearchAllRecipe extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
 
     private Toolbar toolbar;
+    private SearchView searchView;
 
     private String keysearch;
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -56,17 +64,15 @@ public class FilterInSearchAllRecipe extends AppCompatActivity {
 
         if(getIntent().hasExtra("KEYSEARCH_FOR_ALLRECIPE")){
             keysearch = getIntent().getExtras().getString("KEYSEARCH_FOR_ALLRECIPE");
-            //Log.d("KEYSEARCHFORALLRECIPE", idRecipe);
+
         }
 
-
-
         // FIND VIEW BY ID
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        tabLayout = findViewById(R.id.tabs_FilterInSearch_All_Recipes_Activity);
-        viewPager = findViewById(R.id.view_pager_FilterInSearch_All_Recipes_Activity);
-        toolbar = findViewById(R.id.topAppBar_FilterInSearch_All_Recipes_Activity);
+        findByIdForComponents();
 
+        searchView.setQuery(keysearch, true);
+
+        
         //
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
@@ -92,6 +98,47 @@ public class FilterInSearchAllRecipe extends AppCompatActivity {
         viewPager.setAdapter(viewPagerAdapter);
 
         tabLayout.setupWithViewPager(viewPager);
+
+
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            Bundle bundle = new Bundle();
+//            fm_filterinsearch_recipe_tab1 tab1_backup;
+//            fm_filterinsearch_recipe_tab2 tab2_backup;
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                keysearch = query;
+//                bundle.putString("KEYSEARCH_FOR_FRAGMENT_ALLRECIPE", keysearch);
+//                tab1_backup.setArguments(bundle);
+//                //tab2_backup.setArguments(bundle);
+//
+//                // add Fragment here
+//                viewPagerAdapter.AddFragment(tab1_backup, "Kitchen Stories1");
+//                //viewPagerAdapter.AddFragment(tab2_backup, "Community1");
+//
+//                // View
+//                viewPager.setAdapter(viewPagerAdapter);
+//
+//                tabLayout.setupWithViewPager(viewPager);
+//
+//                return false;
+//            }
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                if(newText.isEmpty()){
+//
+//                }
+//                else{
+////                    keysearch = newText;
+////                    bundle.putString("KEYSEARCH_FOR_FRAGMENT_ALLRECIPE", keysearch);
+////                    tab1.setArguments(bundle);
+////                    tab2.setArguments(bundle);
+////                    //viewPagerAdapter.notifyDataSetChanged();
+//                }
+//
+//                return false;
+//            }
+//        });
+
 
 
         // Navigation bottom
@@ -153,6 +200,16 @@ public class FilterInSearchAllRecipe extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public void findByIdForComponents(){
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        tabLayout = findViewById(R.id.tabs_FilterInSearch_All_Recipes_Activity);
+        viewPager = findViewById(R.id.view_pager_FilterInSearch_All_Recipes_Activity);
+        toolbar = findViewById(R.id.topAppBar_FilterInSearch_All_Recipes_Activity);
+
+        searchView = findViewById(R.id.searchView_FilterInSearchAllRecipe);
     }
 
     public void openFilterRecipe(){

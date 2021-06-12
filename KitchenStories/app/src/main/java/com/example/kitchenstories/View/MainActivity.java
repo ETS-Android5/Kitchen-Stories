@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+/*
         // set recipe into firebase
 
         String name_cooking_recipe ="Strawberries and cream tart";
@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
 //        firebaseFirestore.collection("Recipe").document("Recipe7")
 //                .collection("Steps").document("Step4").set(stepsForRecipe4);
 
-
+*/
 
 
 

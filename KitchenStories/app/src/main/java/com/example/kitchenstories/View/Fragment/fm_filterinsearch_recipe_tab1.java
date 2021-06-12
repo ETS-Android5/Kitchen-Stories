@@ -3,6 +3,8 @@ package com.example.kitchenstories.View.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,15 +13,25 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.kitchenstories.Model.Recipe;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.View.CookingRecipe;
 import com.example.kitchenstories.ViewModel.RecyclerViewAdapter_OptionFireStore;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -79,6 +91,10 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
     private String keysearch;
 
+    private View image_error_fm_filterinsearchAllRecipe_tab1;
+    private TextView tv1_error_fm_filterinsearchAllRecipe_tab1;
+    private TextView tv2_error_fm_filterinsearchAllRecipe_tab1;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,11 +103,21 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_fm_filterinsearch_recipe_tab1, container, false);
 
 
+        //findByIdForComponents(view);
+        image_error_fm_filterinsearchAllRecipe_tab1 = view.findViewById(R.id.image_error_fm_filterinsearchAllRecipe_tab1);
+        tv1_error_fm_filterinsearchAllRecipe_tab1 = view.findViewById(R.id.tv1_error_fm_filterinsearchAllRecipe_tab1);
+        tv2_error_fm_filterinsearchAllRecipe_tab1 = view.findViewById(R.id.tv2_error_fm_filterinsearchAllRecipe_tab1);
+
+        image_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.GONE);
+        tv1_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.GONE);
+        tv2_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.GONE);
+
+
         recyclerView = view.findViewById(R.id.recycleview_FilterInSearach_tab1);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         keysearch = getArguments().getString("KEYSEARCH_FOR_FRAGMENT_ALLRECIPE");
-        Log.d("TEST", keysearch);
+
 
         if(keysearch.isEmpty()){
             Query query = firebaseFirestore.collection("Recipe");
@@ -116,9 +142,25 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
             Query query = firebaseFirestore.collection("Recipe")
                     .whereEqualTo("tags." + keysearch, true);
 
+            // check query is empty or not
+            query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                    if(queryDocumentSnapshots.isEmpty()){
+
+                        image_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.VISIBLE);
+                        tv1_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.VISIBLE);
+                        tv2_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+
+
             FirestoreRecyclerOptions<Recipe> options = new FirestoreRecyclerOptions.Builder<Recipe>()
                     .setQuery(query, Recipe.class)
                     .build();
+
 
             adapter_optionFireStore = new RecyclerViewAdapter_OptionFireStore(getContext(), options, new RecyclerViewAdapter_OptionFireStore.OnItemClickListener() {
                 @Override
@@ -150,4 +192,19 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
         super.onStop();
         adapter_optionFireStore.stopListening();
     }
+
+//    private void findByIdForComponents(View view){
+//
+//        image_error_fm_filterinsearchAllRecipe_tab1 = view.findViewById(R.id.image_error_fm_filterinsearchAllRecipe_tab1);
+//        tv1_error_fm_filterinsearchAllRecipe_tab1 = view.findViewById(R.id.tv1_error_fm_filterinsearchAllRecipe_tab1);
+//        tv2_error_fm_filterinsearchAllRecipe_tab1 = view.findViewById(R.id.tv2_error_fm_filterinsearchAllRecipe_tab1);
+//
+//        image_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.GONE);
+//        tv1_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.GONE);
+//        tv1_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.GONE);
+//    }
+
+
+
+
 }
