@@ -116,82 +116,98 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-/*
+
         // set recipe into firebase
 
-        String name_cooking_recipe ="Strawberries and cream tart";
+        String name_cooking_recipe ="Turkish-inspired scrambled eggs";
         String url_image_CookingRecipe ="null";
 
-        String name_author = "Hanna Reder";
-        String name_authorGroup ="Test Kitchen Manager and Chef at Kitchen Stories";
-        String contact_author ="instagram.com/wasissthanna";
-        String author_description ="“An easy, breezy strawberry cake that all ages will love! Mixing simple vanilla pudding powder with whipped cream creates a creme patissiere-like filling without the fuss and the cloud-like texture is the perfect foil for the crunchy, almondy baked base. Take time to create the strawberry pattern by starting around the outer edge and spiralling your way to the middle. You can garnish the tart with lemon zest or even herbs like lemon balm. Have fun!”";
+        String name_author = "Vanessa Pass";
+        String name_authorGroup ="Contributor";
+        String contact_author ="";
+        String author_description ="";
         String url_image_author ="null";
 
-        String likeAmount = "2090";
-        String ratingAmount = "8";
+        String likeAmount = "11,6k";
+        String ratingAmount = "51";
 
-        String difficulty_Level_Recipe ="Medium";
+        String difficulty_Level_Recipe ="Easy ";
 
         ArrayList<String> periodCooking = new ArrayList<>();
-        periodCooking.add("25");
-        periodCooking.add("40");
-        periodCooking.add("100");
+        periodCooking.add("20");
+        periodCooking.add("0");
+        periodCooking.add("0");
 
         ArrayList<String> ingredients = new ArrayList<>();
-        ingredients.add("strawberries");
-        ingredients.add("flour");
-        ingredients.add("whole-grain flour");
-        ingredients.add("almond flour");
-        ingredients.add("baking powder");
-        ingredients.add("butter");
+        ingredients.add("eggs");
+        ingredients.add("onion");
+        ingredients.add("yellow bell pepper");
+        ingredients.add("green bell pepper");
+        ingredients.add("parsley");
+        ingredients.add("canned crushed tomatoes");
+        ingredients.add("chili flakes");
+        ingredients.add("feta");
+        ingredients.add("salt");
+        ingredients.add("pepper");
         ingredients.add("sugar");
-        ingredients.add("egg");
-        ingredients.add("milk");
-        ingredients.add("cream");
-        ingredients.add("vanilla pudding powder");
-        ingredients.add("vanilla extract");
-        ingredients.add("coconut sugar");
-        ingredients.add("lemon zest");
+        ingredients.add("olive oil for frying");
+        ingredients.add("bread for serving");
+//        ingredients.add("Parmesan cheese (grated)");
+//        ingredients.add("walnuts");
+//        ingredients.add("salt");
+//        ingredients.add("pepper");
+//        ingredients.add("cilantro");
 
 
 
         ArrayList<String> amountOfIngredients = new ArrayList<>();
-        amountOfIngredients.add("700 g ");
-        amountOfIngredients.add("150 g ");
-        amountOfIngredients.add("50 g ");
-        amountOfIngredients.add("50 g");
-        amountOfIngredients.add("1 tsp");
-        amountOfIngredients.add("200 g");
-        amountOfIngredients.add("170 g ");
-        amountOfIngredients.add("1 ");
-        amountOfIngredients.add("400 ml ");
-        amountOfIngredients.add("200 ml");
-        amountOfIngredients.add("1 package ");
+        amountOfIngredients.add("4");
+        amountOfIngredients.add("1");
+        amountOfIngredients.add("1");
+        amountOfIngredients.add("½ ");
+        amountOfIngredients.add("15 g");
+        amountOfIngredients.add("400 g ");
         amountOfIngredients.add("1 tsp ");
-        amountOfIngredients.add("1 tbsp ");
-        amountOfIngredients.add("1 ");
+        amountOfIngredients.add("100 g ");
+        amountOfIngredients.add("");
+        amountOfIngredients.add("");
+        amountOfIngredients.add("");
+        amountOfIngredients.add("");
+        amountOfIngredients.add("");
+//        amountOfIngredients.add("6 tbsp ");
+//        amountOfIngredients.add("80 g ");
+//        amountOfIngredients.add("");
+//        amountOfIngredients.add("");
+//        amountOfIngredients.add("5 g ");
 
 
-        String utensils = "3 bowls (large) - cutting board - knife - plastic wrap - pot (small) - whisk - rubber -  spatula - bowl (small) - oven - parchment pape - rrolling pin - pie dish (10 in.)pie weights - hand mixer with beaters - fine grater";
+
+        String utensils = "cutting board - knife - large frying pan - cooking spoon";
 
         ArrayList<String> nutritionPerServing = new ArrayList<>();
-        nutritionPerServing.add("506");
-        nutritionPerServing.add("8 g");
-        nutritionPerServing.add("30 g");
-        nutritionPerServing.add("54 g");
+        nutritionPerServing.add("285");
+        nutritionPerServing.add("17 g");
+        nutritionPerServing.add("16 g");
+        nutritionPerServing.add("17 g");
 
         Map<String, Boolean> tags = new HashMap<>();
-        tags.put("pastry and doughs", true);
+        tags.put("vegetarian", true);
+        tags.put("middle eastern", true);
+        tags.put("cheese", true);
+        tags.put("breakfast", true);
+        tags.put("Meatless", true);
+        tags.put("low card", true);
         tags.put("comfort food", true);
-        tags.put("berries", true);
-        tags.put("crowd pleaser", true);
-        tags.put("baking", true);
-        tags.put("kid friendly", true);
-        tags.put("sweet", true);
-        tags.put("dessert", true);
-        tags.put("cake", true);
-
+        tags.put("brunch", true);
+        tags.put("spices", true);
+        tags.put("gluten free", true);
+//        tags.put("crustacean and shellfish", true);
+//        tags.put("Asian", true);
+//        tags.put("soup", true);
+//        tags.put("spicy", true);
+//        tags.put("weeknight diner", true);
+//        tags.put("spices", true);
+//        tags.put("lactose free", true);
 
         Recipe recipe = new Recipe(
                 name_cooking_recipe,
@@ -212,71 +228,85 @@ public class MainActivity extends AppCompatActivity {
                 tags);
 
 
-//
-//        firebaseFirestore.collection("Recipe").document("Recipe7")
+
+//        firebaseFirestore.collection("Recipe").document("Recipe26")
 //                .set(recipe);
 
 
         // add steps
 
-        String step1 = "1/4";
+        String step1 = "1/3";
         String url_image1 = "null";
-        String ingredientsForPerStep1 ="150 g flour - 50 g whole-grain flour - 50 g almond flour - 200 g butter - 100 g sugar - 1 tsp baking powder - 1 eggsalt";
-        String utensilsForPerStep1 ="bowl (large) - cutting board - knifep - lastic wrap";
-        String scriptForDescription1 ="For the dough, add flour, whole-grain flour and almond flour to a large bowl. Cube the cold butter, add to the flour mix and knead with your hands to a sand-like consistency. Now add some sugar, baking powder, salt and the egg, and knead into a smooth dough. Shape into a ball, wrap in cling film, and leave to rest for approx. 1 hr.";
+        String ingredientsForPerStep1 ="1 onion - 1 yellow bell pepper - ½ green bell pepper - 15 g parsley ";
+        String utensilsForPerStep1 ="cutting board - knife";
+        String scriptForDescription1 ="Peel and mince onion. Wash yellow and green bell pepper," +
+                " remove seeds and finely dice. Pluck parsley leaves from the stems and finely chop.";
 
 
         StepsForRecipe stepsForRecipe1 = new StepsForRecipe(step1, url_image1,ingredientsForPerStep1,utensilsForPerStep1,scriptForDescription1);
 
 
-        String step2 = "2/4";
+        String step2 = "2/3";
         String url_image2 = "null";
-        String ingredientsForPerStep2 ="400 ml milk - 70 g sugar - 20 ml cream - 1 package vanilla pudding powder";
-        String utensilsForPerStep2 ="pot (small) - whisk - rubber spatula - bowl (large) - bowl (small)";
-        String scriptForDescription2 ="For the filling, heat milk with the remaining sugar in a small saucepan. In a separate bowl, mix some of the cream with the pudding powder. When the milk starts to boil, stir in the pudding mixture until dissolved, and let simmer for approx. 2 min. Then pour into a bowl, cover the surface of the pudding with cling film, and leave to cool in the fridge.";
+        String ingredientsForPerStep2 ="400 g canned crushed tomatoes - 1 tsp chili flakes - salt - pepper - sugar - olive oil for frying";
+        String utensilsForPerStep2 ="large frying pan";
+        String scriptForDescription2 ="In a large frying pan, heat olive oil over medium-high heat." +
+                " Add onion and sauté for approx. 2 min. Add yellow and green bell pepper and sauté for approx. " +
+                "3 min. more. Reduce heat and add canned crushed tomatoes. Season to taste with salt, pepper, " +
+                "and sugar. Add chili flakes, stir to combine, and let simmer for approx. 5 min.";
 
 
         StepsForRecipe stepsForRecipe2 = new StepsForRecipe(step2, url_image2,ingredientsForPerStep2,utensilsForPerStep2,scriptForDescription2);
 
-
-        String step3 = "3/4";
+//
+        String step3 = "3/3";
         String url_image3 = "null";
-        String ingredientsForPerStep3 ="butter (for greasing)";
-        String utensilsForPerStep3 ="oven - parchment paper - rolling pin - pie dish (10 in.) - pie weights";
-        String scriptForDescription3 ="Preheat the oven to 180°C/356°F. Roll out the dough between two sheets of parchment paper, place in a greased pie dish, trim the edges if needed, and prick all over with a fork. Place a sheet of parchment paper on top, fill with pie weights and bake in the preheated oven for 20 min. Remove from the oven and let cool completely.";
+        String ingredientsForPerStep3 ="4 eggs - 100 g feta - bread for serving";
+        String utensilsForPerStep3 ="cooking spoon";
+        String scriptForDescription3 ="With a cooking spoon, create hollows in the pepper-tomato" +
+                " mixture and crack an egg in each hollow. Simmer for approx. 1 min., or until eggs are slightly set. " +
+                "Then, stir eggs in circular movements, distributing them around the pan. Simmer for approx. 5 more min.," +
+                " or until eggs have set. Crumble feta over and garnish with chopped parsley. Enjoy with fresh bread!";
 
 
         StepsForRecipe stepsForRecipe3 = new StepsForRecipe(step3, url_image3,ingredientsForPerStep3,utensilsForPerStep3,scriptForDescription3);
 
 
-        String step4 = "4/4";
-        String url_image4 = "null";
-        String ingredientsForPerStep4 ="180 ml cream - 700 g strawberries - 1 tsp vanilla extract - 1 tbsp coconut sugar - 1 lemon zest";
-        String utensilsForPerStep4 ="hand mixer with beaters - bowl (large) - fine grater";
-        String scriptForDescription4 ="Whip the remaining cream with a hand mixer until stiff. Then whip the cooled vanilla pudding briefly with the hand mixer and fold in the whipped cream with a rubber spatula. Remove the tart base from the pie dish and fill with the vanilla pudding cream. Slice the strawberries into quarters and toss in a bowl with the vanilla extract, coconut sugar and lemon zest. Arrange the strawberries in a circle around the outside edge and work your way into the middle, with the cut edge facing downwards. Finally let chill for approx. another 1 hr. before serving. Serve cold or at room temperature and enjoy!";
-
-        StepsForRecipe stepsForRecipe4 = new StepsForRecipe(step4, url_image4,ingredientsForPerStep4,utensilsForPerStep4,scriptForDescription4);
+//        String step4 = "4/4";
+//        String url_image4 = "null";
+//        String ingredientsForPerStep4 ="70 g unsalted butter - ½ lime - 30 g pine nuts (toasted) - salt - pepper";
+//        String utensilsForPerStep4 ="fine grater";
+//        String scriptForDescription4 ="Once the rice is cooked, add butter, dandelion pesto," +
+//                " and lime zest to the pot and stir to combine. Season with salt and pepper to taste and " +
+//                "serve green risotto with reserved dandelion leaves and toasted pine nuts. Enjoy!";
+//
+//        StepsForRecipe stepsForRecipe4 = new StepsForRecipe(step4, url_image4,ingredientsForPerStep4,utensilsForPerStep4,scriptForDescription4);
 
 //        String step5 = "5/5";
 //        String url_image5 = "url_image3";
-//        String ingredientsForPerStep5 ="scallion (for garnish) - cilantro (for garnish)";
+//        String ingredientsForPerStep5 ="scallion (for serving) - sesame seed (for serving) - short grain rice (for serving)";
 //        String utensilsForPerStep5 ="";
-//        String scriptForDescription5 ="Divide the noodles and pak choi between two serving bowls. Pour the broth evenly on top. Garnish with shiitake mushrooms, halved waxy eggs and the green of the spring onions. Finish with fresh herbs, such as coriander, and gomasio (sesame salt) if you have it, or more sesame seeds. Enjoy!";
+//        String scriptForDescription5 ="Place the saucepan of leftover marinade over medium heat and bring to a simmer. " +
+//                "Let simmer and reduce, swirling often, until thickened slightly, approx. 2 min. Remove from heat." +
+//                " Serve the tofu and vegetables over rice, if desired, and garnish with sauce, sliced scallions," +
+//                " and sesame seeds. Enjoy!";
 //
 //        StepsForRecipe stepsForRecipe5 = new StepsForRecipe(step5, url_image5,ingredientsForPerStep5,utensilsForPerStep5,scriptForDescription5);
 
 
-        // ------------------------------------------------------------fix recipe---fix step1----------
-//        firebaseFirestore.collection("Recipe").document("Recipe7")
+//        // ------------------------------------------------------------fix recipe---fix step1----------
+//        firebaseFirestore.collection("Recipe").document("Recipe26")
 //                .collection("Steps").document("Step1").set(stepsForRecipe1);
-//        firebaseFirestore.collection("Recipe").document("Recipe7")
+//        firebaseFirestore.collection("Recipe").document("Recipe26")
 //                .collection("Steps").document("Step2").set(stepsForRecipe2);
-//        firebaseFirestore.collection("Recipe").document("Recipe7")
+//        firebaseFirestore.collection("Recipe").document("Recipe26")
 //                .collection("Steps").document("Step3").set(stepsForRecipe3);
-//        firebaseFirestore.collection("Recipe").document("Recipe7")
+//        firebaseFirestore.collection("Recipe").document("Recipe23")
 //                .collection("Steps").document("Step4").set(stepsForRecipe4);
+//        firebaseFirestore.collection("Recipe").document("Recipe23")
+//                .collection("Steps").document("Step5").set(stepsForRecipe5);
 
-*/
+
 
 
 
