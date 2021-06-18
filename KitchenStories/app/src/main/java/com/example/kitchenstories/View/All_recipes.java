@@ -71,6 +71,8 @@ public class All_recipes extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
 
+
+
         // Navigation bottom
         bottomNavigationView.setSelectedItemId(R.id.search);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

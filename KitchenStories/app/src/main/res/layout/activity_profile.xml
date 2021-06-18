@@ -7,103 +7,108 @@
     tools:context=".View.Profile">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="142dp"
-        android:layout_height="136dp"
-        app:srcCompat="@drawable/aq" />
-
-    <Button
-        android:id="@+id/button"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="149dp"
-        android:layout_marginLeft="149dp"
-        android:layout_marginTop="76dp"
-        android:text="Edit Profile"
-        android:textColor="@color/black" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="173dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginRight="84dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/Btsetting"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginRight="17dp"
-        android:clickable="true"
-        android:onClick="btsetting_onClick"
-        app:backgroundTint="#FFFFFF"
-        app:srcCompat="@drawable/outline_settings_24"
-        tools:ignore="OnClick,VectorDrawableCompat"
-        android:layout_alignParentRight="true" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="-4dp"
-        android:layout_marginBottom="4dp"
-        android:layout_alignParentLeft="true">
+        android:overScrollMode="never"
+        >
+
+    </androidx.core.widget.NestedScrollView>
 
 
-    </androidx.viewpager.widget.ViewPager>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tablayout"
-        android:layout_width="356dp"
-        android:layout_height="63dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="9dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginTop="145dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginRight="14dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab1"
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cookbooks" />
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/lora_bold"
+            android:text="Profile"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab2"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recipes" />
+            android:orientation="horizontal">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab3"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/image_avatarUser_ProfileActivity"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="15dp">
+
+                <TextView
+                    android:id="@+id/name_user_ProfileActivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thang Tran"
+                    android:fontFamily="@font/source_sans_pro_semi_bold"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/name_groupUser_ProfileActivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Community"
+                    android:fontFamily="@font/source_sans_pro_regular"
+                    android:textColor="@color/Gray800"
+                    android:textSize="17sp"/>
+
+                <Button
+                    android:id="@+id/btn_LogOut_ProfileActivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:text="Log out"
+                    android:textAllCaps="false"
+                    android:textColor="@color/DeepPurple900"
+                    app:strokeColor="@color/DeepPurple900"
+                    app:strokeWidth="2dp"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs_ProfileActivity"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Likes" />
-    </com.google.android.material.tabs.TabLayout>
+            android:background="@color/white"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            android:layout_marginTop="20dp"/>
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager_ProfileActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp"
+
+            />
+
+    </LinearLayout>
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"

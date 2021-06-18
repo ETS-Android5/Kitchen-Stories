@@ -9,6 +9,7 @@ public class Recipe {
     private String name_cooking_recipe;
     private String url_image_CookingRecipe;
 
+
     private int image_author;
     private String name_author;
     private String name_authorGroup;
@@ -241,4 +242,7 @@ public class Recipe {
     public void setRatingAmount(String ratingAmount) {
         this.ratingAmount = ratingAmount;
     }
+
+
 }
+

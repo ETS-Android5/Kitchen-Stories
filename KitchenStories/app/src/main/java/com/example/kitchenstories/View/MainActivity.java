@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
         String name_cooking_recipe ="Turkish-inspired scrambled eggs";
         String url_image_CookingRecipe ="null";
+        //String url_video_CookingRecipe ="null";
 
         String name_author = "Vanessa Pass";
         String name_authorGroup ="Contributor";

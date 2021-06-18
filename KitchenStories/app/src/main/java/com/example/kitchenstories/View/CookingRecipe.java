@@ -1,6 +1,7 @@
 package com.example.kitchenstories.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Notification;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,13 +29,17 @@ import com.example.kitchenstories.R;
 import com.example.kitchenstories.ViewModel.CookingRecipeActivity.RecyclerViewAdapter_Ingredient_CookingRecipe;
 import com.example.kitchenstories.ViewModel.CookingRecipeActivity.RecyclerViewAdapter_Option_Steps;
 import com.example.kitchenstories.ViewModel.RecyclerViewAdapter;
+import com.example.kitchenstories.ViewModel.RecyclerViewAdapter_OptionFireStore;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -49,6 +55,7 @@ public class CookingRecipe extends AppCompatActivity {
     private Toolbar toolbar;
 
     private RecyclerView recyclerView_MoreRecipes;
+    private RecyclerViewAdapter_OptionFireStore adapter_optionFireStore_MoreRecipe;
     private ArrayList<Recipe> mData;
 
 
@@ -87,6 +94,7 @@ public class CookingRecipe extends AppCompatActivity {
     private TextView txt_CarbAmount_Nutrition_CookingRecipe_Activity;
 
     private TextView txt_Tags_CookingRecipe_Activity;
+    private TextView txt_FinalTags_CookingRecipe_Activity;
 
     private RecyclerView recyclerView_Steps_CookingRecipe;
     private RecyclerViewAdapter_Option_Steps adapterOptionSteps;
@@ -94,7 +102,7 @@ public class CookingRecipe extends AppCompatActivity {
     private ImageView image_FinalRecipe_CookingRecipe_Activity;
 
     private String idRecipe;
-
+    String str ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +140,8 @@ public class CookingRecipe extends AppCompatActivity {
             idRecipe = getIntent().getExtras().getString("KeyID_Recipe");
         }
 
+
+
         //
         findByIdForComponents();
 
@@ -141,7 +151,9 @@ public class CookingRecipe extends AppCompatActivity {
         //
         setDataForComponents_Steps(idRecipe);
 
-
+        String str = txt_FinalTags_CookingRecipe_Activity.getText().toString();
+        //
+        setDataForRecyclerViewRecommend();
 
     }
 
@@ -175,6 +187,7 @@ public class CookingRecipe extends AppCompatActivity {
         txt_CarbAmount_Nutrition_CookingRecipe_Activity = findViewById(R.id.txt_CarbAmount_Nutrition_CookingRecipe_Activity);
 
         txt_Tags_CookingRecipe_Activity = findViewById(R.id.txt_Tags_CookingRecipe_Activity);
+        txt_FinalTags_CookingRecipe_Activity = findViewById(R.id.txt_FinalTags_CookingRecipe_Activity);
 
         recyclerView_Steps_CookingRecipe = findViewById(R.id.recyclerView_Steps_CookingRecipe);
 
@@ -183,16 +196,28 @@ public class CookingRecipe extends AppCompatActivity {
 
         // FIND VIEW BY ID
         recyclerView_MoreRecipes = findViewById(R.id.recyclerView_MoreRecipes_CookingRecipe_Activity);
-        // RecyclerView_MoreRecipes
-        recyclerView_MoreRecipes.setLayoutManager(new GridLayoutManager(this, 2));
-        initData();
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mData);
-        recyclerView_MoreRecipes.setAdapter(adapter);
+
 
 
 
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapterOptionSteps.startListening();
+        adapter_optionFireStore_MoreRecipe.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapterOptionSteps.stopListening();
+        adapter_optionFireStore_MoreRecipe.stopListening();
+    }
+
+
 
     public void setDataForComponents(String idRecipe){
 
@@ -246,13 +271,18 @@ public class CookingRecipe extends AppCompatActivity {
 
                             // get tags
                             String tags_string = "";
+                            String lastTagOfRecipe = "";
                             Map<String, Boolean> map = new HashMap<>();
                             map = recipe.getTags();
+
                             for (String item : map.keySet()){
                                 tags_string += "#" + item +"     ";
+
+                                lastTagOfRecipe = item;
+
                             }
                             txt_Tags_CookingRecipe_Activity.setText(tags_string);
-
+                            txt_FinalTags_CookingRecipe_Activity.setText(lastTagOfRecipe);
 
 
                         }
@@ -272,6 +302,58 @@ public class CookingRecipe extends AppCompatActivity {
 
         //adapter_amountOfIngredients_cookingRecipe.notifyDataSetChanged();
         //name_recipe_collapsingToolbar_CookingRecipe_Activity
+    }
+
+
+    public void setDataForRecyclerViewRecommend(){
+
+        // RecyclerView_MoreRecipes
+        recyclerView_MoreRecipes.setLayoutManager(new GridLayoutManager(this, 2));
+
+        //initData();
+//        Task<QuerySnapshot> query = firebaseFirestore.collection("Recipe")
+//                .whereNotEqualTo("tags." + lastTagOfRecipe, true)
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//
+//                        for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+//                            Recipe recipe = documentSnapshot.toObject(Recipe.class);
+//                            Log.d("TEST", recipe.getName_cooking_recipe());
+//                        }
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull @NotNull Exception e) {
+//                        Log.d("TEST", e.toString());
+//                    }
+//                });
+
+
+
+        //Log.d("TEST", lastTagOfRecipe.toString());
+        //System.out.println("++++++++++++++++++++++++++Test: " + lastTagOfRecipe);
+
+        Query query1 = firebaseFirestore.collection("Recipe");
+
+        FirestoreRecyclerOptions<Recipe> options = new FirestoreRecyclerOptions.Builder<Recipe>()
+                .setQuery(query1, Recipe.class)
+                .build();
+
+        adapter_optionFireStore_MoreRecipe = new RecyclerViewAdapter_OptionFireStore(CookingRecipe.this, options, new RecyclerViewAdapter_OptionFireStore.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+//                Intent intent = new Intent(getApplicationContext(), CookingRecipe.class);
+//                intent.putExtra("KeyID_Recipe", documentSnapshot.getId());
+//                startActivity(intent);
+            }
+        });
+
+
+        recyclerView_MoreRecipes.setAdapter(adapter_optionFireStore_MoreRecipe);
+
     }
 
     public void setDataForComponents_Steps(String idRecipe){
@@ -312,17 +394,7 @@ public class CookingRecipe extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        adapterOptionSteps.startListening();
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapterOptionSteps.stopListening();
-    }
 
     private void initData(){
 

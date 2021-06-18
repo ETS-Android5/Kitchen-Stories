@@ -1169,7 +1169,16 @@
                         android:id="@+id/txt_Tags_CookingRecipe_Activity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="List View with --custom text button icon-- "
+                        android:text=""
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
+                        android:textColor="@color/DeepPurple900"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/txt_FinalTags_CookingRecipe_Activity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
                         android:fontFamily="@font/source_sans_pro_semi_bold"
                         android:textColor="@color/DeepPurple900"
                         android:textSize="16sp"/>

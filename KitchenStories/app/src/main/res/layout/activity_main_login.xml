@@ -6,33 +6,85 @@
     android:layout_height="match_parent"
     tools:context=".View.MainLoginActivity">
 
+    <VideoView
+        android:id="@+id/videoview_LoginActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        tools:ignore="MissingContraints" />
 
+    <TextView
+        android:id="@+id/tv1_LoginActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:fontFamily="@font/lora_semi_bold"
+        android:textColor="@color/white"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:layout_below="@+id/tv1_LoginActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kitchen Stories"
+        android:layout_centerHorizontal="true"
+        android:textSize="35sp"
+        android:fontFamily="@font/lora_semi_bold"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/google_login"
+        android:text="Log in"
+        android:layout_centerHorizontal="true"
+        android:textSize="45sp"
+        android:fontFamily="@font/lora_semi_bold"
+        android:layout_marginBottom="30dp"
+        android:textColor="@color/white"/>
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/google_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/fb_login"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="15dp" />
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/fb_login"
-        android:layout_width="390dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="49dp"
-        android:layout_marginBottom="10dp" />
-
-    <Button
-        android:id="@+id/google_login"
-        android:layout_width="390dp"
-        android:layout_height="34dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="11dp"
-        android:background="#03A9F4"
-        android:text="Login With google"
-        android:textColor="@color/black"
-        android:textSize="11dp"
-        app:backgroundTint="#A4C6FF00" />
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="90dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textSize="14sp" />
 
 
-
+    <!--    <Button-->
+    <!--        android:id="@+id/google_login"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_above="@id/fb_login"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_marginStart="20dp"-->
+    <!--        android:layout_marginEnd="20dp"-->
+    <!--        android:layout_marginBottom="10dp"-->
+    <!--        android:backgroundTint="@color/Gray300"-->
+    <!--        android:text="Login with Google"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="17dp"-->
+    <!--        android:textAllCaps="false"-->
+    <!--        />-->
 
 </RelativeLayout>
