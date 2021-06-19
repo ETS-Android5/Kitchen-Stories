@@ -26,6 +26,13 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_background" />
 
+            <View
+                android:layout_width="240dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="250dp"
+
+                android:background="@drawable/item_view_background"/>
+
 
             <TextView
                 android:id="@+id/name_recipe_part13_today_activity"

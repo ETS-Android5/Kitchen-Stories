@@ -151,7 +151,7 @@ public class CookingRecipe extends AppCompatActivity {
         //
         setDataForComponents_Steps(idRecipe);
 
-        String str = txt_FinalTags_CookingRecipe_Activity.getText().toString();
+        //String str = txt_FinalTags_CookingRecipe_Activity.getText().toString();
         //
         setDataForRecyclerViewRecommend();
 
@@ -336,7 +336,7 @@ public class CookingRecipe extends AppCompatActivity {
         //Log.d("TEST", lastTagOfRecipe.toString());
         //System.out.println("++++++++++++++++++++++++++Test: " + lastTagOfRecipe);
 
-        Query query1 = firebaseFirestore.collection("Recipe");
+        Query query1 = firebaseFirestore.collection("Recipe").limit(6);
 
         FirestoreRecyclerOptions<Recipe> options = new FirestoreRecyclerOptions.Builder<Recipe>()
                 .setQuery(query1, Recipe.class)
@@ -345,11 +345,10 @@ public class CookingRecipe extends AppCompatActivity {
         adapter_optionFireStore_MoreRecipe = new RecyclerViewAdapter_OptionFireStore(CookingRecipe.this, options, new RecyclerViewAdapter_OptionFireStore.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-//                Intent intent = new Intent(getApplicationContext(), CookingRecipe.class);
-//                intent.putExtra("KeyID_Recipe", documentSnapshot.getId());
-//                startActivity(intent);
+
             }
         });
+
 
 
         recyclerView_MoreRecipes.setAdapter(adapter_optionFireStore_MoreRecipe);

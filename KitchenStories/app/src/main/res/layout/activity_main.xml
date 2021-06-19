@@ -34,8 +34,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:descendantFocusability="blocksDescendants">
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="vertical">
 
 
                 <RelativeLayout
@@ -43,24 +43,24 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/image_collapsingToolbar_today_activity"
+                        android:id="@+id/image_exhibit_today_activity"
                         android:layout_width="match_parent"
                         android:layout_height="550dp"
                         android:contentDescription="@string/content_description_media"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/pizza"
                         />
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardView_exhibit_today_activity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="17dp"
-                        android:layout_marginEnd="17dp"
                         android:layout_marginTop="450dp"
+                        android:layout_marginEnd="17dp"
+                        android:layout_marginBottom="30dp"
                         app:cardCornerRadius="10dp"
                         app:cardElevation="7dp"
-                        android:layout_marginBottom="30dp"
-                        >
+                        app:rippleColor="@android:color/transparent">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -83,6 +83,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/tv_nameRecipe_exhibit_today_activity"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
@@ -97,6 +98,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
+                                        android:id="@+id/tv_nameAuthor_exhibit_today_activity"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_centerVertical="true"
@@ -104,6 +106,7 @@
                                         android:textColor="@color/Indigo900" />
 
                                     <Button
+                                        android:id="@+id/btn_likes_exhibit_today_activity"
                                         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -112,7 +115,8 @@
                                         android:textColor="@color/black"
                                         app:icon="@drawable/ic_favorite"
                                         app:iconTint="@color/black"
-                                        app:strokeWidth="0dp" />
+                                        app:strokeWidth="0dp"
+                                        app:rippleColor="@android:color/transparent"/>
                                 </RelativeLayout>
 
 
@@ -126,12 +130,11 @@
                 </RelativeLayout>
 
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="50dp">
+                    android:layout_marginTop="50dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/title_name_part1_today_activity"
@@ -182,9 +185,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginStart="17dp"
-                    android:layout_marginEnd="17dp">
+                    android:layout_marginEnd="17dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/title_name_part2_today_activity"
@@ -200,6 +203,7 @@
                         android:layout_height="wrap_content">
 
                         <Button
+                            android:id="@+id/btnGoToRecipe_part2_today_activity"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -212,7 +216,8 @@
                             app:iconGravity="textEnd"
                             app:iconPadding="3dp"
                             app:iconSize="13dp"
-                            app:iconTint="@color/Gray700" />
+                            app:iconTint="@color/Gray700"
+                            app:rippleColor="@android:color/transparent" />
                     </RelativeLayout>
 
                     <androidx.cardview.widget.CardView
@@ -228,11 +233,11 @@
                             <VideoView
                                 android:id="@+id/videoView_part2_today_activity"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                android:layout_height="match_parent"/>
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constrai2ntStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toTopOf="parent" />-->
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
@@ -339,10 +344,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginStart="17dp"
                     android:layout_marginTop="50dp"
-                    android:layout_marginEnd="17dp">
+                    android:layout_marginEnd="17dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/title_name_part3_today_activity"
@@ -354,21 +359,22 @@
                         android:textSize="23sp" />
 
 
-
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView_part3_today_activity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:cardCornerRadius="20dp"
-                        android:layout_marginTop="15dp">
+                        android:layout_marginTop="15dp"
+                        app:cardCornerRadius="20dp">
 
                         <ImageView
                             android:id="@+id/image_story_part3_today_activity"
                             android:layout_width="match_parent"
                             android:layout_height="250dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_launcher_background"/>
+                            android:src="@drawable/ic_launcher_background" />
 
                         <Button
+                            android:id="@+id/btn_likeAmount_part3_today_activity"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -381,7 +387,19 @@
                             android:textSize="20sp"
                             app:icon="@drawable/ic_favorite"
                             app:iconGravity="textStart"
-                            app:iconTint="@color/white" />
+                            app:iconTint="@color/white"
+                            app:rippleColor="@android:color/transparent"/>
+
+                        <TextView
+                            android:id="@+id/tv_periodCooking_part3_today_activity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|bottom"
+                            android:fontFamily="@font/source_sans_pro_regular"
+                            android:padding="12dp"
+                            android:text="18 min."
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -494,12 +512,12 @@
                         android:id="@+id/title_name_part4_today_activity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginEnd="17dp"
                         android:fontFamily="@font/lora_bold"
                         android:text="@string/our_favorite_vegan_recipes_from_you_the_community"
                         android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginEnd="17dp"/>
+                        android:textSize="23sp" />
 
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -521,17 +539,17 @@
                         android:id="@+id/title_name_part5_today_activity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginEnd="17dp"
                         android:fontFamily="@font/lora_bold"
                         android:text="@string/here_s_how_to_upload_your_own_recipes"
                         android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginEnd="17dp"/>
+                        android:textSize="23sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="NEED ANOTHER MODEL CLASS"/>
+                        android:text="NEED ANOTHER MODEL CLASS" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -543,9 +561,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginStart="17dp"
-                    android:layout_marginEnd="17dp">
+                    android:layout_marginEnd="17dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/title_name_part6_today_activity"
@@ -561,6 +579,7 @@
                         android:layout_height="wrap_content">
 
                         <Button
+                            android:id="@+id/btnGoToRecipe_part6_today_activity"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -573,7 +592,8 @@
                             app:iconGravity="textEnd"
                             app:iconPadding="3dp"
                             app:iconSize="13dp"
-                            app:iconTint="@color/Gray700" />
+                            app:iconTint="@color/Gray700"
+                            app:rippleColor="@android:color/transparent"/>
                     </RelativeLayout>
 
                     <androidx.cardview.widget.CardView
@@ -585,8 +605,7 @@
                         <VideoView
                             android:id="@+id/videoView_part6_today_activity"
                             android:layout_width="match_parent"
-                            android:layout_height="250dp"
-                            />
+                            android:layout_height="250dp" />
                     </androidx.cardview.widget.CardView>
 
 
@@ -698,12 +717,12 @@
                         android:id="@+id/title_name_part7_today_activity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginEnd="17dp"
                         android:fontFamily="@font/lora_bold"
                         android:text="@string/what_to_cook_this_week"
                         android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginEnd="17dp"/>
+                        android:textSize="23sp" />
 
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -718,10 +737,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginStart="17dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="17dp"
-                    android:layout_marginTop="20dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/title_name_part8_today_activity"
@@ -737,6 +756,7 @@
                         android:layout_height="wrap_content">
 
                         <Button
+                            android:id="@+id/btnGoToRecipe_part8_today_activity"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -749,7 +769,8 @@
                             app:iconGravity="textEnd"
                             app:iconPadding="3dp"
                             app:iconSize="13dp"
-                            app:iconTint="@color/Gray700" />
+                            app:iconTint="@color/Gray700"
+                            app:rippleColor="@android:color/transparent"/>
                     </RelativeLayout>
 
                     <androidx.cardview.widget.CardView
@@ -761,8 +782,7 @@
                         <VideoView
                             android:id="@+id/videoView_part8_today_activity"
                             android:layout_width="match_parent"
-                            android:layout_height="250dp"
-                            />
+                            android:layout_height="250dp" />
                     </androidx.cardview.widget.CardView>
 
 
@@ -867,8 +887,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="50dp">
+                    android:layout_marginTop="50dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/title_name_part9_today_activity"
@@ -907,9 +927,6 @@
                         android:layout_height="wrap_content" />
 
 
-
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -922,12 +939,12 @@
                         android:id="@+id/title_name_part10_today_activity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginEnd="17dp"
                         android:fontFamily="@font/lora_bold"
                         android:text="Herby Spring Recipes to Make This Week"
                         android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginEnd="17dp"/>
+                        android:textSize="23sp" />
 
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -942,8 +959,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="50dp">
+                    android:layout_marginTop="50dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/title_name_part11_today_activity"
@@ -982,14 +999,13 @@
                         android:layout_height="wrap_content" />
 
 
-
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="50dp">
+                    android:layout_marginTop="50dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/title_name_part12_today_activity"
@@ -1028,14 +1044,13 @@
                         android:layout_height="wrap_content" />
 
 
-
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="50dp">
+                    android:layout_marginTop="50dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/title_name_part13_today_activity"
@@ -1074,13 +1089,11 @@
                         android:layout_height="wrap_content" />
 
 
-
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="130dp"/>
-
+                    android:layout_height="130dp" />
 
 
             </LinearLayout>

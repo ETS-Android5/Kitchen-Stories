@@ -27,6 +27,7 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/btnGoToRecipe_part8_today_activity"
                 style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -153,4 +154,153 @@
 
 
     </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_marginStart="17dp"-->
+<!--        android:layout_marginEnd="17dp"-->
+<!--        android:layout_marginTop="20dp">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/title_name_part8_today_activity"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/lora_bold"-->
+<!--            android:text="@string/make_this_today"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="23sp" />-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <Button-->
+<!--                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:fontFamily="@font/source_sans_pro_bold"-->
+<!--                android:text="@string/go_to_recipe"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="@color/Gray600"-->
+<!--                app:icon="@drawable/ic_baseline_arrow_forward"-->
+<!--                app:iconGravity="textEnd"-->
+<!--                app:iconPadding="3dp"-->
+<!--                app:iconSize="13dp"-->
+<!--                app:iconTint="@color/Gray700" />-->
+<!--        </RelativeLayout>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="1dp"-->
+<!--            app:cardCornerRadius="20dp">-->
+
+<!--            <VideoView-->
+<!--                android:id="@+id/videoView_part8_today_activity"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="250dp"-->
+<!--                />-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="left"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/name_recipe_part8_today_activity"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/source_sans_pro_semi_bold"-->
+<!--                    android:text="Chicken cordon bleu with creamy white asparagus"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="18sp" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/txt_duration_views_part8_today_activity"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/source_sans_pro_regular"-->
+<!--                        android:text="01:02 min | 47,6k views"-->
+<!--                        android:textColor="@color/Gray700"-->
+<!--                        android:textSize="18sp" />-->
+
+<!--                </LinearLayout>-->
+
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+
+<!--                >-->
+
+<!--                <com.google.android.material.card.MaterialCardView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:elevation="2dp"-->
+<!--                    app:cardCornerRadius="10dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/image_author_part8_today_activity"-->
+<!--                        android:layout_width="45dp"-->
+<!--                        android:layout_height="45dp"-->
+<!--                        android:scaleType="centerCrop"-->
+<!--                        android:src="@drawable/ic_launcher_background" />-->
+
+<!--                </com.google.android.material.card.MaterialCardView>-->
+
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/name_author_part8_today_activity"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="2dp"-->
+<!--                        android:fontFamily="@font/source_sans_pro_semi_bold"-->
+<!--                        android:text="ThangTran"-->
+<!--                        android:textColor="@color/Indigo900"-->
+<!--                        android:textSize="17sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/name_authorGroup_part8_today_activity"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/source_sans_pro_regular"-->
+<!--                        android:text="Kitchen Stories"-->
+<!--                        android:textColor="@color/Gray700"-->
+<!--                        android:textSize="17sp" />-->
+
+<!--                </LinearLayout>-->
+
+
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+
+<!--    </LinearLayout>-->
 </RelativeLayout>

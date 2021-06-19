@@ -30,10 +30,11 @@
                 android:layout_width="240dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="260dp"
-                android:background="@drawable/item_view_background"/>
+                android:background="@drawable/item_view_background" />
 
 
             <Button
+                android:id="@+id/btn_likeAmount_part1_today_activity"
                 style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,9 +47,11 @@
                 android:textSize="20sp"
                 app:icon="@drawable/ic_favorite"
                 app:iconGravity="textStart"
-                app:iconTint="@color/white" />
+                app:iconTint="@color/white"
+                app:rippleColor="@android:color/transparent" />
 
             <TextView
+                android:id="@+id/tv_periodCooking_part1_today_activity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|bottom"

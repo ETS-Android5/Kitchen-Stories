@@ -33,7 +33,9 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 2500);
+        }, 1000);
+
+        //2500
     }
 
     // Transparent Status Bar part 1
