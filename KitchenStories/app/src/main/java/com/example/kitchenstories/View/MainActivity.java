@@ -1,6 +1,5 @@
 package com.example.kitchenstories.View;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,37 +29,36 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 
 import com.bumptech.glide.Glide;
-import com.example.kitchenstories.Model.Recipe;
-import com.example.kitchenstories.Model.StepsForRecipe;
+import com.example.kitchenstories.Model.Recipe.Recipe;
+import com.example.kitchenstories.Model.Recipe.StepsForRecipe;
 import com.example.kitchenstories.Model.TypesOfRecipe;
+import com.example.kitchenstories.Model.User;
 import com.example.kitchenstories.R;
-import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_LargeItem;
-import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Medium;
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Option_Large;
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Option_Medium;
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Option_Part13;
-import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_part13;
 import com.example.kitchenstories.aOthersClass.DotsIndicatorDecoration;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 
@@ -130,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -144,9 +145,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //Transparent status bar
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            //Transparent navigation bar
-            //getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            //getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.Gray50));
+
         }
 
         // add types of recipe
@@ -156,17 +155,13 @@ public class MainActivity extends AppCompatActivity {
         //setUpDataAndCreateDataToFirebase();
 
 
+        // add user in firebase
+        addUserIntoFirebase();
+
 
         // FIND VIEW BY ID
         //toolbar = findViewById(R.id.toolbar_today_activity);
         findByIdForComponents();
-
-
-
-        //set up notitle
-//        toolbar.setTitle("");
-//        setSupportActionBar(toolbar);
-//        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 
         // BOTTOM NAVIGATION
@@ -347,7 +342,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // PART 10: Recyclerview
-       getDataPart10();
+        getDataPart10();
         // CREATE A DOT INDICATOR FOR RECYCLERVIEW
         recyclerView_part10.addItemDecoration(new DotsIndicatorDecoration(radius, radius * 4, dotsHeight, colorInactive, colorActive));
         new PagerSnapHelper().attachToRecyclerView(recyclerView_part10);
@@ -393,7 +388,63 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void getDataExhibitPart(){
+    public void addUserIntoFirebase() {
+
+        String emailUser = firebaseUser.getEmail();
+
+        Task<QuerySnapshot> query = firebaseFirestore.collection("User")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                        for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+
+                            User userCheck = documentSnapshot.toObject(User.class);
+
+                            if (userCheck.getEmailUser().equals(emailUser)) {
+                                checkUserExist(true);
+                                return;
+                            }
+                        }
+                        checkUserExist(false);
+                    }
+                });
+
+    }
+
+    public void checkUserExist(Boolean check) {
+
+        Boolean isUserExist = check;
+
+        if (!isUserExist) {
+
+            String url_imageUser = firebaseUser.getPhotoUrl().toString();
+            String displayNameUser = firebaseUser.getDisplayName();
+            String emailUser = firebaseUser.getEmail();
+            String idUser = firebaseUser.getUid();
+
+            User user = new User(url_imageUser,
+                    displayNameUser,
+                    emailUser,
+                    idUser
+            );
+//            Log.d("TESTAUTH", emailUser);
+//            Log.d("TESTAUTH", isUserExist.toString());
+
+
+            firebaseFirestore.collection("User").document(emailUser).set(user);
+
+//            Log.d("TESTAUTH", "User added!");
+
+        } else {
+
+//            Log.d("TESTAUTH", "User exist!");
+        }
+    }
+
+
+    public void getDataExhibitPart() {
 
 //        image_exhibit_today_activity = findViewById(R.id.image_exhibit_today_activity);
 //        cardView_exhibit_today_activity = findViewById(R.id.cardView_exhibit_today_activity);
@@ -457,7 +508,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getDataPart1(){
+    public void getDataPart1() {
 
         recyclerView_part1.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -479,7 +530,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_part1.setAdapter(adapter_option_medium_Part1);
     }
 
-    public void getDataPart2(){
+    public void getDataPart2() {
 
         String idRecipe = "Recipe1";
 
@@ -489,7 +540,6 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView image_author_part2_today_activity = findViewById(R.id.image_author_part2_today_activity);
         Button btnGoToRecipe_part2_today_activity = findViewById(R.id.btnGoToRecipe_part2_today_activity);
-
 
 
         // PART2: VIDEO VIEW
@@ -532,7 +582,6 @@ public class MainActivity extends AppCompatActivity {
         );
 
 
-
         Task<DocumentSnapshot> query = firebaseFirestore.collection("Recipe").document(idRecipe)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -568,7 +617,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void getDataPart3(){
+    public void getDataPart3() {
 
         String idRecipe = "Recipe1";
 
@@ -617,10 +666,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
     }
 
-    public void getDataPart4(){
+    public void getDataPart4() {
 
         recyclerView_part4.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -644,7 +692,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getDataPart6(){
+    public void getDataPart6() {
 
         String idRecipe = "Recipe1";
 
@@ -721,7 +769,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getDataPart7(){
+    public void getDataPart7() {
 
         // PART 7: RecyclerView
         recyclerView_part7.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
@@ -744,7 +792,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_part7.setAdapter(adapterOptionLarge_Part7);
     }
 
-    public void getDataPart8(){
+    public void getDataPart8() {
 
         String idRecipe = "Recipe1";
 
@@ -816,7 +864,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getDataPart9(){
+    public void getDataPart9() {
 
         recyclerView_part9.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -839,7 +887,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getDataPart10(){
+    public void getDataPart10() {
 
         recyclerView_part10.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -861,7 +909,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_part10.setAdapter(adapterOptionLarge_Part10);
     }
 
-    public void getDataPart11(){
+    public void getDataPart11() {
 
         // PART 11: RecylerView
         recyclerView_part11.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
@@ -885,7 +933,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getDataPart12(){
+    public void getDataPart12() {
 
         recyclerView_part12.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -908,7 +956,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getDataPart13(){
+    public void getDataPart13() {
 
         // PART 13: RecyclerView
         recyclerView_part13.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
@@ -927,7 +975,7 @@ public class MainActivity extends AppCompatActivity {
                 Map<String, Boolean> map = typesOfRecipe.getTag();
 
                 String tagItem = "";
-                for (String item : map.keySet()){
+                for (String item : map.keySet()) {
                     tagItem = item;
                 }
 
@@ -942,13 +990,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-    public void findByIdForComponents(){
+    public void findByIdForComponents() {
 
         // part exhibit
         image_exhibit_today_activity = findViewById(R.id.image_exhibit_today_activity);
@@ -966,7 +1008,6 @@ public class MainActivity extends AppCompatActivity {
         image_story_part3_today_activity = findViewById(R.id.image_story_part3_today_activity);
         image_author_part3_today_activity = findViewById(R.id.image_author_part3_today_activity);
         btn_likeAmount_part3_today_activity = findViewById(R.id.btn_likeAmount_part3_today_activity);
-
 
 
         videoView_part2 = findViewById(R.id.videoView_part2_today_activity);
@@ -1102,22 +1143,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void setUpDataAndCreateDataToFirebase(){
+    public void setUpDataAndCreateDataToFirebase() {
 
-        String name_cooking_recipe ="Turkish-inspired scrambled eggs";
-        String url_image_CookingRecipe ="null";
+        String name_cooking_recipe = "Turkish-inspired scrambled eggs";
+        String url_image_CookingRecipe = "null";
         //String url_video_CookingRecipe ="null";
 
         String name_author = "Vanessa Pass";
-        String name_authorGroup ="Contributor";
-        String contact_author ="";
-        String author_description ="";
-        String url_image_author ="null";
+        String name_authorGroup = "Contributor";
+        String contact_author = "";
+        String author_description = "";
+        String url_image_author = "null";
 
         String likeAmount = "11,6k";
         String ratingAmount = "51";
 
-        String difficulty_Level_Recipe ="Easy ";
+        String difficulty_Level_Recipe = "Easy ";
 
         ArrayList<String> periodCooking = new ArrayList<>();
         periodCooking.add("20");
@@ -1145,7 +1186,6 @@ public class MainActivity extends AppCompatActivity {
 //        ingredients.add("cilantro");
 
 
-
         ArrayList<String> amountOfIngredients = new ArrayList<>();
         amountOfIngredients.add("4");
         amountOfIngredients.add("1");
@@ -1165,7 +1205,6 @@ public class MainActivity extends AppCompatActivity {
 //        amountOfIngredients.add("");
 //        amountOfIngredients.add("");
 //        amountOfIngredients.add("5 g ");
-
 
 
         String utensils = "cutting board - knife - large frying pan - cooking spoon";
@@ -1214,7 +1253,6 @@ public class MainActivity extends AppCompatActivity {
                 tags);
 
 
-
 //        firebaseFirestore.collection("Recipe").document("Recipe26")
 //                .set(recipe);
 
@@ -1223,39 +1261,39 @@ public class MainActivity extends AppCompatActivity {
 
         String step1 = "1/3";
         String url_image1 = "null";
-        String ingredientsForPerStep1 ="1 onion - 1 yellow bell pepper - ½ green bell pepper - 15 g parsley ";
-        String utensilsForPerStep1 ="cutting board - knife";
-        String scriptForDescription1 ="Peel and mince onion. Wash yellow and green bell pepper," +
+        String ingredientsForPerStep1 = "1 onion - 1 yellow bell pepper - ½ green bell pepper - 15 g parsley ";
+        String utensilsForPerStep1 = "cutting board - knife";
+        String scriptForDescription1 = "Peel and mince onion. Wash yellow and green bell pepper," +
                 " remove seeds and finely dice. Pluck parsley leaves from the stems and finely chop.";
 
 
-        StepsForRecipe stepsForRecipe1 = new StepsForRecipe(step1, url_image1,ingredientsForPerStep1,utensilsForPerStep1,scriptForDescription1);
+        StepsForRecipe stepsForRecipe1 = new StepsForRecipe(step1, url_image1, ingredientsForPerStep1, utensilsForPerStep1, scriptForDescription1);
 
 
         String step2 = "2/3";
         String url_image2 = "null";
-        String ingredientsForPerStep2 ="400 g canned crushed tomatoes - 1 tsp chili flakes - salt - pepper - sugar - olive oil for frying";
-        String utensilsForPerStep2 ="large frying pan";
-        String scriptForDescription2 ="In a large frying pan, heat olive oil over medium-high heat." +
+        String ingredientsForPerStep2 = "400 g canned crushed tomatoes - 1 tsp chili flakes - salt - pepper - sugar - olive oil for frying";
+        String utensilsForPerStep2 = "large frying pan";
+        String scriptForDescription2 = "In a large frying pan, heat olive oil over medium-high heat." +
                 " Add onion and sauté for approx. 2 min. Add yellow and green bell pepper and sauté for approx. " +
                 "3 min. more. Reduce heat and add canned crushed tomatoes. Season to taste with salt, pepper, " +
                 "and sugar. Add chili flakes, stir to combine, and let simmer for approx. 5 min.";
 
 
-        StepsForRecipe stepsForRecipe2 = new StepsForRecipe(step2, url_image2,ingredientsForPerStep2,utensilsForPerStep2,scriptForDescription2);
+        StepsForRecipe stepsForRecipe2 = new StepsForRecipe(step2, url_image2, ingredientsForPerStep2, utensilsForPerStep2, scriptForDescription2);
 
 //
         String step3 = "3/3";
         String url_image3 = "null";
-        String ingredientsForPerStep3 ="4 eggs - 100 g feta - bread for serving";
-        String utensilsForPerStep3 ="cooking spoon";
-        String scriptForDescription3 ="With a cooking spoon, create hollows in the pepper-tomato" +
+        String ingredientsForPerStep3 = "4 eggs - 100 g feta - bread for serving";
+        String utensilsForPerStep3 = "cooking spoon";
+        String scriptForDescription3 = "With a cooking spoon, create hollows in the pepper-tomato" +
                 " mixture and crack an egg in each hollow. Simmer for approx. 1 min., or until eggs are slightly set. " +
                 "Then, stir eggs in circular movements, distributing them around the pan. Simmer for approx. 5 more min.," +
                 " or until eggs have set. Crumble feta over and garnish with chopped parsley. Enjoy with fresh bread!";
 
 
-        StepsForRecipe stepsForRecipe3 = new StepsForRecipe(step3, url_image3,ingredientsForPerStep3,utensilsForPerStep3,scriptForDescription3);
+        StepsForRecipe stepsForRecipe3 = new StepsForRecipe(step3, url_image3, ingredientsForPerStep3, utensilsForPerStep3, scriptForDescription3);
 
 
 //        String step4 = "4/4";
@@ -1294,7 +1332,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void addTypeOfRecipe(){
+    public void addTypeOfRecipe() {
 
         String nameOfType1 = "German";
         Map<String, Boolean> tag1 = new HashMap<>();
@@ -1388,14 +1426,6 @@ public class MainActivity extends AppCompatActivity {
         }
         win.setAttributes(winParams);
     }
-
-
-
-
-
-
-
-
 
 
 }

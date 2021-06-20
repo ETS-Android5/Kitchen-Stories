@@ -6,32 +6,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.example.kitchenstories.Model.Recipe;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.View.Fragment.fm_filterinsearch_recipe_tab1;
 import com.example.kitchenstories.View.Fragment.fm_filterinsearch_recipe_tab2;
-import com.example.kitchenstories.View.Fragment.fm_recipe_tab_1;
-import com.example.kitchenstories.View.Fragment.fm_recipe_tab_2;
 import com.example.kitchenstories.ViewModel.ViewPagerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 public class FilterInSearchAllRecipe extends AppCompatActivity {
 

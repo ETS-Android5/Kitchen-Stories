@@ -1,6 +1,5 @@
 package com.example.kitchenstories.View.Fragment;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -8,22 +7,19 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.kitchenstories.Model.Recipe;
+import com.example.kitchenstories.Model.Recipe.Recipe;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.View.CookingRecipe;
-import com.example.kitchenstories.ViewModel.RecyclerViewAdapter;
 import com.example.kitchenstories.ViewModel.RecyclerViewAdapter_OptionFireStore;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

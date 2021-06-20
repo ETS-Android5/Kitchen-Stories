@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.kitchenstories.Model.Recipe;
+import com.example.kitchenstories.Model.Recipe.Recipe;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.View.CookingRecipe;
 

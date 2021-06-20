@@ -1,4 +1,4 @@
-package com.example.kitchenstories.Model;
+package com.example.kitchenstories.Model.Recipe;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -76,6 +76,23 @@ public class Recipe {
         this.tags = tags;
     }
 
+
+    // add recipe to USER
+    public Recipe(String name_cooking_recipe,
+                  String url_image_CookingRecipe,
+                  String name_author,
+                  String name_authorGroup,
+                  String url_image_author,
+                  String likeAmount,
+                  ArrayList<String> periodCooking) {
+        this.name_cooking_recipe = name_cooking_recipe;
+        this.url_image_CookingRecipe = url_image_CookingRecipe;
+        this.name_author = name_author;
+        this.name_authorGroup = name_authorGroup;
+        this.url_image_author = url_image_author;
+        this.likeAmount = likeAmount;
+        this.periodCooking = periodCooking;
+    }
 
     // default
     public Recipe(int image_CookingRecipe, String name_cooking_recipe, int image_author, String name_author, String name_authorGroup) {

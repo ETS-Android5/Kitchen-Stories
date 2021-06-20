@@ -179,9 +179,10 @@
                             android:text="1000"
                             android:textAllCaps="false"
                             android:textColor="@color/Gray700"
-                            app:icon="@drawable/ic_favorite"
+                            app:icon="@drawable/selector_icon_like_item_recyclerview"
                             app:iconGravity="textStart"
-                            app:iconTint="@color/Gray700" />
+                            app:iconTint="@color/Gray700"
+                            app:rippleColor="@android:color/transparent"/>
 
                         <Button
                             android:id="@+id/btn_save_CookingRecipe_Activity"
@@ -194,7 +195,8 @@
                             android:textColor="@color/Gray700"
                             app:icon="@drawable/ic_bookmark"
                             app:iconGravity="textStart"
-                            app:iconTint="@color/Gray700" />
+                            app:iconTint="@color/Gray700"
+                            />
 
                         <Button
                             android:id="@+id/btn_share_CookingRecipe_Activity"

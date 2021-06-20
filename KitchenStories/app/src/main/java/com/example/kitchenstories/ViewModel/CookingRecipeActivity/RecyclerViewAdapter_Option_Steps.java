@@ -1,7 +1,6 @@
 package com.example.kitchenstories.ViewModel.CookingRecipeActivity;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.kitchenstories.Model.StepsForRecipe;
+import com.example.kitchenstories.Model.Recipe.StepsForRecipe;
 import com.example.kitchenstories.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;

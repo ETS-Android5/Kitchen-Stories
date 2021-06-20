@@ -1,16 +1,12 @@
 package com.example.kitchenstories.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Notification;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,23 +19,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.kitchenstories.Model.Recipe;
-import com.example.kitchenstories.Model.StepsForRecipe;
+import com.example.kitchenstories.Model.Recipe.Likes;
+import com.example.kitchenstories.Model.Recipe.Recipe;
+import com.example.kitchenstories.Model.Recipe.StepsForRecipe;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.ViewModel.CookingRecipeActivity.RecyclerViewAdapter_Ingredient_CookingRecipe;
 import com.example.kitchenstories.ViewModel.CookingRecipeActivity.RecyclerViewAdapter_Option_Steps;
-import com.example.kitchenstories.ViewModel.RecyclerViewAdapter;
 import com.example.kitchenstories.ViewModel.RecyclerViewAdapter_OptionFireStore;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -60,7 +54,10 @@ public class CookingRecipe extends AppCompatActivity {
 
 
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
+    Boolean isCheckGlobal = false;
 
     private Button btn_numberOfLikes_CookingRecipe_Activity;
     private TextView numberOfRating_CookingRecipe_Activity;
@@ -151,9 +148,17 @@ public class CookingRecipe extends AppCompatActivity {
         //
         setDataForComponents_Steps(idRecipe);
 
+        //
+        // set btn selected
+        onBindDataToBtn(idRecipe);
+
+        // click like
+        addLikeRecipe(idRecipe);
+
         //String str = txt_FinalTags_CookingRecipe_Activity.getText().toString();
         //
         setDataForRecyclerViewRecommend();
+
 
     }
 
@@ -303,6 +308,208 @@ public class CookingRecipe extends AppCompatActivity {
         //adapter_amountOfIngredients_cookingRecipe.notifyDataSetChanged();
         //name_recipe_collapsingToolbar_CookingRecipe_Activity
     }
+
+    // on bind data
+    public void onBindDataToBtn(String recipeID){
+
+        String emailUserCurrent = firebaseUser.getEmail();
+
+        firebaseFirestore.collection("Recipe").document(recipeID)
+                .collection("Likes")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                        for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+
+                            Likes userLikesCheck = documentSnapshot.toObject(Likes.class);
+
+                            if (userLikesCheck.getEmailUser().equals(emailUserCurrent)) {
+                                //checkLikeUserExist(true, recipeID);
+                                checkLikeExist(true);
+                                return;
+                            }
+                        }
+                        checkLikeExist(false);
+                    }
+                });
+    }
+
+    public void checkLikeExist(Boolean check){
+        isCheckGlobal = check;
+
+        //Log.d("TESTAUTH", recipeID);
+        if (isCheckGlobal){
+            //Log.d("TESTAUTH", "TRUE!!!");
+
+            btn_numberOfLikes_CookingRecipe_Activity.setSelected(true);
+        }
+        else {
+            //Log.d("TESTAUTH", "FALSE!!!");
+
+            btn_numberOfLikes_CookingRecipe_Activity.setSelected(false);
+        }
+    }
+
+    // add likeRecipe
+    public void addLikeRecipe(String recipeID){
+
+        btn_numberOfLikes_CookingRecipe_Activity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String emailUserCurrent = firebaseUser.getEmail();
+
+                Task<QuerySnapshot> query = firebaseFirestore.collection("Recipe").document(recipeID)
+                        .collection("Likes")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                                for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+
+                                    Likes userLikesCheck = documentSnapshot.toObject(Likes.class);
+
+                                    if (userLikesCheck.getEmailUser().equals(emailUserCurrent)) {
+                                        checkLikeUserExist(true, recipeID, emailUserCurrent);
+                                        return;
+                                    }
+                                }
+                                checkLikeUserExist(false, recipeID, emailUserCurrent);
+                            }
+                        });
+
+            }
+        });
+
+    }
+
+    public void checkLikeUserExist(Boolean check, String recipeID, String emailUserCurrent) {
+
+        Boolean isLikeUserExist = check;
+
+        if (!isLikeUserExist) {
+
+            btn_numberOfLikes_CookingRecipe_Activity.setSelected(true);
+
+            String uIDCurrent = firebaseUser.getUid();
+            Likes likes = new Likes(uIDCurrent, emailUserCurrent);
+
+            // add uIDCurrent into Recipe
+            firebaseFirestore.collection("Recipe").document(recipeID)
+                    .collection("Likes").document(emailUserCurrent).set(likes);
+
+            // count like amount
+            addLike(recipeID);
+
+
+            // add recipe into User
+            addRecipeModelInToUser(recipeID, emailUserCurrent);
+
+        } else {
+
+            btn_numberOfLikes_CookingRecipe_Activity.setSelected(false);
+
+            // delete emailUserCurrent in Recipe
+            firebaseFirestore.collection("Recipe").document(recipeID)
+                    .collection("Likes").document(emailUserCurrent).delete();
+
+            // remove like
+            removeLike(recipeID);
+
+            // delete recipeLiked in User
+            firebaseFirestore.collection("User").document(emailUserCurrent)
+                    .collection("RecipeLiked").document(recipeID).delete();
+
+        }
+    }
+
+
+    public void addLike(String recipeID){
+
+        firebaseFirestore.collection("Recipe").document(recipeID)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                        Recipe recipe = documentSnapshot.toObject(Recipe.class);
+
+                        int likeInt = Integer.valueOf(recipe.getLikeAmount());
+
+                        likeInt = likeInt + 1;
+
+                        recipe.setLikeAmount(String.valueOf(likeInt));
+
+                        // set again;
+                        firebaseFirestore.collection("Recipe").document(recipeID).set(recipe);
+
+                    }
+                });
+
+    }
+
+    public void removeLike(String recipeID){
+
+        firebaseFirestore.collection("Recipe").document(recipeID)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                        Recipe recipe = documentSnapshot.toObject(Recipe.class);
+
+                        int likeInt = Integer.valueOf(recipe.getLikeAmount());
+
+                        likeInt = likeInt - 1;
+
+                        recipe.setLikeAmount(String.valueOf(likeInt));
+
+                        // set again;
+                        firebaseFirestore.collection("Recipe").document(recipeID).set(recipe);
+
+                    }
+                });
+    }
+
+    public void addRecipeModelInToUser(String recipeID, String emailUserCurrent){
+
+        firebaseFirestore.collection("Recipe").document(recipeID)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                        Recipe recipe = documentSnapshot.toObject(Recipe.class);
+
+                        String name_cooking_recipe = recipe.getName_cooking_recipe();
+                        String url_image_CookingRecipe = recipe.getUrl_image_CookingRecipe();
+                        String name_author = recipe.getName_author();
+                        String name_authorGroup = recipe.getName_authorGroup();
+                        String url_image_author = recipe.getUrl_image_author();
+                        String likeAmount = recipe.getLikeAmount();
+                        ArrayList<String> periodCooking = recipe.getPeriodCooking();
+
+                        Recipe recipeToAdd = new Recipe(name_cooking_recipe,
+                                url_image_CookingRecipe,
+                                name_author,
+                                name_authorGroup,
+                                url_image_author,
+                                likeAmount,
+                                periodCooking);
+
+                        // add
+                        firebaseFirestore.collection("User").document(emailUserCurrent).
+                                collection("RecipeLiked").document(recipeID)
+                                .set(recipeToAdd);
+
+                    }
+                });
+
+    }
+
 
 
     public void setDataForRecyclerViewRecommend(){

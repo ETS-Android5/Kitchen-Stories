@@ -46,7 +46,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                app:icon="@drawable/ic_favorite"
+                app:icon="@drawable/selector_icon_like_item_recyclerview"
                 app:iconGravity="textStart"
                 app:iconSize="18sp"
                 app:iconTint="@color/white"

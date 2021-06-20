@@ -16,7 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.example.kitchenstories.Model.Recipe;
+import com.example.kitchenstories.Model.Recipe.Recipe;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.ViewModel.SearchActivity.RecyclerViewAdapter_FilterInSearch;
 import com.example.kitchenstories.ViewModel.SearchActivity.RecyclerViewAdapter_Option_FilterInSearch;
