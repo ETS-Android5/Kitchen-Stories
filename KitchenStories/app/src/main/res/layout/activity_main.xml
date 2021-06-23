@@ -152,6 +152,7 @@
                         android:layout_height="wrap_content">
 
                         <Button
+                            android:id="@+id/btn_SeeAll_part1_today_activity"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -373,22 +374,7 @@
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_launcher_background" />
 
-                        <Button
-                            android:id="@+id/btn_likeAmount_part3_today_activity"
-                            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="false"
-                            android:layout_gravity="bottom"
-                            android:fontFamily="@font/source_sans_pro_regular"
-                            android:text="174"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textSize="20sp"
-                            app:icon="@drawable/ic_favorite"
-                            app:iconGravity="textStart"
-                            app:iconTint="@color/white"
-                            app:rippleColor="@android:color/transparent"/>
+
 
                         <TextView
                             android:id="@+id/tv_periodCooking_part3_today_activity"
@@ -515,7 +501,7 @@
                         android:layout_marginStart="17dp"
                         android:layout_marginEnd="17dp"
                         android:fontFamily="@font/lora_bold"
-                        android:text="@string/our_favorite_vegan_recipes_from_you_the_community"
+                        android:text="Our Favourite Kid Friendly Recipes"
                         android:textColor="@color/black"
                         android:textSize="23sp" />
 
@@ -527,35 +513,6 @@
                         android:layout_marginTop="15dp" />
 
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/title_name_part5_today_activity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginEnd="17dp"
-                        android:fontFamily="@font/lora_bold"
-                        android:text="@string/here_s_how_to_upload_your_own_recipes"
-                        android:textColor="@color/black"
-                        android:textSize="23sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="NEED ANOTHER MODEL CLASS" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center|bottom"
-                        android:orientation="horizontal" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -779,10 +736,16 @@
                         android:layout_marginEnd="1dp"
                         app:cardCornerRadius="20dp">
 
-                        <VideoView
-                            android:id="@+id/videoView_part8_today_activity"
-                            android:layout_width="match_parent"
-                            android:layout_height="250dp" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="380dp"
+                            android:layout_height="380dp">
+
+                            <VideoView
+                                android:id="@+id/videoView_part8_today_activity"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
                     </androidx.cardview.widget.CardView>
 
 
@@ -897,7 +860,7 @@
                         android:layout_marginStart="17dp"
                         android:layout_marginEnd="17dp"
                         android:fontFamily="@font/lora_bold"
-                        android:text="Read All About It"
+                        android:text="How About Sweet Recipes"
                         android:textColor="@color/black"
                         android:textSize="23sp" />
 
@@ -906,6 +869,7 @@
                         android:layout_height="wrap_content">
 
                         <Button
+                            android:id="@+id/btn_SeeAll_part9_today_activity"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -942,7 +906,7 @@
                         android:layout_marginStart="17dp"
                         android:layout_marginEnd="17dp"
                         android:fontFamily="@font/lora_bold"
-                        android:text="Herby Spring Recipes to Make This Week"
+                        android:text="Comfort Food Recipes to Make This Week"
                         android:textColor="@color/black"
                         android:textSize="23sp" />
 
@@ -969,7 +933,7 @@
                         android:layout_marginStart="17dp"
                         android:layout_marginEnd="17dp"
                         android:fontFamily="@font/lora_bold"
-                        android:text="Recipes by You"
+                        android:text="Recipes by You: Lactose Free"
                         android:textColor="@color/black"
                         android:textSize="23sp" />
 
@@ -978,6 +942,7 @@
                         android:layout_height="wrap_content">
 
                         <Button
+                            android:id="@+id/btn_SeeAll_part11_today_activity"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1014,7 +979,7 @@
                         android:layout_marginStart="17dp"
                         android:layout_marginEnd="17dp"
                         android:fontFamily="@font/lora_bold"
-                        android:text="Out Most Cooked 5-Ingredient Dinners"
+                        android:text="Our Asian Dinners"
                         android:textColor="@color/black"
                         android:textSize="23sp" />
 
@@ -1023,6 +988,7 @@
                         android:layout_height="wrap_content">
 
                         <Button
+                            android:id="@+id/btn_SeeAll_part12_today_activity"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1063,27 +1029,8 @@
                         android:textColor="@color/black"
                         android:textSize="23sp" />
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <Button
-                            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:fontFamily="@font/source_sans_pro_bold"
-                            android:text="@string/see_all"
-                            android:textAllCaps="false"
-                            android:textColor="@color/Gray600"
-                            app:icon="@drawable/ic_baseline_arrow_forward"
-                            app:iconGravity="textEnd"
-                            app:iconPadding="3dp"
-                            app:iconSize="13dp"
-                            app:iconTint="@color/Gray700" />
-                    </RelativeLayout>
-
                     <androidx.recyclerview.widget.RecyclerView
+                        android:layout_marginTop="20dp"
                         android:id="@+id/recyclerView_part13_today_activity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />

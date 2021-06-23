@@ -21,6 +21,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -78,13 +79,20 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_nameAuthor_exhibit_today_activity;
     private Button btn_likes_exhibit_today_activity;
 
+    private Button btn_SeeAll_part1_today_activity;
+    private Button btn_SeeAll_part9_today_activity;
+    private Button btn_SeeAll_part11_today_activity;
+    private Button btn_SeeAll_part12_today_activity;
+
     private CardView cardView_part3_today_activity;
     private TextView name_story_part3_today_activity;
     private TextView name_author_part3_today_activity;
     private TextView tv_periodCooking_part3_today_activity;
     private ImageView image_story_part3_today_activity;
     private ImageView image_author_part3_today_activity;
-    private Button btn_likeAmount_part3_today_activity;
+
+    private TextView title_name_part3_today_activity;
+    private TextView title_name_part6_today_activity;
 
     private VideoView videoView_part2;
     private VideoView videoView_part6;
@@ -233,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
                         //Toast.makeText(MainActivity.this, "VIDEOVIEW APPEAR FULLY", Toast.LENGTH_SHORT).show();
 
                         // count down timer 2 seconds
-                        new CountDownTimer(2000, 1000) {
+                        new CountDownTimer(1000, 1000) {
 
                             public void onTick(long millisUntilFinished) {
                                 //mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
@@ -262,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (videoView_part6.getLocalVisibleRect(scrollBounds)) {
 
-                        new CountDownTimer(2000, 1000) {
+                        new CountDownTimer(1000, 1000) {
 
                             @Override
                             public void onTick(long millisUntilFinished) {
@@ -284,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (videoView_part8.getLocalVisibleRect(scrollBounds)) {
 
-                        new CountDownTimer(2000, 1000) {
+                        new CountDownTimer(1000, 1000) {
 
                             @Override
                             public void onTick(long millisUntilFinished) {
@@ -451,7 +459,7 @@ public class MainActivity extends AppCompatActivity {
 //        tv_nameRecipe_exhibit_today_activity = findViewById(R.id.tv_nameRecipe_exhibit_today_activity);
 //        tv_nameAuthor_exhibit_today_activity = findViewById(R.id.tv_nameAuthor_exhibit_today_activity);
 //        btn_likes_exhibit_today_activity = findViewById(R.id.btn_likes_exhibit_today_activity);
-        String idRecipe = "Recipe1";
+        String idRecipe = "Recipe3";
 
         Task<DocumentSnapshot> query = firebaseFirestore.collection("Recipe").document(idRecipe)
                 .get()
@@ -527,12 +535,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         recyclerView_part1.setAdapter(adapter_option_medium_Part1);
+
+
+        btn_SeeAll_part1_today_activity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, All_recipes.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void getDataPart2() {
 
-        String idRecipe = "Recipe1";
+        String idRecipe = "Recipe33";
 
         TextView name_recipe_part2_today_activity = findViewById(R.id.name_recipe_part2_today_activity);
         TextView txt_duration_views_part2_today_activity = findViewById(R.id.txt_duration_views_part2_today_activity);
@@ -543,7 +561,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // PART2: VIDEO VIEW
-        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.mtp_video;
+        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.recipe33;
         Uri uri = Uri.parse(videoPath);
         videoView_part2.setVideoURI(uri);
         videoView_part2.requestFocus();
@@ -619,7 +637,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void getDataPart3() {
 
-        String idRecipe = "Recipe1";
+        String idRecipe = "Recipe24";
 
         Task<DocumentSnapshot> query = firebaseFirestore.collection("Recipe").document(idRecipe)
                 .get()
@@ -636,8 +654,7 @@ public class MainActivity extends AppCompatActivity {
                                 + Integer.valueOf(recipe.getPeriodCooking().get(1))
                                 + Integer.valueOf(recipe.getPeriodCooking().get(2));
 
-                        tv_periodCooking_part3_today_activity.setText(String.valueOf(countPeriodTime));
-                        btn_likeAmount_part3_today_activity.setText(recipe.getLikeAmount());
+                        tv_periodCooking_part3_today_activity.setText(String.valueOf(countPeriodTime) + " min.");
 
                         Glide.with(MainActivity.this)
                                 .load(recipe.getUrl_image_CookingRecipe())
@@ -647,6 +664,7 @@ public class MainActivity extends AppCompatActivity {
                                 .load(recipe.getUrl_image_author())
                                 .into(image_author_part3_today_activity);
 
+                        title_name_part3_today_activity.setText("Introducing: " + recipe.getName_cooking_recipe() + " by" + recipe.getName_author());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -670,9 +688,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void getDataPart4() {
 
+        // KID FRIENDLY
+
         recyclerView_part4.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
-        Query query = firebaseFirestore.collection("Recipe").limit(6);
+        Query query = firebaseFirestore.collection("Recipe")
+                .whereEqualTo("tags.kid friendly", true)
+                .limit(6);
 
         FirestoreRecyclerOptions options = new FirestoreRecyclerOptions.Builder<Recipe>()
                 .setQuery(query, Recipe.class)
@@ -694,7 +716,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void getDataPart6() {
 
-        String idRecipe = "Recipe1";
+        String idRecipe = "Recipe35";
 
         TextView name_recipe_part6_today_activity = findViewById(R.id.name_recipe_part6_today_activity);
         TextView txt_duration_views_part6_today_activity = findViewById(R.id.txt_duration_views_part6_today_activity);
@@ -705,7 +727,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // PART 6: VIDEOVIEW
-        String videoPath_part6 = "android.resource://" + getPackageName() + "/" + R.raw.chillies_mv;
+        String videoPath_part6 = "android.resource://" + getPackageName() + "/" + R.raw.recipe35;
         Uri uri_part6 = Uri.parse(videoPath_part6);
         videoView_part6.setVideoURI(uri_part6);
         videoView_part6.requestFocus();
@@ -743,7 +765,7 @@ public class MainActivity extends AppCompatActivity {
                         name_recipe_part6_today_activity.setText(recipe.getName_cooking_recipe());
                         name_author_part6_today_activity.setText(recipe.getName_author());
                         txt_duration_views_part6_today_activity.setText(stringDuration);
-
+                        title_name_part6_today_activity.setText("Watch " + recipe.getName_author() + " make " + recipe.getName_cooking_recipe());
                         Glide.with(MainActivity.this)
                                 .load(recipe.getUrl_image_author())
                                 .into(image_author_part6_today_activity);
@@ -771,10 +793,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void getDataPart7() {
 
+        // weeknight diner
+
         // PART 7: RecyclerView
         recyclerView_part7.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
-        Query query = firebaseFirestore.collection("Recipe").limit(6);
+        Query query = firebaseFirestore.collection("Recipe")
+                .whereEqualTo("tags.weeknight dinner", true)
+                .limit(6);
 
         FirestoreRecyclerOptions options = new FirestoreRecyclerOptions.Builder<Recipe>()
                 .setQuery(query, Recipe.class)
@@ -794,7 +820,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void getDataPart8() {
 
-        String idRecipe = "Recipe1";
+        String idRecipe = "Recipe34";
 
         TextView name_recipe_part8_today_activity = findViewById(R.id.name_recipe_part8_today_activity);
         TextView txt_duration_views_part8_today_activity = findViewById(R.id.txt_duration_views_part8_today_activity);
@@ -804,7 +830,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnGoToRecipe_part8_today_activity = findViewById(R.id.btnGoToRecipe_part8_today_activity);
 
         // PART8: VIDEOVIEW
-        String videoPath_part8 = "android.resource://" + getPackageName() + "/" + R.raw.chillies_mv;
+        String videoPath_part8 = "android.resource://" + getPackageName() + "/" + R.raw.recipe34;
         Uri uri_part8 = Uri.parse(videoPath_part8);
         videoView_part8.setVideoURI(uri_part8);
         videoView_part8.requestFocus();
@@ -866,9 +892,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void getDataPart9() {
 
+        // sweet
+
         recyclerView_part9.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
-        Query query = firebaseFirestore.collection("Recipe").limit(6);
+        Query query = firebaseFirestore.collection("Recipe")
+                .whereEqualTo("tags.sweet", true)
+                .orderBy("likeAmount", Query.Direction.DESCENDING)
+                .limit(6);
 
         FirestoreRecyclerOptions options = new FirestoreRecyclerOptions.Builder<Recipe>()
                 .setQuery(query, Recipe.class)
@@ -883,15 +914,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         recyclerView_part9.setAdapter(adapterOptionMedium_Part9);
+
+        btn_SeeAll_part9_today_activity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, All_recipes.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
     public void getDataPart10() {
 
+        // comfort food
+
         recyclerView_part10.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
-        Query query = firebaseFirestore.collection("Recipe").limit(6);
+        Query query = firebaseFirestore.collection("Recipe")
+                .whereEqualTo("tags.comfort food", true)
+                .orderBy("likeAmount")
+                .limit(6);
 
         FirestoreRecyclerOptions options = new FirestoreRecyclerOptions.Builder<Recipe>()
                 .setQuery(query, Recipe.class)
@@ -907,14 +953,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         recyclerView_part10.setAdapter(adapterOptionLarge_Part10);
+
     }
 
     public void getDataPart11() {
 
+        // lactose free
+
         // PART 11: RecylerView
         recyclerView_part11.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
-        Query query = firebaseFirestore.collection("Recipe").limit(6);
+        Query query = firebaseFirestore.collection("Recipe")
+                .whereEqualTo("tags.lactose free", true)
+                .limit(6);
 
         FirestoreRecyclerOptions options = new FirestoreRecyclerOptions.Builder<Recipe>()
                 .setQuery(query, Recipe.class)
@@ -929,15 +980,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         recyclerView_part11.setAdapter(adapterOptionMedium_Part11);
+
+        btn_SeeAll_part11_today_activity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, All_recipes.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
     public void getDataPart12() {
 
+        // Asian
+
         recyclerView_part12.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
-        Query query = firebaseFirestore.collection("Recipe").limit(6);
+        Query query = firebaseFirestore.collection("Recipe")
+                .whereEqualTo("tags.Asian", true)
+                .orderBy("likeAmount", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions options = new FirestoreRecyclerOptions.Builder<Recipe>()
                 .setQuery(query, Recipe.class)
@@ -952,7 +1016,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         recyclerView_part12.setAdapter(adapterOptionMedium_Part12);
+
+        btn_SeeAll_part12_today_activity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, All_recipes.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -1007,8 +1080,15 @@ public class MainActivity extends AppCompatActivity {
         tv_periodCooking_part3_today_activity = findViewById(R.id.tv_periodCooking_part3_today_activity);
         image_story_part3_today_activity = findViewById(R.id.image_story_part3_today_activity);
         image_author_part3_today_activity = findViewById(R.id.image_author_part3_today_activity);
-        btn_likeAmount_part3_today_activity = findViewById(R.id.btn_likeAmount_part3_today_activity);
 
+
+        btn_SeeAll_part1_today_activity = findViewById(R.id.btn_SeeAll_part1_today_activity);
+        btn_SeeAll_part9_today_activity = findViewById(R.id.btn_SeeAll_part9_today_activity);
+        btn_SeeAll_part11_today_activity = findViewById(R.id.btn_SeeAll_part11_today_activity);
+        btn_SeeAll_part12_today_activity = findViewById(R.id.btn_SeeAll_part12_today_activity);
+
+        title_name_part3_today_activity = findViewById(R.id.title_name_part3_today_activity);
+        title_name_part6_today_activity = findViewById(R.id.title_name_part6_today_activity);
 
         videoView_part2 = findViewById(R.id.videoView_part2_today_activity);
 

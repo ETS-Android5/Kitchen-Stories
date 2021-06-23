@@ -3,19 +3,32 @@ package com.example.kitchenstories.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.kitchenstories.Model.User;
 import com.example.kitchenstories.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Create extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +37,8 @@ public class Create extends AppCompatActivity {
 
         //
         transparentStatusAndNavigation();
+
+
 
 
         //
@@ -65,6 +80,8 @@ public class Create extends AppCompatActivity {
         });
 
     }
+
+
 
     // Transparent Status Bar
     public void transparentStatusAndNavigation() {

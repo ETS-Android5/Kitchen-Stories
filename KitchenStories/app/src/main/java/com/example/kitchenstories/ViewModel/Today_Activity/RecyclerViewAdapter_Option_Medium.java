@@ -19,12 +19,14 @@ import com.example.kitchenstories.Model.User;
 import com.example.kitchenstories.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
@@ -44,6 +46,7 @@ public class RecyclerViewAdapter_Option_Medium extends FirestoreRecyclerAdapter<
 
     Boolean isCheckGlobal = false;
 
+
     public interface OnItemClickListener {
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }
@@ -51,7 +54,6 @@ public class RecyclerViewAdapter_Option_Medium extends FirestoreRecyclerAdapter<
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
-
 
     public RecyclerViewAdapter_Option_Medium(Context mContext, @NonNull @NotNull FirestoreRecyclerOptions<Recipe> options, OnItemClickListener listener) {
         super(options);
@@ -169,12 +171,13 @@ public class RecyclerViewAdapter_Option_Medium extends FirestoreRecyclerAdapter<
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
+
+
                     if (position != -1 && listener != null) {
                         listener.onItemClick(getSnapshots().getSnapshot(position), position);
                     }
                 }
             });
-
 
             btn_likeAmount_part1_today_activity.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -204,14 +207,10 @@ public class RecyclerViewAdapter_Option_Medium extends FirestoreRecyclerAdapter<
                                     checkLikeUserExist(false, recipeID, emailUserCurrent);
                                 }
                             });
-
-
                 }
             });
 
-
         }
-
 
         public void checkLikeUserExist(Boolean check, String recipeID, String emailUserCurrent) {
 
@@ -252,8 +251,10 @@ public class RecyclerViewAdapter_Option_Medium extends FirestoreRecyclerAdapter<
             }
         }
 
-
     }
+
+
+
 
     public void addLike(String recipeID){
 

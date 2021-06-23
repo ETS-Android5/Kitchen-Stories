@@ -30,6 +30,8 @@ public class Filter_Recipe extends AppCompatActivity {
 
     private Toolbar toolbar;
 
+    private Button btn_Done_FilterRecipe;
+
     private Button button_Sort;
     private Button button_Category;
     private Button button_Diet;
@@ -145,102 +147,9 @@ public class Filter_Recipe extends AppCompatActivity {
 
 
         // FIND VIEW BY ID
-        toolbar = findViewById(R.id.topAppBar_Filter_Activity);
-
-        button_Sort = findViewById(R.id.button_sort_Filter_Activity);
-        button_Category = findViewById(R.id.button_category_Filter_Activity);
-        button_Diet = findViewById(R.id.button_diet_Filter_Activity);
-        button_Cuisine = findViewById(R.id.button_cuisine_Filter_Activity);
-        button_MainIngredients = findViewById(R.id.button__MainIngredients_Filter_Activity);
-        button_Occasion = findViewById(R.id.button_Occasion_Filter_Activity);
-
-        linearlayout_sort = findViewById(R.id.linearlayout_sort_Filter_Activity);
-        linearlayout_category = findViewById(R.id.linearlayout_category_Filter_Activity);
-        linearlayout_diet = findViewById(R.id.linearlayout_diet_Filter_Activity);
-        linearlayout_cuisine = findViewById(R.id.linearlayout_cuisine_Filter_Activity);
-        linearlayout_mainIngredients = findViewById(R.id.linearlayout_MainIngredients_Filter_Activity);
-        linearlayout_occasion = findViewById(R.id.linearlayout_Occasion_Filter_Activity);
+        findByIdByComments();
 
 
-        cardView_starter_category_Filter_Activity = findViewById(R.id.cardView_starter_category_Filter_Activity);
-        cardView_main_category_Filter_Activity = findViewById(R.id.cardView_main_category_Filter_Activity);
-        cardView_dessert_category_Filter_Activity = findViewById(R.id.cardView_dessert_category_Filter_Activity);
-        cardView_snack_category_Filter_Activity = findViewById(R.id.cardView_snack_category_Filter_Activity);
-        cardView_breakfast_category_Filter_Activity = findViewById(R.id.cardView_breakfast_category_Filter_Activity);
-        cardView_drink_category_Filter_Activity = findViewById(R.id.cardView_drink_category_Filter_Activity);
-
-        cardView_meatless_diet_Filter_Activity = findViewById(R.id.cardView_meatless_diet_Filter_Activity);
-        cardView_vegetarian_diet_Filter_Activity = findViewById(R.id.cardView_vegetarian_diet_Filter_Activity);
-        cardView_vegan_diet_Filter_Activity = findViewById(R.id.cardView_vegan_diet_Filter_Activity);
-        cardView_glutenFree_diet_Filter_Activity = findViewById(R.id.cardView_glutenFree_diet_Filter_Activity);
-        cardView_sugarFree_diet_Filter_Activity = findViewById(R.id.cardView_sugarFree_diet_Filter_Activity);
-        cardView_alcohol_diet_Filter_Activity = findViewById(R.id.cardView_alcohol_diet_Filter_Activity);
-
-
-        txtView_starter_category_filter_activity = findViewById(R.id.txtView_starter_category_filter_activity);
-        txtView_main_category_filter_activity = findViewById(R.id.txtView_main_category_filter_activity);
-        txtView_dessert_category_filter_activity = findViewById(R.id.txtView_dessert_category_filter_activity);
-        txtView_snack_category_filter_activity = findViewById(R.id.txtView_snack_category_filter_activity);
-        txtView_breakfast_category_filter_activity = findViewById(R.id.txtView_breakfast_category_filter_activity);
-        txtView_drink_category_filter_activity = findViewById(R.id.txtView_drink_category_filter_activity);
-
-        txtView_Meatless_diet_filter_activity = findViewById(R.id.txtView_Meatless_diet_filter_activity);
-        txtView_Vegetarian_diet_filter_activity = findViewById(R.id.txtView_Vegetarian_diet_filter_activity);
-        txtView_Vegan_diet_filter_activity = findViewById(R.id.txtView_Vegan_diet_filter_activity);
-        txtView_GlutenFree_diet_filter_activity = findViewById(R.id.txtView_GlutenFree_diet_filter_activity);
-        txtView_SugarFree_diet_filter_activity = findViewById(R.id.txtView_SugarFree_diet_filter_activity);
-        txtView_AlcoholFree_diet_filter_activity = findViewById(R.id.txtView_AlcoholFree_diet_filter_activity);
-
-
-
-        btn_relevance_Sort_Filter_Activity = findViewById(R.id.btn_relevance_Sort_Filter_Activity);
-        btn_likes_Sort_Filter_Activity = findViewById(R.id.btn_likes_Sort_Filter_Activity);
-        btn_rating_Sort_Filter_Activity = findViewById(R.id.btn_rating_Sort_Filter_Activity);
-        btn_commented_Sort_Filter_Activity = findViewById(R.id.btn_commented_Sort_Filter_Activity);
-        btn_calories_Sort_Filter_Activity = findViewById(R.id.btn_calories_Sort_Filter_Activity);
-        btn_preparationTime_Sort_Filter_Activity = findViewById(R.id.btn_preparationTime_Sort_Filter_Activity);
-        btn_releaseDate_Sort_Filter_Activity = findViewById(R.id.btn_releaseDate_Sort_Filter_Activity);
-
-
-        btn_Chinese_cuisine_Filter_Activity = findViewById(R.id.btn_Chinese_cuisine_Filter_Activity);
-        btn_Italian_cuisine_Filter_Activity = findViewById(R.id.btn_Italian_cuisine_Filter_Activity);
-        btn_European_cuisine_Filter_Activity = findViewById(R.id.btn_European_cuisine_Filter_Activity);
-        btn_Asian_cuisine_Filter_Activity = findViewById(R.id.btn_Asian_cuisine_Filter_Activity);
-        btn_American_cuisine_Filter_Activity = findViewById(R.id.btn_American_cuisine_Filter_Activity);
-        btn_Spanish_and_Portuguese_cuisine_Filter_Activity = findViewById(R.id.btn_Spanish_and_Portuguese_cuisine_Filter_Activity);
-        btn_Indian_cuisine_Filter_Activity = findViewById(R.id.btn_Indian_cuisine_Filter_Activity);
-        btn_Middle_Eastern_cuisine_Filter_Activity = findViewById(R.id.btn_Middle_Eastern_cuisine_Filter_Activity);
-
-
-        btn_Vegetables_MainIngredients_Filter_Activity = findViewById(R.id.btn_Vegetables_MainIngredients_Filter_Activity);
-        btn_Chicken_MainIngredients_Filter_Activity = findViewById(R.id.btn_Chicken_MainIngredients_Filter_Activity);
-        btn_Pasta_MainIngredients_Filter_Activity = findViewById(R.id.btn_Pasta_MainIngredients_Filter_Activity);
-        btn_Beef_MainIngredients_Filter_Activity = findViewById(R.id.btn_Beef_MainIngredients_Filter_Activity);
-        btn_Seafood_MainIngredients_Filter_Activity = findViewById(R.id.btn_Seafood_MainIngredients_Filter_Activity);
-        btn_Pork_MainIngredients_Filter_Activity = findViewById(R.id.btn_Pork_MainIngredients_Filter_Activity);
-        btn_Fruit_MainIngredients_Filter_Activity = findViewById(R.id.btn_Fruit_MainIngredients_Filter_Activity);
-        btn_Cheese_MainIngredients_Filter_Activity = findViewById(R.id.btn_Cheese_MainIngredients_Filter_Activity);
-
-
-        btn_WeeknightDinner_Occasion_Filter_Activity = findViewById(R.id.btn_WeeknightDinner_Occasion_Filter_Activity);
-        btn_Prepare_ahead_Occasion_Filter_Activity = findViewById(R.id.btn_Prepare_ahead_Occasion_Filter_Activity);
-        btn_CrowdPleaser_Occasion_Filter_Activity = findViewById(R.id.btn_CrowdPleaser_Occasion_Filter_Activity);
-        btn_OnTheGo_Occasion_Filter_Activity = findViewById(R.id.btn_OnTheGo_Occasion_Filter_Activity);
-        btn_ComfortFood_Occasion_Filter_Activity = findViewById(R.id.btn_ComfortFood_Occasion_Filter_Activity);
-        btn_KidFriendly_Occasion_Filter_Activity = findViewById(R.id.btn_KidFriendly_Occasion_Filter_Activity);
-        btn_FingerFood_Occasion_Filter_Activity = findViewById(R.id.btn_FingerFood_Occasion_Filter_Activity);
-        btn_Barbecue_Occasion_Filter_Activity = findViewById(R.id.btn_Barbecue_Occasion_Filter_Activity);
-        btn_Christmas_Occasion_Filter_Activity = findViewById(R.id.btn_Christmas_Occasion_Filter_Activity);
-        btn_Easter_Occasion_Filter_Activity = findViewById(R.id.btn_Easter_Occasion_Filter_Activity);
-        btn_ValentinesDay_Occasion_Filter_Activity = findViewById(R.id.btn_ValentinesDay_Occasion_Filter_Activity);
-        btn_Halloween_Occasion_Filter_Activity = findViewById(R.id.btn_Halloween_Occasion_Filter_Activity);
-        btn_Octoberfest_Occasion_Filter_Activity = findViewById(R.id.btn_Octoberfest_Occasion_Filter_Activity);
-
-
-
-
-
-        txtview_name_sort_Filter_Activity = findViewById(R.id.txtview_name_sort_Filter_Activity);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -264,6 +173,14 @@ public class Filter_Recipe extends AppCompatActivity {
 
         // PART: SORT
         // VISIBILITY LINEAR LAYOUT
+
+        btn_Done_FilterRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 
         button_Sort.setOnClickListener(new View.OnClickListener() {
             //boolean isClicked = false;
@@ -1584,25 +1501,108 @@ public class Filter_Recipe extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // the end of Create
+    }
+
+    public void findByIdByComments(){
+
+        toolbar = findViewById(R.id.topAppBar_Filter_Activity);
+
+        btn_Done_FilterRecipe = findViewById(R.id.btn_Done_FilterRecipe);
+
+        button_Sort = findViewById(R.id.button_sort_Filter_Activity);
+        button_Category = findViewById(R.id.button_category_Filter_Activity);
+        button_Diet = findViewById(R.id.button_diet_Filter_Activity);
+        button_Cuisine = findViewById(R.id.button_cuisine_Filter_Activity);
+        button_MainIngredients = findViewById(R.id.button__MainIngredients_Filter_Activity);
+        button_Occasion = findViewById(R.id.button_Occasion_Filter_Activity);
+
+        linearlayout_sort = findViewById(R.id.linearlayout_sort_Filter_Activity);
+        linearlayout_category = findViewById(R.id.linearlayout_category_Filter_Activity);
+        linearlayout_diet = findViewById(R.id.linearlayout_diet_Filter_Activity);
+        linearlayout_cuisine = findViewById(R.id.linearlayout_cuisine_Filter_Activity);
+        linearlayout_mainIngredients = findViewById(R.id.linearlayout_MainIngredients_Filter_Activity);
+        linearlayout_occasion = findViewById(R.id.linearlayout_Occasion_Filter_Activity);
+
+
+        cardView_starter_category_Filter_Activity = findViewById(R.id.cardView_starter_category_Filter_Activity);
+        cardView_main_category_Filter_Activity = findViewById(R.id.cardView_main_category_Filter_Activity);
+        cardView_dessert_category_Filter_Activity = findViewById(R.id.cardView_dessert_category_Filter_Activity);
+        cardView_snack_category_Filter_Activity = findViewById(R.id.cardView_snack_category_Filter_Activity);
+        cardView_breakfast_category_Filter_Activity = findViewById(R.id.cardView_breakfast_category_Filter_Activity);
+        cardView_drink_category_Filter_Activity = findViewById(R.id.cardView_drink_category_Filter_Activity);
+
+        cardView_meatless_diet_Filter_Activity = findViewById(R.id.cardView_meatless_diet_Filter_Activity);
+        cardView_vegetarian_diet_Filter_Activity = findViewById(R.id.cardView_vegetarian_diet_Filter_Activity);
+        cardView_vegan_diet_Filter_Activity = findViewById(R.id.cardView_vegan_diet_Filter_Activity);
+        cardView_glutenFree_diet_Filter_Activity = findViewById(R.id.cardView_glutenFree_diet_Filter_Activity);
+        cardView_sugarFree_diet_Filter_Activity = findViewById(R.id.cardView_sugarFree_diet_Filter_Activity);
+        cardView_alcohol_diet_Filter_Activity = findViewById(R.id.cardView_alcohol_diet_Filter_Activity);
+
+
+        txtView_starter_category_filter_activity = findViewById(R.id.txtView_starter_category_filter_activity);
+        txtView_main_category_filter_activity = findViewById(R.id.txtView_main_category_filter_activity);
+        txtView_dessert_category_filter_activity = findViewById(R.id.txtView_dessert_category_filter_activity);
+        txtView_snack_category_filter_activity = findViewById(R.id.txtView_snack_category_filter_activity);
+        txtView_breakfast_category_filter_activity = findViewById(R.id.txtView_breakfast_category_filter_activity);
+        txtView_drink_category_filter_activity = findViewById(R.id.txtView_drink_category_filter_activity);
+
+        txtView_Meatless_diet_filter_activity = findViewById(R.id.txtView_Meatless_diet_filter_activity);
+        txtView_Vegetarian_diet_filter_activity = findViewById(R.id.txtView_Vegetarian_diet_filter_activity);
+        txtView_Vegan_diet_filter_activity = findViewById(R.id.txtView_Vegan_diet_filter_activity);
+        txtView_GlutenFree_diet_filter_activity = findViewById(R.id.txtView_GlutenFree_diet_filter_activity);
+        txtView_SugarFree_diet_filter_activity = findViewById(R.id.txtView_SugarFree_diet_filter_activity);
+        txtView_AlcoholFree_diet_filter_activity = findViewById(R.id.txtView_AlcoholFree_diet_filter_activity);
+
+
+
+        btn_relevance_Sort_Filter_Activity = findViewById(R.id.btn_relevance_Sort_Filter_Activity);
+        btn_likes_Sort_Filter_Activity = findViewById(R.id.btn_likes_Sort_Filter_Activity);
+        btn_rating_Sort_Filter_Activity = findViewById(R.id.btn_rating_Sort_Filter_Activity);
+        btn_commented_Sort_Filter_Activity = findViewById(R.id.btn_commented_Sort_Filter_Activity);
+        btn_calories_Sort_Filter_Activity = findViewById(R.id.btn_calories_Sort_Filter_Activity);
+        btn_preparationTime_Sort_Filter_Activity = findViewById(R.id.btn_preparationTime_Sort_Filter_Activity);
+        btn_releaseDate_Sort_Filter_Activity = findViewById(R.id.btn_releaseDate_Sort_Filter_Activity);
+
+
+        btn_Chinese_cuisine_Filter_Activity = findViewById(R.id.btn_Chinese_cuisine_Filter_Activity);
+        btn_Italian_cuisine_Filter_Activity = findViewById(R.id.btn_Italian_cuisine_Filter_Activity);
+        btn_European_cuisine_Filter_Activity = findViewById(R.id.btn_European_cuisine_Filter_Activity);
+        btn_Asian_cuisine_Filter_Activity = findViewById(R.id.btn_Asian_cuisine_Filter_Activity);
+        btn_American_cuisine_Filter_Activity = findViewById(R.id.btn_American_cuisine_Filter_Activity);
+        btn_Spanish_and_Portuguese_cuisine_Filter_Activity = findViewById(R.id.btn_Spanish_and_Portuguese_cuisine_Filter_Activity);
+        btn_Indian_cuisine_Filter_Activity = findViewById(R.id.btn_Indian_cuisine_Filter_Activity);
+        btn_Middle_Eastern_cuisine_Filter_Activity = findViewById(R.id.btn_Middle_Eastern_cuisine_Filter_Activity);
+
+
+        btn_Vegetables_MainIngredients_Filter_Activity = findViewById(R.id.btn_Vegetables_MainIngredients_Filter_Activity);
+        btn_Chicken_MainIngredients_Filter_Activity = findViewById(R.id.btn_Chicken_MainIngredients_Filter_Activity);
+        btn_Pasta_MainIngredients_Filter_Activity = findViewById(R.id.btn_Pasta_MainIngredients_Filter_Activity);
+        btn_Beef_MainIngredients_Filter_Activity = findViewById(R.id.btn_Beef_MainIngredients_Filter_Activity);
+        btn_Seafood_MainIngredients_Filter_Activity = findViewById(R.id.btn_Seafood_MainIngredients_Filter_Activity);
+        btn_Pork_MainIngredients_Filter_Activity = findViewById(R.id.btn_Pork_MainIngredients_Filter_Activity);
+        btn_Fruit_MainIngredients_Filter_Activity = findViewById(R.id.btn_Fruit_MainIngredients_Filter_Activity);
+        btn_Cheese_MainIngredients_Filter_Activity = findViewById(R.id.btn_Cheese_MainIngredients_Filter_Activity);
+
+
+        btn_WeeknightDinner_Occasion_Filter_Activity = findViewById(R.id.btn_WeeknightDinner_Occasion_Filter_Activity);
+        btn_Prepare_ahead_Occasion_Filter_Activity = findViewById(R.id.btn_Prepare_ahead_Occasion_Filter_Activity);
+        btn_CrowdPleaser_Occasion_Filter_Activity = findViewById(R.id.btn_CrowdPleaser_Occasion_Filter_Activity);
+        btn_OnTheGo_Occasion_Filter_Activity = findViewById(R.id.btn_OnTheGo_Occasion_Filter_Activity);
+        btn_ComfortFood_Occasion_Filter_Activity = findViewById(R.id.btn_ComfortFood_Occasion_Filter_Activity);
+        btn_KidFriendly_Occasion_Filter_Activity = findViewById(R.id.btn_KidFriendly_Occasion_Filter_Activity);
+        btn_FingerFood_Occasion_Filter_Activity = findViewById(R.id.btn_FingerFood_Occasion_Filter_Activity);
+        btn_Barbecue_Occasion_Filter_Activity = findViewById(R.id.btn_Barbecue_Occasion_Filter_Activity);
+        btn_Christmas_Occasion_Filter_Activity = findViewById(R.id.btn_Christmas_Occasion_Filter_Activity);
+        btn_Easter_Occasion_Filter_Activity = findViewById(R.id.btn_Easter_Occasion_Filter_Activity);
+        btn_ValentinesDay_Occasion_Filter_Activity = findViewById(R.id.btn_ValentinesDay_Occasion_Filter_Activity);
+        btn_Halloween_Occasion_Filter_Activity = findViewById(R.id.btn_Halloween_Occasion_Filter_Activity);
+        btn_Octoberfest_Occasion_Filter_Activity = findViewById(R.id.btn_Octoberfest_Occasion_Filter_Activity);
+
+
+
+        txtview_name_sort_Filter_Activity = findViewById(R.id.txtview_name_sort_Filter_Activity);
+
     }
 
 

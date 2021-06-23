@@ -185,7 +185,7 @@ public class Search extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(Search.this, FilterInSearchAllRecipe.class);
-                intent.putExtra("KEYSEARCH_FOR_ALLRECIPE", "quick");
+                intent.putExtra("KEYSEARCH_FOR_ALLRECIPE", "Quick bite");
                 startActivity(intent);
             }
         });

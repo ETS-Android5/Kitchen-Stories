@@ -7,25 +7,34 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.kitchenstories.Model.Recipe.Likes;
 import com.example.kitchenstories.Model.Recipe.Recipe;
 import com.example.kitchenstories.Model.Recipe.StepsForRecipe;
+import com.example.kitchenstories.Model.User;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.ViewModel.CookingRecipeActivity.RecyclerViewAdapter_Ingredient_CookingRecipe;
 import com.example.kitchenstories.ViewModel.CookingRecipeActivity.RecyclerViewAdapter_Option_Steps;
 import com.example.kitchenstories.ViewModel.RecyclerViewAdapter_OptionFireStore;
+import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Option_Comment;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,8 +48,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -91,15 +102,23 @@ public class CookingRecipe extends AppCompatActivity {
     private TextView txt_CarbAmount_Nutrition_CookingRecipe_Activity;
 
     private TextView txt_Tags_CookingRecipe_Activity;
-    private TextView txt_FinalTags_CookingRecipe_Activity;
 
     private RecyclerView recyclerView_Steps_CookingRecipe;
     private RecyclerViewAdapter_Option_Steps adapterOptionSteps;
 
     private ImageView image_FinalRecipe_CookingRecipe_Activity;
 
+    private ImageView image_noComment_CookingRecipe;
+    private TextView tv_noComment_CookingRecipe;
+    private TextView txt_numberOfComment_Reviews_CookingRecipe_Activity;
+    private RecyclerView recyclerView_Comment_TodayActivity;
+    private RecyclerViewAdapter_Option_Comment adapterOptionComment;
+
+    EditText edt_comment_CookingRecipe;
+    ImageButton btn_comment_CookingRecipe;
+
     private String idRecipe;
-    String str ="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,9 +174,21 @@ public class CookingRecipe extends AppCompatActivity {
         // click like
         addLikeRecipe(idRecipe);
 
+        // get comment
+        getDataComment(idRecipe);
+
+        // send comment
+        sendCommentToFirebase(idRecipe);
+
+
         //String str = txt_FinalTags_CookingRecipe_Activity.getText().toString();
         //
-        setDataForRecyclerViewRecommend();
+        // random to get different recipes
+        int min = 1;
+        int max = 9;
+        int random = (int)(Math.random()*(max-min+1)+min);
+
+        setDataForRecyclerViewRecommend(String.valueOf(random));
 
 
     }
@@ -192,11 +223,22 @@ public class CookingRecipe extends AppCompatActivity {
         txt_CarbAmount_Nutrition_CookingRecipe_Activity = findViewById(R.id.txt_CarbAmount_Nutrition_CookingRecipe_Activity);
 
         txt_Tags_CookingRecipe_Activity = findViewById(R.id.txt_Tags_CookingRecipe_Activity);
-        txt_FinalTags_CookingRecipe_Activity = findViewById(R.id.txt_FinalTags_CookingRecipe_Activity);
 
         recyclerView_Steps_CookingRecipe = findViewById(R.id.recyclerView_Steps_CookingRecipe);
 
         image_FinalRecipe_CookingRecipe_Activity = findViewById(R.id.image_FinalRecipe_CookingRecipe_Activity);
+
+        image_noComment_CookingRecipe = findViewById(R.id.image_noComment_CookingRecipe);
+        tv_noComment_CookingRecipe = findViewById(R.id.tv_noComment_CookingRecipe);
+
+        image_noComment_CookingRecipe.setVisibility(View.GONE);
+        tv_noComment_CookingRecipe.setVisibility(View.GONE);
+
+        txt_numberOfComment_Reviews_CookingRecipe_Activity = findViewById(R.id.txt_numberOfComment_Reviews_CookingRecipe_Activity);
+        recyclerView_Comment_TodayActivity = findViewById(R.id.recyclerView_Comment_TodayActivity);
+
+        edt_comment_CookingRecipe = findViewById(R.id.edt_comment_CookingRecipe);
+        btn_comment_CookingRecipe = findViewById(R.id.btn_comment_CookingRecipe);
 
 
         // FIND VIEW BY ID
@@ -213,6 +255,8 @@ public class CookingRecipe extends AppCompatActivity {
         super.onStart();
         adapterOptionSteps.startListening();
         adapter_optionFireStore_MoreRecipe.startListening();
+        //adapter_optionFireStore_MoreRecipe_BackUp.startListening();
+        adapterOptionComment.startListening();
     }
 
     @Override
@@ -220,6 +264,8 @@ public class CookingRecipe extends AppCompatActivity {
         super.onStop();
         adapterOptionSteps.stopListening();
         adapter_optionFireStore_MoreRecipe.stopListening();
+        //adapter_optionFireStore_MoreRecipe_BackUp.stopListening();
+        adapterOptionComment.stopListening();
     }
 
 
@@ -276,23 +322,19 @@ public class CookingRecipe extends AppCompatActivity {
 
                             // get tags
                             String tags_string = "";
-                            String lastTagOfRecipe = "";
                             Map<String, Boolean> map = new HashMap<>();
                             map = recipe.getTags();
 
                             for (String item : map.keySet()){
                                 tags_string += "#" + item +"     ";
 
-                                lastTagOfRecipe = item;
-
                             }
                             txt_Tags_CookingRecipe_Activity.setText(tags_string);
-                            txt_FinalTags_CookingRecipe_Activity.setText(lastTagOfRecipe);
 
 
                         }
                         else{
-                            Log.d("TestGetData", "not exist");
+                            //Log.d("TestGetData", "not exist");
                         }
                     }
                 })
@@ -300,7 +342,7 @@ public class CookingRecipe extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull @NotNull Exception e) {
 
-                        Log.d("TestGetData", e.toString());
+                        //Log.d("TestGetData", e.toString());
                     }
                 });
 
@@ -308,6 +350,8 @@ public class CookingRecipe extends AppCompatActivity {
         //adapter_amountOfIngredients_cookingRecipe.notifyDataSetChanged();
         //name_recipe_collapsingToolbar_CookingRecipe_Activity
     }
+
+
 
     // on bind data
     public void onBindDataToBtn(String recipeID){
@@ -510,56 +554,110 @@ public class CookingRecipe extends AppCompatActivity {
 
     }
 
+    public void getDataComment(String recipeID){
+
+        recyclerView_Comment_TodayActivity.setLayoutManager(new LinearLayoutManager(CookingRecipe.this, LinearLayoutManager.VERTICAL, false));
+
+        Query query = firebaseFirestore.collection("Recipe").document(recipeID)
+                .collection("Review");
 
 
-    public void setDataForRecyclerViewRecommend(){
-
-        // RecyclerView_MoreRecipes
-        recyclerView_MoreRecipes.setLayoutManager(new GridLayoutManager(this, 2));
-
-        //initData();
-//        Task<QuerySnapshot> query = firebaseFirestore.collection("Recipe")
-//                .whereNotEqualTo("tags." + lastTagOfRecipe, true)
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//
-//                        for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-//                            Recipe recipe = documentSnapshot.toObject(Recipe.class);
-//                            Log.d("TEST", recipe.getName_cooking_recipe());
-//                        }
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull @NotNull Exception e) {
-//                        Log.d("TEST", e.toString());
-//                    }
-//                });
-
-
-
-        //Log.d("TEST", lastTagOfRecipe.toString());
-        //System.out.println("++++++++++++++++++++++++++Test: " + lastTagOfRecipe);
-
-        Query query1 = firebaseFirestore.collection("Recipe").limit(6);
-
-        FirestoreRecyclerOptions<Recipe> options = new FirestoreRecyclerOptions.Builder<Recipe>()
-                .setQuery(query1, Recipe.class)
-                .build();
-
-        adapter_optionFireStore_MoreRecipe = new RecyclerViewAdapter_OptionFireStore(CookingRecipe.this, options, new RecyclerViewAdapter_OptionFireStore.OnItemClickListener() {
+        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                int count =0;
 
+                for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+
+                    count ++;
+                }
+                txt_numberOfComment_Reviews_CookingRecipe_Activity.setText(count + " comments");
+
+                if (count == 0){
+                    image_noComment_CookingRecipe.setVisibility(View.VISIBLE);
+                    tv_noComment_CookingRecipe.setVisibility(View.VISIBLE);
+                }
             }
         });
 
+        FirestoreRecyclerOptions<User> options = new FirestoreRecyclerOptions.Builder<User>()
+                .setQuery(query, User.class)
+                .build();
 
+        adapterOptionComment = new RecyclerViewAdapter_Option_Comment(CookingRecipe.this, options);
 
-        recyclerView_MoreRecipes.setAdapter(adapter_optionFireStore_MoreRecipe);
+        recyclerView_Comment_TodayActivity.setAdapter(adapterOptionComment);
+    }
 
+    public void sendCommentToFirebase(String recipeID){
+
+        edt_comment_CookingRecipe.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (edt_comment_CookingRecipe.getRight() - edt_comment_CookingRecipe.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        // your action here
+                        edt_comment_CookingRecipe.setText("");
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+        btn_comment_CookingRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String cmt = edt_comment_CookingRecipe.getText().toString();
+                edt_comment_CookingRecipe.setText("");
+
+                saveComment(recipeID,cmt);
+
+                Toast.makeText(CookingRecipe.this, "Successful comment!!!", Toast.LENGTH_SHORT).show();
+
+                closeKeyboard();
+            }
+        });
+    }
+
+    private void closeKeyboard() {
+        // this will give us the view
+        // which is currently focus
+        // in this layout
+        View view = this.getCurrentFocus();
+
+        // if nothing is currently
+        // focus then this will protect
+        // the app from crash
+        if (view != null) {
+
+            // now assign the system
+            // service to InputMethodManager
+            InputMethodManager manager
+                    = (InputMethodManager)
+                    getSystemService(
+                            Context.INPUT_METHOD_SERVICE);
+            manager
+                    .hideSoftInputFromWindow(
+                            view.getWindowToken(), 0);
+        }
+    }
+
+    public void saveComment(String recipeID,String stringComment){
+
+        String url_imageUser = firebaseUser.getPhotoUrl().toString();
+        String displayNameUser = firebaseUser.getDisplayName();
+
+        User user = new User(displayNameUser, url_imageUser, stringComment);
+
+        firebaseFirestore.collection("Recipe").document(recipeID)
+                .collection("Review").add(user);
     }
 
     public void setDataForComponents_Steps(String idRecipe){
@@ -599,6 +697,40 @@ public class CookingRecipe extends AppCompatActivity {
         recyclerView_Ingredients_CookingRecipe.setAdapter(adapter_ingredient_cookingRecipe);
 
     }
+
+
+    public void setDataForRecyclerViewRecommend(String likeAmount){
+
+
+        // RecyclerView_MoreRecipes
+        recyclerView_MoreRecipes.setLayoutManager(new GridLayoutManager(this, 2));
+
+
+        Log.d("TESTTAGS", "recyclerview: "+likeAmount);
+
+        Query query = firebaseFirestore.collection("Recipe")
+                .whereGreaterThanOrEqualTo("likeAmount", likeAmount)
+                .limit(6);
+
+        FirestoreRecyclerOptions<Recipe> options = new FirestoreRecyclerOptions.Builder<Recipe>()
+                .setQuery(query, Recipe.class)
+                .build();
+
+        adapter_optionFireStore_MoreRecipe = new RecyclerViewAdapter_OptionFireStore(CookingRecipe.this, options, new RecyclerViewAdapter_OptionFireStore.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                Intent intent = new Intent(getApplicationContext(), CookingRecipe.class);
+                intent.putExtra("KeyID_Recipe", documentSnapshot.getId());
+                startActivity(intent);
+            }
+        });
+
+        recyclerView_MoreRecipes.setAdapter(adapter_optionFireStore_MoreRecipe);
+
+
+        //Log.d("TESTTAG", likeAmount);
+    }
+
 
 
 
