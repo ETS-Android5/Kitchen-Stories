@@ -2,6 +2,9 @@ package com.example.kitchenstories.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,20 +15,31 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.kitchenstories.Model.DBHelper;
+import com.example.kitchenstories.Model.Shopping.RecipeForShopping;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.View.Create;
 import com.example.kitchenstories.View.MainActivity;
 import com.example.kitchenstories.View.Profile;
 import com.example.kitchenstories.View.Search;
+import com.example.kitchenstories.ViewModel.ShoppingActivity.ShoppingAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Shopping extends AppCompatActivity {
 
+    private RecyclerView rcvShopping;
+    private DBHelper dbHelper;
+    List<RecipeForShopping> recipeForShoppingList ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping);
 
+        dbHelper = new DBHelper(this);
+        LoadDataRcv();
         //
         transparentStatusAndNavigation();
 
@@ -105,6 +119,26 @@ public class Shopping extends AppCompatActivity {
             winParams.flags &= ~bits;
         }
         win.setAttributes(winParams);
+    }
+
+    private void getShoppingList(){
+        recipeForShoppingList = dbHelper.getListRecipeForShopping();
+    }
+    private void LoadDataRcv(){
+        rcvShopping = findViewById(R.id.rcv_shopping);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rcvShopping.setLayoutManager(linearLayoutManager);
+
+        recipeForShoppingList = new ArrayList<>();
+        getShoppingList();
+        if(recipeForShoppingList != null){
+            ShoppingAdapter adapter = new ShoppingAdapter(this,recipeForShoppingList);
+            rcvShopping.setAdapter(adapter);
+
+            RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+            rcvShopping.addItemDecoration(itemDecoration);
+        }
+
     }
 
 }

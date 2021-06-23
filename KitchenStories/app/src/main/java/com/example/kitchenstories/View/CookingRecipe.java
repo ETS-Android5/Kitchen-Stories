@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,9 +27,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.kitchenstories.Model.DBHelper;
 import com.example.kitchenstories.Model.Recipe.Likes;
 import com.example.kitchenstories.Model.Recipe.Recipe;
 import com.example.kitchenstories.Model.Recipe.StepsForRecipe;
+import com.example.kitchenstories.Model.Shopping.DownloadImage;
 import com.example.kitchenstories.Model.User;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.ViewModel.CookingRecipeActivity.RecyclerViewAdapter_Ingredient_CookingRecipe;
@@ -54,6 +57,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
 public class CookingRecipe extends AppCompatActivity {
 
@@ -67,6 +71,8 @@ public class CookingRecipe extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+    private DBHelper dbHelper;
 
     Boolean isCheckGlobal = false;
 
@@ -91,6 +97,7 @@ public class CookingRecipe extends AppCompatActivity {
 
     private RecyclerView recyclerView_Ingredients_CookingRecipe;
     private RecyclerViewAdapter_Ingredient_CookingRecipe adapter_ingredient_cookingRecipe;
+    private Button btn_addToShoppingList;
 
     private TextView txt_CookingTime_Time_CookingRecipe_Activity;
     private TextView txt_BakingTime_Time_CookingRecipe_Activity;
@@ -118,6 +125,12 @@ public class CookingRecipe extends AppCompatActivity {
     ImageButton btn_comment_CookingRecipe;
 
     private String idRecipe;
+
+    private Bitmap imageToStore;
+    private int amount_Ingre;
+
+    private ArrayList<String> mData_amountOfIngredients = new ArrayList<>();
+    private ArrayList<String> mData_nameIngredients = new ArrayList<>();
 
 
     @Override
@@ -149,7 +162,8 @@ public class CookingRecipe extends AppCompatActivity {
             }
         });
 
-
+        //dbhelper
+        dbHelper = new DBHelper(this);
 
         // get KeyID_Recipe for each Cooking Recipe
         if(getIntent().hasExtra("KeyID_Recipe")){
@@ -212,6 +226,7 @@ public class CookingRecipe extends AppCompatActivity {
 
         recyclerView_amountOfIngredients_CookingRecipe = findViewById(R.id.recyclerView_amountOfIngredients_CookingRecipe);
         recyclerView_Ingredients_CookingRecipe = findViewById(R.id.recyclerView_Ingredients_CookingRecipe);
+        btn_addToShoppingList = findViewById(R.id.btn_AddToShoppingList_Ingredients_CookingRecipe_Activity);
 
         txt_CookingTime_Time_CookingRecipe_Activity = findViewById(R.id.txt_CookingTime_Time_CookingRecipe_Activity);
         txt_BakingTime_Time_CookingRecipe_Activity = findViewById(R.id.txt_BakingTime_Time_CookingRecipe_Activity);
@@ -245,6 +260,12 @@ public class CookingRecipe extends AppCompatActivity {
         recyclerView_MoreRecipes = findViewById(R.id.recyclerView_MoreRecipes_CookingRecipe_Activity);
 
 
+        btn_addToShoppingList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InsertShoppingRecipe();
+            }
+        });
 
 
 
@@ -289,6 +310,8 @@ public class CookingRecipe extends AppCompatActivity {
                                     .load(recipe.getUrl_image_CookingRecipe())
                                     .into(image_recipe_collapsingToolbar_CookingRecipe_Activity);
 
+                            ConvertBitmap(recipe.getUrl_image_CookingRecipe());
+
                             name_recipe_collapsingToolbar_CookingRecipe_Activity.setText(recipe.getName_cooking_recipe());
 
                             Glide.with(CookingRecipe.this)
@@ -306,7 +329,11 @@ public class CookingRecipe extends AppCompatActivity {
                             txt_RestingTime_Time_CookingRecipe_Activity.setText(recipe.getPeriodCooking().get(2) + " mins.");
 
                             setupRecyclerView_amountOfIngredients(recipe.getAmountOfIngredients());
+                            mData_amountOfIngredients = recipe.getAmountOfIngredients();
+                            amount_Ingre=mData_amountOfIngredients.size();
+
                             setupRecyclerView_Ingredients(recipe.getIngredients());
+                            mData_nameIngredients = recipe.getIngredients();
 
                             txt_utensils_Utensils_CookingRecipe_Activity.setText(recipe.getUtensils());
 
@@ -783,5 +810,44 @@ public class CookingRecipe extends AppCompatActivity {
             winParams.flags &= ~bits;
         }
         win.setAttributes(winParams);
+    }
+
+    public void InsertShoppingRecipe(){
+        String name = name_recipe_collapsingToolbar_CookingRecipe_Activity.getText().toString();
+        long id = dbHelper.insertInfoShopping(
+                ""+name,
+                imageToStore,
+                idRecipe);
+        if(id!=-1){
+            Toast.makeText(this,"This recipe have been added to your shopping list",Toast.LENGTH_SHORT).show();
+            InsertIngredient();
+        }
+        else{
+            Toast.makeText(this,"This recipe has already been added to your shopping list",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void InsertIngredient(){
+        int maxId = dbHelper.getMaxId();
+        for(int i=0;i<amount_Ingre;i++){
+            String amount = mData_amountOfIngredients.get(i);
+            String name = mData_nameIngredients.get(i);
+
+            long id =  dbHelper.insertInfoIngre(maxId,"" + amount,"" + name);
+        }
+    }
+
+
+
+    public void ConvertBitmap(String url){
+        DownloadImage downloadImage = new DownloadImage();
+
+        try {
+            imageToStore = downloadImage.execute(url).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
