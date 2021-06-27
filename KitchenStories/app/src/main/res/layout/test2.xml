@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/source_sans_pro_bold"
+                android:text="MAIN INGREDIENTS"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+
+            <Button
+                android:id="@+id/button__MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/source_sans_pro_bold"
+                android:textAllCaps="false"
+                android:textColor="@color/Gray600"
+                app:icon="@drawable/selector_open_icon_filter_activity"
+                app:iconGravity="textEnd"
+                app:iconPadding="3dp"
+                app:iconSize="20dp"
+                app:iconTint="@color/DeepPurpleA700" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_MainIngredients_Filter_Activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_Vegetables_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="@string/vegetables"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconPadding="4dp"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Chicken_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="@string/chicken"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Pasta_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Pasta"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Beef_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Beef"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Seafood_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Seafood"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Pork_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Pork"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Fruit_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Fruit"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+            <Button
+                android:id="@+id/btn_Cheese_MainIngredients_Filter_Activity"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="left|center_vertical"
+                android:text="Cheese"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/selector_icon_checkbox_filter_activity"
+                app:iconGravity="end"
+                app:iconSize="30dp"
+                app:iconTint="@color/DeepPurple900" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_commented_Sort_Filter_Activity"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:text="Commented"
+        android:textAllCaps="false"
+        android:textColor="@drawable/selector_color_filter_activity"
+        app:icon="@drawable/selector_icon_commented_filter_activity"
+        app:iconPadding="20dp"
+        app:iconTint="@drawable/selector_color_filter_activity"
+        app:rippleColor="@android:color/transparent"
+        android:fontFamily="@font/source_sans_pro_regular"
+        android:textSize="17sp"/>
+
+    <Button
+        android:id="@+id/btn_releaseDate_Sort_Filter_Activity"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:text="@string/release_date"
+        android:textAllCaps="false"
+        android:textColor="@drawable/selector_color_filter_activity"
+        app:icon="@drawable/selector_icon_releasedate_filter_activity"
+        app:iconPadding="20dp"
+        app:iconTint="@drawable/selector_color_filter_activity"
+        app:rippleColor="@android:color/transparent"
+        android:fontFamily="@font/source_sans_pro_regular"
+        android:textSize="17sp"/>
+</LinearLayout>

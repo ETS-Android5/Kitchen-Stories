@@ -18,6 +18,7 @@ import android.widget.Button;
 
 import com.example.kitchenstories.Model.Recipe.Recipe;
 import com.example.kitchenstories.R;
+import com.example.kitchenstories.View.filterInSearch_AllRecipe.FilterInSearchAllRecipe;
 import com.example.kitchenstories.ViewModel.SearchActivity.RecyclerViewAdapter_Option_FilterInSearch;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -108,15 +109,6 @@ public class FilterInSearch extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-//                adapter_filterInSearch.getFilter().filter(newText);
-//
-//                Query query1 = firebaseFirestore.collection("Recipe");
-//
-//                FirestoreRecyclerOptions<Recipe> options1 = new FirestoreRecyclerOptions.Builder<Recipe>()
-//                        .setQuery(query1, Recipe.class)
-//                        .build();
-//
-//                adapter_option_filterInSearch.updateOptions(options1);
 
                 Query query1;
 
@@ -159,30 +151,6 @@ public class FilterInSearch extends AppCompatActivity {
         searchView = findViewById(R.id.searchView_FilterInSearch);
     }
 
-
-    public void initData(){
-
-        mData = new ArrayList<>();
-
-        mData.add(new Recipe(R.drawable.ic_baseline_add_circle, "one", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_baseline_favorite_24, "two", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_baseline_home, "three", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_outline_watch_later_24, "four", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_baseline_person, "five", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_outline_date_range_24, "sixe", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_baseline_add_circle, "one", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_baseline_favorite_24, "two", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_baseline_home, "three", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_outline_watch_later_24, "four", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_baseline_person, "five", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_outline_date_range_24, "sixe", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_baseline_add_circle, "one", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_baseline_favorite_24, "two", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_baseline_home, "three", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_outline_watch_later_24, "four", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_baseline_person, "five", "Kitchen Stories"));
-
-    }
 
 
     // Transparent Status Bar

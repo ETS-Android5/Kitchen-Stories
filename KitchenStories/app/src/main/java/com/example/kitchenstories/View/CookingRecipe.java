@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -124,6 +126,9 @@ public class CookingRecipe extends AppCompatActivity {
     EditText edt_comment_CookingRecipe;
     ImageButton btn_comment_CookingRecipe;
 
+    View viewLoading_CookingRecipe;
+    ProgressBar progressBar_CookingRecipe;
+
     private String idRecipe;
 
     private Bitmap imageToStore;
@@ -166,14 +171,29 @@ public class CookingRecipe extends AppCompatActivity {
         dbHelper = new DBHelper(this);
 
         // get KeyID_Recipe for each Cooking Recipe
-        if(getIntent().hasExtra("KeyID_Recipe")){
+        if (getIntent().hasExtra("KeyID_Recipe")) {
             idRecipe = getIntent().getExtras().getString("KeyID_Recipe");
         }
 
 
+        // start progess bar
+        new CountDownTimer(500, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                viewLoading_CookingRecipe.setVisibility(View.VISIBLE);
+                progressBar_CookingRecipe.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+
 
         //
         findByIdForComponents();
+
 
         //
         setDataForComponents(idRecipe);
@@ -200,14 +220,17 @@ public class CookingRecipe extends AppCompatActivity {
         // random to get different recipes
         int min = 1;
         int max = 9;
-        int random = (int)(Math.random()*(max-min+1)+min);
+        int random = (int) (Math.random() * (max - min + 1) + min);
 
-        setDataForRecyclerViewRecommend(String.valueOf(random));
+        setDataForRecyclerViewRecommend(random);
+
+        // change data
+        //getFinalTags_And_ChangeDataRecyclerViewRecommend(idRecipe);
 
 
     }
 
-    public void findByIdForComponents(){
+    public void findByIdForComponents() {
 
         btn_numberOfLikes_CookingRecipe_Activity = findViewById(R.id.btn_numberOfLikes_CookingRecipe_Activity);
         numberOfRating_CookingRecipe_Activity = findViewById(R.id.numberOfRating_CookingRecipe_Activity);
@@ -259,6 +282,9 @@ public class CookingRecipe extends AppCompatActivity {
         // FIND VIEW BY ID
         recyclerView_MoreRecipes = findViewById(R.id.recyclerView_MoreRecipes_CookingRecipe_Activity);
 
+        viewLoading_CookingRecipe = findViewById(R.id.viewLoading_CookingRecipe);
+        progressBar_CookingRecipe = findViewById(R.id.progressBar_CookingRecipe);
+
 
         btn_addToShoppingList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -266,7 +292,6 @@ public class CookingRecipe extends AppCompatActivity {
                 InsertShoppingRecipe();
             }
         });
-
 
 
     }
@@ -290,8 +315,7 @@ public class CookingRecipe extends AppCompatActivity {
     }
 
 
-
-    public void setDataForComponents(String idRecipe){
+    public void setDataForComponents(String idRecipe) {
 
         firebaseFirestore.collection("Recipe").document(idRecipe)
                 .get()
@@ -299,12 +323,12 @@ public class CookingRecipe extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                        if(documentSnapshot.exists()){
+                        if (documentSnapshot.exists()) {
                             Recipe recipe = documentSnapshot.toObject(Recipe.class);
 
                             //String hello = recipe.getName_cooking_recipe();
-                            btn_numberOfLikes_CookingRecipe_Activity.setText(recipe.getLikeAmount());
-                            numberOfRating_CookingRecipe_Activity.setText(recipe.getRatingAmount() + " ratings");
+                            btn_numberOfLikes_CookingRecipe_Activity.setText(recipe.getLikeAmount().toString());
+                            numberOfRating_CookingRecipe_Activity.setText(recipe.getRatingAmount().toString() + " ratings");
 
                             Glide.with(CookingRecipe.this)
                                     .load(recipe.getUrl_image_CookingRecipe())
@@ -330,7 +354,7 @@ public class CookingRecipe extends AppCompatActivity {
 
                             setupRecyclerView_amountOfIngredients(recipe.getAmountOfIngredients());
                             mData_amountOfIngredients = recipe.getAmountOfIngredients();
-                            amount_Ingre=mData_amountOfIngredients.size();
+                            amount_Ingre = mData_amountOfIngredients.size();
 
                             setupRecyclerView_Ingredients(recipe.getIngredients());
                             mData_nameIngredients = recipe.getIngredients();
@@ -352,15 +376,29 @@ public class CookingRecipe extends AppCompatActivity {
                             Map<String, Boolean> map = new HashMap<>();
                             map = recipe.getTags();
 
-                            for (String item : map.keySet()){
-                                tags_string += "#" + item +"     ";
+                            for (String item : map.keySet()) {
+                                tags_string += "#" + item + "     ";
 
                             }
                             txt_Tags_CookingRecipe_Activity.setText(tags_string);
 
 
-                        }
-                        else{
+                            // wait for loading data and stop progress bar
+                            new CountDownTimer(1000, 1000) {
+                                @Override
+                                public void onTick(long millisUntilFinished) {
+
+                                }
+
+                                @Override
+                                public void onFinish() {
+                                    viewLoading_CookingRecipe.setVisibility(View.GONE);
+                                    progressBar_CookingRecipe.setVisibility(View.GONE);
+                                }
+                            }.start();
+
+
+                        } else {
                             //Log.d("TestGetData", "not exist");
                         }
                     }
@@ -379,9 +417,8 @@ public class CookingRecipe extends AppCompatActivity {
     }
 
 
-
     // on bind data
-    public void onBindDataToBtn(String recipeID){
+    public void onBindDataToBtn(String recipeID) {
 
         String emailUserCurrent = firebaseUser.getEmail();
 
@@ -407,16 +444,15 @@ public class CookingRecipe extends AppCompatActivity {
                 });
     }
 
-    public void checkLikeExist(Boolean check){
+    public void checkLikeExist(Boolean check) {
         isCheckGlobal = check;
 
         //Log.d("TESTAUTH", recipeID);
-        if (isCheckGlobal){
+        if (isCheckGlobal) {
             //Log.d("TESTAUTH", "TRUE!!!");
 
             btn_numberOfLikes_CookingRecipe_Activity.setSelected(true);
-        }
-        else {
+        } else {
             //Log.d("TESTAUTH", "FALSE!!!");
 
             btn_numberOfLikes_CookingRecipe_Activity.setSelected(false);
@@ -424,7 +460,7 @@ public class CookingRecipe extends AppCompatActivity {
     }
 
     // add likeRecipe
-    public void addLikeRecipe(String recipeID){
+    public void addLikeRecipe(String recipeID) {
 
         btn_numberOfLikes_CookingRecipe_Activity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -498,7 +534,7 @@ public class CookingRecipe extends AppCompatActivity {
     }
 
 
-    public void addLike(String recipeID){
+    public void addLike(String recipeID) {
 
         firebaseFirestore.collection("Recipe").document(recipeID)
                 .get()
@@ -508,21 +544,23 @@ public class CookingRecipe extends AppCompatActivity {
 
                         Recipe recipe = documentSnapshot.toObject(Recipe.class);
 
-                        int likeInt = Integer.valueOf(recipe.getLikeAmount());
+                        Long likeInt = recipe.getLikeAmount();
 
                         likeInt = likeInt + 1;
 
-                        recipe.setLikeAmount(String.valueOf(likeInt));
+                        recipe.setLikeAmount(likeInt);
 
                         // set again;
                         firebaseFirestore.collection("Recipe").document(recipeID).set(recipe);
 
+                        // set add new like offline
+                        btn_numberOfLikes_CookingRecipe_Activity.setText(String.valueOf(likeInt));
                     }
                 });
 
     }
 
-    public void removeLike(String recipeID){
+    public void removeLike(String recipeID) {
 
         firebaseFirestore.collection("Recipe").document(recipeID)
                 .get()
@@ -532,20 +570,22 @@ public class CookingRecipe extends AppCompatActivity {
 
                         Recipe recipe = documentSnapshot.toObject(Recipe.class);
 
-                        int likeInt = Integer.valueOf(recipe.getLikeAmount());
+                        Long likeInt = recipe.getLikeAmount();
 
                         likeInt = likeInt - 1;
 
-                        recipe.setLikeAmount(String.valueOf(likeInt));
+                        recipe.setLikeAmount(likeInt);
 
                         // set again;
                         firebaseFirestore.collection("Recipe").document(recipeID).set(recipe);
 
+                        // set remove new like offline
+                        btn_numberOfLikes_CookingRecipe_Activity.setText(String.valueOf(likeInt));
                     }
                 });
     }
 
-    public void addRecipeModelInToUser(String recipeID, String emailUserCurrent){
+    public void addRecipeModelInToUser(String recipeID, String emailUserCurrent) {
 
         firebaseFirestore.collection("Recipe").document(recipeID)
                 .get()
@@ -560,7 +600,7 @@ public class CookingRecipe extends AppCompatActivity {
                         String name_author = recipe.getName_author();
                         String name_authorGroup = recipe.getName_authorGroup();
                         String url_image_author = recipe.getUrl_image_author();
-                        String likeAmount = recipe.getLikeAmount();
+                        Long likeAmount = recipe.getLikeAmount();
                         ArrayList<String> periodCooking = recipe.getPeriodCooking();
 
                         Recipe recipeToAdd = new Recipe(name_cooking_recipe,
@@ -581,7 +621,7 @@ public class CookingRecipe extends AppCompatActivity {
 
     }
 
-    public void getDataComment(String recipeID){
+    public void getDataComment(String recipeID) {
 
         recyclerView_Comment_TodayActivity.setLayoutManager(new LinearLayoutManager(CookingRecipe.this, LinearLayoutManager.VERTICAL, false));
 
@@ -592,20 +632,21 @@ public class CookingRecipe extends AppCompatActivity {
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                int count =0;
+                int count = 0;
 
-                for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
 
-                    count ++;
+                    count++;
                 }
                 txt_numberOfComment_Reviews_CookingRecipe_Activity.setText(count + " comments");
 
-                if (count == 0){
+                if (count == 0) {
                     image_noComment_CookingRecipe.setVisibility(View.VISIBLE);
                     tv_noComment_CookingRecipe.setVisibility(View.VISIBLE);
                 }
             }
         });
+
 
         FirestoreRecyclerOptions<User> options = new FirestoreRecyclerOptions.Builder<User>()
                 .setQuery(query, User.class)
@@ -616,7 +657,7 @@ public class CookingRecipe extends AppCompatActivity {
         recyclerView_Comment_TodayActivity.setAdapter(adapterOptionComment);
     }
 
-    public void sendCommentToFirebase(String recipeID){
+    public void sendCommentToFirebase(String recipeID) {
 
         edt_comment_CookingRecipe.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -626,8 +667,8 @@ public class CookingRecipe extends AppCompatActivity {
                 final int DRAWABLE_RIGHT = 2;
                 final int DRAWABLE_BOTTOM = 3;
 
-                if(event.getAction() == MotionEvent.ACTION_UP) {
-                    if(event.getRawX() >= (edt_comment_CookingRecipe.getRight() - edt_comment_CookingRecipe.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (edt_comment_CookingRecipe.getRight() - edt_comment_CookingRecipe.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                         // your action here
                         edt_comment_CookingRecipe.setText("");
                         return true;
@@ -644,7 +685,7 @@ public class CookingRecipe extends AppCompatActivity {
                 String cmt = edt_comment_CookingRecipe.getText().toString();
                 edt_comment_CookingRecipe.setText("");
 
-                saveComment(recipeID,cmt);
+                saveComment(recipeID, cmt);
 
                 Toast.makeText(CookingRecipe.this, "Successful comment!!!", Toast.LENGTH_SHORT).show();
 
@@ -666,17 +707,12 @@ public class CookingRecipe extends AppCompatActivity {
 
             // now assign the system
             // service to InputMethodManager
-            InputMethodManager manager
-                    = (InputMethodManager)
-                    getSystemService(
-                            Context.INPUT_METHOD_SERVICE);
-            manager
-                    .hideSoftInputFromWindow(
-                            view.getWindowToken(), 0);
+            InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
 
-    public void saveComment(String recipeID,String stringComment){
+    public void saveComment(String recipeID, String stringComment) {
 
         String url_imageUser = firebaseUser.getPhotoUrl().toString();
         String displayNameUser = firebaseUser.getDisplayName();
@@ -687,7 +723,7 @@ public class CookingRecipe extends AppCompatActivity {
                 .collection("Review").add(user);
     }
 
-    public void setDataForComponents_Steps(String idRecipe){
+    public void setDataForComponents_Steps(String idRecipe) {
 
         Query query = firebaseFirestore.collection("Recipe").document(idRecipe).collection("Steps");
 
@@ -703,7 +739,7 @@ public class CookingRecipe extends AppCompatActivity {
 
     }
 
-    public void setupRecyclerView_amountOfIngredients(ArrayList<String> mData){
+    public void setupRecyclerView_amountOfIngredients(ArrayList<String> mData) {
 
         ArrayList<String> mData_amountOfIngredients = new ArrayList<>();
         mData_amountOfIngredients = mData;
@@ -714,7 +750,7 @@ public class CookingRecipe extends AppCompatActivity {
 
     }
 
-    public void setupRecyclerView_Ingredients(ArrayList<String> mData){
+    public void setupRecyclerView_Ingredients(ArrayList<String> mData) {
 
         ArrayList<String> mData_Ingredients = new ArrayList<>();
         mData_Ingredients = mData;
@@ -726,14 +762,14 @@ public class CookingRecipe extends AppCompatActivity {
     }
 
 
-    public void setDataForRecyclerViewRecommend(String likeAmount){
+    public void setDataForRecyclerViewRecommend(int likeAmount) {
 
 
         // RecyclerView_MoreRecipes
         recyclerView_MoreRecipes.setLayoutManager(new GridLayoutManager(this, 2));
 
 
-        Log.d("TESTTAGS", "recyclerview: "+likeAmount);
+        Log.d("TESTTAGS", "recyclerview: " + likeAmount);
 
         Query query = firebaseFirestore.collection("Recipe")
                 .whereGreaterThanOrEqualTo("likeAmount", likeAmount)
@@ -758,21 +794,46 @@ public class CookingRecipe extends AppCompatActivity {
         //Log.d("TESTTAG", likeAmount);
     }
 
+    public void getFinalTags_And_ChangeDataRecyclerViewRecommend(String idRecipe) {
+
+        Toast.makeText(this, "RecipeID: " + idRecipe, Toast.LENGTH_SHORT).show();
+
+        firebaseFirestore.collection("Recipe").document(idRecipe)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                        Recipe recipe = documentSnapshot.toObject(Recipe.class);
+
+                        ArrayList<String> tagsSort = recipe.getTagsSort();
+
+                        String finalTags = "";
+                        for (int i = 0; i < tagsSort.size(); i++) {
+
+                            finalTags = tagsSort.get(i).toString();
+                            Log.d("TESTCOOKINGRECIPE", finalTags);
+                        }
+
+                        changeDataForRecyclerViewRecommend(finalTags);
+                    }
+                });
+    }
 
 
+    public void changeDataForRecyclerViewRecommend(String finalTags) {
 
-    private void initData(){
+        Query query = firebaseFirestore.collection("Recipe")
+                .whereArrayContains("tagsSort", finalTags);
 
-        mData = new ArrayList<>();
+        FirestoreRecyclerOptions<Recipe> options = new FirestoreRecyclerOptions.Builder<Recipe>()
+                .setQuery(query, Recipe.class)
+                .build();
 
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
+        adapter_optionFireStore_MoreRecipe.updateOptions(options);
 
     }
+
 
     // Transparent Status Bar
     public void transparentStatusAndNavigation() {
@@ -812,34 +873,32 @@ public class CookingRecipe extends AppCompatActivity {
         win.setAttributes(winParams);
     }
 
-    public void InsertShoppingRecipe(){
+    public void InsertShoppingRecipe() {
         String name = name_recipe_collapsingToolbar_CookingRecipe_Activity.getText().toString();
         long id = dbHelper.insertInfoShopping(
-                ""+name,
+                "" + name,
                 imageToStore,
                 idRecipe);
-        if(id!=-1){
-            Toast.makeText(this,"This recipe have been added to your shopping list",Toast.LENGTH_SHORT).show();
+        if (id != -1) {
+            Toast.makeText(this, "This recipe have been added to your shopping list", Toast.LENGTH_SHORT).show();
             InsertIngredient();
-        }
-        else{
-            Toast.makeText(this,"This recipe has already been added to your shopping list",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "This recipe has already been added to your shopping list", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void InsertIngredient(){
+    public void InsertIngredient() {
         int maxId = dbHelper.getMaxId();
-        for(int i=0;i<amount_Ingre;i++){
+        for (int i = 0; i < amount_Ingre; i++) {
             String amount = mData_amountOfIngredients.get(i);
             String name = mData_nameIngredients.get(i);
 
-            long id =  dbHelper.insertInfoIngre(maxId,"" + amount,"" + name);
+            long id = dbHelper.insertInfoIngre(maxId, "" + amount, "" + name);
         }
     }
 
 
-
-    public void ConvertBitmap(String url){
+    public void ConvertBitmap(String url) {
         DownloadImage downloadImage = new DownloadImage();
 
         try {

@@ -22,6 +22,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.kitchenstories.R;
+import com.example.kitchenstories.View.allRecipe.All_recipes;
+import com.example.kitchenstories.View.filterInSearch_AllRecipe.FilterInSearchAllRecipe;
+import com.example.kitchenstories.View.profile.Profile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Search extends AppCompatActivity {
@@ -80,7 +83,7 @@ public class Search extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.today:
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         return true;
 
                     case R.id.search:
@@ -88,17 +91,17 @@ public class Search extends AppCompatActivity {
 
                     case R.id.create:
                         startActivity(new Intent(getApplicationContext(), Create.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         return true;
 
                     case R.id.shopping:
                         startActivity(new Intent(getApplicationContext(), Shopping.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         return true;
 
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(), Profile.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         return true;
                 }
                 return false;

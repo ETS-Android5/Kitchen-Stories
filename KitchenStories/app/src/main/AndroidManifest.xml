@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.FilterInSearchAllRecipe" />
+        <activity android:name=".View.filterInSearch_AllRecipe.FilterInSearchAllRecipe" />
         <activity android:name=".View.MainLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,10 +53,10 @@
         <activity android:name=".View.FilterInSearch" />
         <activity android:name=".View.Filter_Recipe" />
         <activity android:name=".View.CookingRecipe" />
-        <activity android:name=".View.All_recipes" />
+        <activity android:name=".View.allRecipe.All_recipes" />
         <activity android:name=".View.Shopping" />
         <activity android:name=".View.Create" />
-        <activity android:name=".View.Profile" />
+        <activity android:name=".View.profile.Profile" />
         <activity android:name=".View.Search" />
         <activity android:name=".View.MainActivity" />
     </application>

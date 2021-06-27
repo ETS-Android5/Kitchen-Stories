@@ -1,4 +1,4 @@
-package com.example.kitchenstories.View.Fragment;
+package com.example.kitchenstories.View.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,19 +7,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.kitchenstories.Model.Recipe.Likes;
 import com.example.kitchenstories.Model.Recipe.Recipe;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.View.CookingRecipe;
 import com.example.kitchenstories.ViewModel.RecyclerViewAdapter_OptionFireStore;
-import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Option_Medium;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,8 +25,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.

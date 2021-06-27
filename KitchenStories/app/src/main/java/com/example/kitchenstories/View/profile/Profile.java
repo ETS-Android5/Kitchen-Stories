@@ -1,4 +1,4 @@
-package com.example.kitchenstories.View;
+package com.example.kitchenstories.View.profile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,9 +20,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.kitchenstories.R;
-import com.example.kitchenstories.View.Fragment.fm_Profile_tab1;
-import com.example.kitchenstories.View.Fragment.fm_Profile_tab2;
-import com.example.kitchenstories.View.Fragment.fm_Profile_tab3;
+import com.example.kitchenstories.View.Create;
+import com.example.kitchenstories.View.MainActivity;
+import com.example.kitchenstories.View.MainLoginActivity;
+import com.example.kitchenstories.View.Search;
+import com.example.kitchenstories.View.Shopping;
 import com.example.kitchenstories.ViewModel.ViewPagerAdapter;
 import com.facebook.login.LoginManager;
 import com.facebook.login.widget.LoginButton;
@@ -31,7 +33,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -106,22 +107,22 @@ public class Profile extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.today:
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         return true;
 
                     case R.id.search:
                         startActivity(new Intent(getApplicationContext(), Search.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         return true;
 
                     case R.id.create:
                         startActivity(new Intent(getApplicationContext(), Create.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         return true;
 
                     case R.id.shopping:
                         startActivity(new Intent(getApplicationContext(), Shopping.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         return true;
 
                     case R.id.profile:

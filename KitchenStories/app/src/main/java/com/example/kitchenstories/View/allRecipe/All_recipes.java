@@ -1,9 +1,8 @@
-package com.example.kitchenstories.View;
+package com.example.kitchenstories.View.allRecipe;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
@@ -18,13 +17,16 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.kitchenstories.R;
-import com.example.kitchenstories.View.Fragment.fm_filterinsearch_recipe_tab1;
-import com.example.kitchenstories.View.Fragment.fm_filterinsearch_recipe_tab2;
+import com.example.kitchenstories.View.Create;
+import com.example.kitchenstories.View.Filter_Recipe;
+import com.example.kitchenstories.View.MainActivity;
+import com.example.kitchenstories.View.profile.Profile;
+import com.example.kitchenstories.View.Shopping;
 import com.example.kitchenstories.ViewModel.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-public class FilterInSearchAllRecipe extends AppCompatActivity {
+public class All_recipes extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -32,103 +34,43 @@ public class FilterInSearchAllRecipe extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
 
     private Toolbar toolbar;
-    private SearchView searchView;
-
-    private String keysearch;
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_filter_in_search_all_recipe);
+        setContentView(R.layout.activity_all_recipes);
 
         //
         transparentStatusAndNavigation();
 
-        Window window = FilterInSearchAllRecipe.this.getWindow();
+        Window window = All_recipes.this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(ContextCompat.getColor(FilterInSearchAllRecipe.this, R.color.Gray50));
+        window.setStatusBarColor(ContextCompat.getColor(All_recipes.this, R.color.Gray50));
 
 
-        if(getIntent().hasExtra("KEYSEARCH_FOR_ALLRECIPE")){
-            keysearch = getIntent().getExtras().getString("KEYSEARCH_FOR_ALLRECIPE");
-
-        }
 
         // FIND VIEW BY ID
-        findByIdForComponents();
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        tabLayout = findViewById(R.id.tabs);
+        viewPager = findViewById(R.id.view_pager);
+        toolbar = findViewById(R.id.topAppBar_All_Recipes_Activity);
 
-        searchView.setQuery(keysearch, true);
 
-        
         //
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-
-        fm_filterinsearch_recipe_tab1 tab1 = new fm_filterinsearch_recipe_tab1();
-        fm_filterinsearch_recipe_tab2 tab2 = new fm_filterinsearch_recipe_tab2();
-
-        Bundle bundle1 = new Bundle();
-        bundle1.putString("KEYSEARCH_FOR_FRAGMENT_ALLRECIPE", keysearch);
-
-        Bundle bundle2 = new Bundle();
-        bundle2.putString("KEYSEARCH_FOR_FRAGMENT_ALLRECIPE", keysearch);
-
-        tab1.setArguments(bundle1);
-        tab2.setArguments(bundle2);
-
-
         // add Fragment here
-        viewPagerAdapter.AddFragment(tab1, "Kitchen Stories");
-        viewPagerAdapter.AddFragment(tab2, "Community");
+        viewPagerAdapter.AddFragment(new fm_recipe_tab_1(), "Kitchen Stories");
+        viewPagerAdapter.AddFragment(new fm_recipe_tab_2(), "Community");
 
         // View
         viewPager.setAdapter(viewPagerAdapter);
 
         tabLayout.setupWithViewPager(viewPager);
 
-
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            Bundle bundle = new Bundle();
-//            fm_filterinsearch_recipe_tab1 tab1_backup;
-//            fm_filterinsearch_recipe_tab2 tab2_backup;
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                keysearch = query;
-//                bundle.putString("KEYSEARCH_FOR_FRAGMENT_ALLRECIPE", keysearch);
-//                tab1_backup.setArguments(bundle);
-//                //tab2_backup.setArguments(bundle);
-//
-//                // add Fragment here
-//                viewPagerAdapter.AddFragment(tab1_backup, "Kitchen Stories1");
-//                //viewPagerAdapter.AddFragment(tab2_backup, "Community1");
-//
-//                // View
-//                viewPager.setAdapter(viewPagerAdapter);
-//
-//                tabLayout.setupWithViewPager(viewPager);
-//
-//                return false;
-//            }
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                if(newText.isEmpty()){
-//
-//                }
-//                else{
-////                    keysearch = newText;
-////                    bundle.putString("KEYSEARCH_FOR_FRAGMENT_ALLRECIPE", keysearch);
-////                    tab1.setArguments(bundle);
-////                    tab2.setArguments(bundle);
-////                    //viewPagerAdapter.notifyDataSetChanged();
-//                }
-//
-//                return false;
-//            }
-//        });
 
 
 
@@ -140,7 +82,7 @@ public class FilterInSearchAllRecipe extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.today:
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         return true;
 
                     case R.id.search:
@@ -148,17 +90,17 @@ public class FilterInSearchAllRecipe extends AppCompatActivity {
 
                     case R.id.create:
                         startActivity(new Intent(getApplicationContext(), Create.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         return true;
 
                     case R.id.shopping:
                         startActivity(new Intent(getApplicationContext(), Shopping.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         return true;
 
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(), Profile.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         return true;
                 }
                 return false;
@@ -191,17 +133,15 @@ public class FilterInSearchAllRecipe extends AppCompatActivity {
                 return false;
             }
         });
+
+
+
+
+
+
+
     }
 
-    public void findByIdForComponents(){
-
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        tabLayout = findViewById(R.id.tabs_FilterInSearch_All_Recipes_Activity);
-        viewPager = findViewById(R.id.view_pager_FilterInSearch_All_Recipes_Activity);
-        toolbar = findViewById(R.id.topAppBar_FilterInSearch_All_Recipes_Activity);
-
-        searchView = findViewById(R.id.searchView_FilterInSearchAllRecipe);
-    }
 
     public void openFilterRecipe(){
 
@@ -210,8 +150,6 @@ public class FilterInSearchAllRecipe extends AppCompatActivity {
         //overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
         overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_null);
     }
-
-
 
     // Transparent Status Bar
     public void transparentStatusAndNavigation() {

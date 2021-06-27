@@ -21,7 +21,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -29,6 +28,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -39,6 +39,9 @@ import com.example.kitchenstories.Model.Recipe.StepsForRecipe;
 import com.example.kitchenstories.Model.TypesOfRecipe;
 import com.example.kitchenstories.Model.User;
 import com.example.kitchenstories.R;
+import com.example.kitchenstories.View.allRecipe.All_recipes;
+import com.example.kitchenstories.View.filterInSearch_AllRecipe.FilterInSearchAllRecipe;
+import com.example.kitchenstories.View.profile.Profile;
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Option_Large;
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Option_Medium;
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Option_Part13;
@@ -139,6 +142,9 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
+    View viewLoading_today_activity;
+    ProgressBar progressBar_today_activity;
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -156,6 +162,19 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        // start progess bar
+        new CountDownTimer(1000,1000){
+            @Override
+            public void onTick(long millisUntilFinished) {
+                viewLoading_today_activity.setVisibility(View.VISIBLE);
+                progressBar_today_activity.setVisibility(View.VISIBLE);
+            }
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+
         // add types of recipe
         //addTypeOfRecipe();
 
@@ -172,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
         findByIdForComponents();
 
 
+
         // BOTTOM NAVIGATION
         bottomNavigationView.setSelectedItemId(R.id.today);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -185,22 +205,22 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.search:
                         startActivity(new Intent(getApplicationContext(), Search.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         return true;
 
                     case R.id.create:
                         startActivity(new Intent(getApplicationContext(), Create.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         return true;
 
                     case R.id.shopping:
                         startActivity(new Intent(getApplicationContext(), Shopping.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         return true;
 
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(), Profile.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         return true;
 
 
@@ -208,6 +228,9 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+
 
         // Part Exhibit
         getDataExhibitPart();
@@ -471,11 +494,26 @@ public class MainActivity extends AppCompatActivity {
 
                         tv_nameRecipe_exhibit_today_activity.setText(recipe.getName_cooking_recipe());
                         tv_nameAuthor_exhibit_today_activity.setText(recipe.getName_author());
-                        btn_likes_exhibit_today_activity.setText(recipe.getLikeAmount());
+                        btn_likes_exhibit_today_activity.setText(recipe.getLikeAmount().toString());
 
                         Glide.with(MainActivity.this)
                                 .load(recipe.getUrl_image_CookingRecipe())
                                 .into(image_exhibit_today_activity);
+
+
+                        // wait for loading data and stop progress bar
+                        new CountDownTimer(1000,1000){
+                            @Override
+                            public void onTick(long millisUntilFinished) {
+
+                            }
+                            @Override
+                            public void onFinish() {
+                                viewLoading_today_activity.setVisibility(View.GONE);
+                                progressBar_today_activity.setVisibility(View.GONE);
+                            }
+                        }.start();
+
 
                     }
                 })
@@ -565,6 +603,10 @@ public class MainActivity extends AppCompatActivity {
         Uri uri = Uri.parse(videoPath);
         videoView_part2.setVideoURI(uri);
         videoView_part2.requestFocus();
+
+        MediaController mediaController = new MediaController(this);
+        videoView_part2.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView_part2);
 
         // SET MUTE TO VIDEO VIEW
         videoView_part2.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -732,6 +774,10 @@ public class MainActivity extends AppCompatActivity {
         videoView_part6.setVideoURI(uri_part6);
         videoView_part6.requestFocus();
 
+        MediaController mediaController = new MediaController(this);
+        videoView_part6.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView_part6);
+
         // SET MUTE TO VIDEO VIEW
         videoView_part6.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -835,6 +881,10 @@ public class MainActivity extends AppCompatActivity {
         videoView_part8.setVideoURI(uri_part8);
         videoView_part8.requestFocus();
 
+        MediaController mediaController = new MediaController(this);
+        videoView_part8.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView_part8);
+
         videoView_part8.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
@@ -896,9 +946,13 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView_part9.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
+//        Query query = firebaseFirestore.collection("Recipe")
+//                .whereEqualTo("tags.sweet", true)
+//                .orderBy("likeAmount", Query.Direction.DESCENDING)
+//                .limit(6);
+
         Query query = firebaseFirestore.collection("Recipe")
                 .whereEqualTo("tags.sweet", true)
-                .orderBy("likeAmount", Query.Direction.DESCENDING)
                 .limit(6);
 
         FirestoreRecyclerOptions options = new FirestoreRecyclerOptions.Builder<Recipe>()
@@ -934,9 +988,13 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView_part10.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
+//        Query query = firebaseFirestore.collection("Recipe")
+//                .whereEqualTo("tags.comfort food", true)
+//                .orderBy("likeAmount")
+//                .limit(6);
+
         Query query = firebaseFirestore.collection("Recipe")
                 .whereEqualTo("tags.comfort food", true)
-                .orderBy("likeAmount")
                 .limit(6);
 
         FirestoreRecyclerOptions options = new FirestoreRecyclerOptions.Builder<Recipe>()
@@ -999,9 +1057,12 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView_part12.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
+//        Query query = firebaseFirestore.collection("Recipe")
+//                .whereEqualTo("tags.Asian", true)
+//                .orderBy("likeAmount", Query.Direction.DESCENDING);
+
         Query query = firebaseFirestore.collection("Recipe")
-                .whereEqualTo("tags.Asian", true)
-                .orderBy("likeAmount", Query.Direction.DESCENDING);
+                .whereEqualTo("tags.Asian", true);
 
         FirestoreRecyclerOptions options = new FirestoreRecyclerOptions.Builder<Recipe>()
                 .setQuery(query, Recipe.class)
@@ -1065,6 +1126,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void findByIdForComponents() {
 
+        viewLoading_today_activity = findViewById(R.id.viewLoading_today_activity);
+        progressBar_today_activity = findViewById(R.id.progressBar_today_activity);
+
         // part exhibit
         image_exhibit_today_activity = findViewById(R.id.image_exhibit_today_activity);
         cardView_exhibit_today_activity = findViewById(R.id.cardView_exhibit_today_activity);
@@ -1118,110 +1182,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void init_mData_part1() {
-
-        mData_part1 = new ArrayList<>();
-
-        mData_part1.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part1.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part1.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part1.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part1.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part1.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-
-    }
-
-    private void init_mData_part4() {
-
-        mData_part4 = new ArrayList<>();
-
-        mData_part4.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part4.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part4.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part4.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part4.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part4.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-
-    }
-
-    private void init_mData_part7() {
-
-        mData_part7 = new ArrayList<>();
-
-        mData_part7.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part7.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part7.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part7.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part7.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part7.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-
-    }
-
-    private void init_mData_part9() {
-
-        mData_part9 = new ArrayList<>();
-
-        mData_part9.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part9.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part9.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part9.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part9.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part9.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-
-    }
-
-    private void init_mData_part10() {
-
-        mData_part10 = new ArrayList<>();
-
-        mData_part10.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part10.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part10.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part10.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part10.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part10.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-
-    }
-
-    private void init_mData_part11() {
-
-        mData_part11 = new ArrayList<>();
-
-        mData_part11.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part11.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part11.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part11.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part11.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part11.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-
-    }
-
-    private void init_mData_part12() {
-
-        mData_part12 = new ArrayList<>();
-
-        mData_part12.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part12.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part12.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part12.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part12.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-        mData_part12.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
-
-    }
-
-    private void init_mData_part13() {
-
-        mData_part13 = new ArrayList<>();
-
-        mData_part13.add(new Recipe(R.drawable.ic_launcher_background, "Strawberry Season"));
-        mData_part13.add(new Recipe(R.drawable.ic_launcher_background, "Breakfast"));
-        mData_part13.add(new Recipe(R.drawable.ic_launcher_background, "BBQ"));
-        mData_part13.add(new Recipe(R.drawable.ic_launcher_background, "Asparagus"));
-        mData_part13.add(new Recipe(R.drawable.ic_launcher_background, "Vegan"));
-        mData_part13.add(new Recipe(R.drawable.ic_launcher_background, "Recipes for Spring"));
-        mData_part13.add(new Recipe(R.drawable.ic_launcher_background, "One-Pot"));
-
-    }
 
     public void setUpDataAndCreateDataToFirebase() {
 
@@ -1235,8 +1195,8 @@ public class MainActivity extends AppCompatActivity {
         String author_description = "";
         String url_image_author = "null";
 
-        String likeAmount = "11,6k";
-        String ratingAmount = "51";
+        Long likeAmount = 11200L;
+        Long ratingAmount = 51L;
 
         String difficulty_Level_Recipe = "Easy ";
 
@@ -1314,23 +1274,23 @@ public class MainActivity extends AppCompatActivity {
 //        tags.put("spices", true);
 //        tags.put("lactose free", true);
 
-        Recipe recipe = new Recipe(
-                name_cooking_recipe,
-                url_image_CookingRecipe,
-                name_author,
-                name_authorGroup,
-                contact_author,
-                author_description,
-                url_image_author,
-                likeAmount,
-                ratingAmount,
-                difficulty_Level_Recipe,
-                periodCooking,
-                ingredients,
-                amountOfIngredients,
-                utensils,
-                nutritionPerServing,
-                tags);
+//        Recipe recipe = new Recipe(
+//                name_cooking_recipe,
+//                url_image_CookingRecipe,
+//                name_author,
+//                name_authorGroup,
+//                contact_author,
+//                author_description,
+//                url_image_author,
+//                likeAmount,
+//                ratingAmount,
+//                difficulty_Level_Recipe,
+//                periodCooking,
+//                ingredients,
+//                amountOfIngredients,
+//                utensils,
+//                nutritionPerServing,
+//                tags);
 
 
 //        firebaseFirestore.collection("Recipe").document("Recipe26")

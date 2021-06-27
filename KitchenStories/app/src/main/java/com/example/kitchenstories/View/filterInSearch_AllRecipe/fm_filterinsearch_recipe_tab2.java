@@ -1,4 +1,4 @@
-package com.example.kitchenstories.View.Fragment;
+package com.example.kitchenstories.View.filterInSearch_AllRecipe;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,10 +27,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fm_filterinsearch_recipe_tab1#newInstance} factory method to
+ * Use the {@link fm_filterinsearch_recipe_tab2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fm_filterinsearch_recipe_tab1 extends Fragment {
+public class fm_filterinsearch_recipe_tab2 extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,7 +41,7 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public fm_filterinsearch_recipe_tab1() {
+    public fm_filterinsearch_recipe_tab2() {
         // Required empty public constructor
     }
 
@@ -51,11 +51,11 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment fm_filterinsearch_recipe_tab1.
+     * @return A new instance of fragment fm_filterinsearch_recipe_tab2.
      */
     // TODO: Rename and change types and number of parameters
-    public static fm_filterinsearch_recipe_tab1 newInstance(String param1, String param2) {
-        fm_filterinsearch_recipe_tab1 fragment = new fm_filterinsearch_recipe_tab1();
+    public static fm_filterinsearch_recipe_tab2 newInstance(String param1, String param2) {
+        fm_filterinsearch_recipe_tab2 fragment = new fm_filterinsearch_recipe_tab2();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -81,32 +81,31 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
     private String keysearch;
 
-    private View image_error_fm_filterinsearchAllRecipe_tab1;
-    private TextView tv1_error_fm_filterinsearchAllRecipe_tab1;
-    private TextView tv2_error_fm_filterinsearchAllRecipe_tab1;
-
+    private View image_error_fm_filterinsearchAllRecipe_tab2;
+    private TextView tv1_error_fm_filterinsearchAllRecipe_tab2;
+    private TextView tv2_error_fm_filterinsearchAllRecipe_tab2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_fm_filterinsearch_recipe_tab1, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_fm_filterinsearch_recipe_tab2, container, false);
 
         //findByIdForComponents(view);
-        image_error_fm_filterinsearchAllRecipe_tab1 = view.findViewById(R.id.image_error_fm_filterinsearchAllRecipe_tab1);
-        tv1_error_fm_filterinsearchAllRecipe_tab1 = view.findViewById(R.id.tv1_error_fm_filterinsearchAllRecipe_tab1);
-        tv2_error_fm_filterinsearchAllRecipe_tab1 = view.findViewById(R.id.tv2_error_fm_filterinsearchAllRecipe_tab1);
+        image_error_fm_filterinsearchAllRecipe_tab2 = view.findViewById(R.id.image_error_fm_filterinsearchAllRecipe_tab2);
+        tv1_error_fm_filterinsearchAllRecipe_tab2 = view.findViewById(R.id.tv1_error_fm_filterinsearchAllRecipe_tab2);
+        tv2_error_fm_filterinsearchAllRecipe_tab2 = view.findViewById(R.id.tv2_error_fm_filterinsearchAllRecipe_tab2);
 
-        image_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.GONE);
-        tv1_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.GONE);
-        tv2_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.GONE);
+        image_error_fm_filterinsearchAllRecipe_tab2.setVisibility(View.GONE);
+        tv1_error_fm_filterinsearchAllRecipe_tab2.setVisibility(View.GONE);
+        tv2_error_fm_filterinsearchAllRecipe_tab2.setVisibility(View.GONE);
 
-
-        recyclerView = view.findViewById(R.id.recycleview_FilterInSearach_tab1);
+        recyclerView = view.findViewById(R.id.recycleview_FilterInSearach_tab2);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
+
         keysearch = getArguments().getString("KEYSEARCH_FOR_FRAGMENT_ALLRECIPE");
+
 
 
         if(keysearch.isEmpty()){
@@ -139,18 +138,16 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
                     if(queryDocumentSnapshots.isEmpty()){
 
-                        image_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.VISIBLE);
-                        tv1_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.VISIBLE);
-                        tv2_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.VISIBLE);
+                        image_error_fm_filterinsearchAllRecipe_tab2.setVisibility(View.VISIBLE);
+                        tv1_error_fm_filterinsearchAllRecipe_tab2.setVisibility(View.VISIBLE);
+                        tv2_error_fm_filterinsearchAllRecipe_tab2.setVisibility(View.VISIBLE);
                     }
                 }
             });
 
-
             FirestoreRecyclerOptions<Recipe> options = new FirestoreRecyclerOptions.Builder<Recipe>()
                     .setQuery(query, Recipe.class)
                     .build();
-
 
             adapter_optionFireStore = new RecyclerViewAdapter_OptionFireStore(getContext(), options, new RecyclerViewAdapter_OptionFireStore.OnItemClickListener() {
                 @Override
@@ -163,9 +160,6 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
             recyclerView.setAdapter(adapter_optionFireStore);
         }
-
-
-
 
 
         return view;
@@ -182,19 +176,4 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
         super.onStop();
         adapter_optionFireStore.stopListening();
     }
-
-//    private void findByIdForComponents(View view){
-//
-//        image_error_fm_filterinsearchAllRecipe_tab1 = view.findViewById(R.id.image_error_fm_filterinsearchAllRecipe_tab1);
-//        tv1_error_fm_filterinsearchAllRecipe_tab1 = view.findViewById(R.id.tv1_error_fm_filterinsearchAllRecipe_tab1);
-//        tv2_error_fm_filterinsearchAllRecipe_tab1 = view.findViewById(R.id.tv2_error_fm_filterinsearchAllRecipe_tab1);
-//
-//        image_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.GONE);
-//        tv1_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.GONE);
-//        tv1_error_fm_filterinsearchAllRecipe_tab1.setVisibility(View.GONE);
-//    }
-
-
-
-
 }

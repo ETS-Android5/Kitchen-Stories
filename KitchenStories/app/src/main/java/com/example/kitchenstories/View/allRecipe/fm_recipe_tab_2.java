@@ -1,4 +1,4 @@
-package com.example.kitchenstories.View.Fragment;
+package com.example.kitchenstories.View.allRecipe;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,10 +24,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fm_recipe_tab_1#newInstance} factory method to
+ * Use the {@link fm_recipe_tab_2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fm_recipe_tab_1 extends Fragment {
+public class fm_recipe_tab_2 extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,7 +38,7 @@ public class fm_recipe_tab_1 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public fm_recipe_tab_1() {
+    public fm_recipe_tab_2() {
         // Required empty public constructor
     }
 
@@ -48,11 +48,11 @@ public class fm_recipe_tab_1 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment fm_recipe_tab_1.
+     * @return A new instance of fragment fm_recipe_tab_2.
      */
     // TODO: Rename and change types and number of parameters
-    public static fm_recipe_tab_1 newInstance(String param1, String param2) {
-        fm_recipe_tab_1 fragment = new fm_recipe_tab_1();
+    public static fm_recipe_tab_2 newInstance(String param1, String param2) {
+        fm_recipe_tab_2 fragment = new fm_recipe_tab_2();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,21 +67,21 @@ public class fm_recipe_tab_1 extends Fragment {
 
     RecyclerViewAdapter_OptionFireStore adapter_optionFireStore;
 
-    private String keysearch;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_fm_recipe_tab_1, container, false);
+        View view = inflater.inflate(R.layout.fragment_fm_recipe_tab_2, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_fm_recipe_tab_1, container, false);
 
-        recyclerView = view.findViewById(R.id.recipe_recycleview_tab1);
+
+        recyclerView = view.findViewById(R.id.recipe_recycleview_tab2);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
-//        keysearch = getArguments().getString("KEYSEARCH_FOR_FRAGMENT_ALLRECIPE");
-//        Log.d("TEST", keysearch);
+//        //initData();
+//        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), mData);
+//
+//        recyclerView.setAdapter(adapter);
 
         Query query = firebaseFirestore.collection("Recipe");
 
@@ -92,6 +92,9 @@ public class fm_recipe_tab_1 extends Fragment {
         adapter_optionFireStore = new RecyclerViewAdapter_OptionFireStore(getContext(), options, new RecyclerViewAdapter_OptionFireStore.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+//                String id = documentSnapshot.getId();
+//                Toast.makeText(getContext(), "id; " + id, Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(getContext(), CookingRecipe.class);
                 intent.putExtra("KeyID_Recipe", documentSnapshot.getId());
                 startActivity(intent);
@@ -99,8 +102,6 @@ public class fm_recipe_tab_1 extends Fragment {
         });
 
         recyclerView.setAdapter(adapter_optionFireStore);
-
-
 
 
         return view;
@@ -124,7 +125,8 @@ public class fm_recipe_tab_1 extends Fragment {
 
     }
 
-//    private void initData(){
+
+    //    public void initData(){
 //
 //        mData = new ArrayList<>();
 //
@@ -146,6 +148,4 @@ public class fm_recipe_tab_1 extends Fragment {
 //        mData.add(new Recipe(R.drawable.ic_launcher_background, "Make easy Neapolitan-style pizza with lisa", R.drawable.ic_launcher_background, "Thang Tran", "Kitchen Stories"));
 //
 //    }
-
-
 }

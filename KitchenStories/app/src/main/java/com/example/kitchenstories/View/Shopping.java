@@ -14,14 +14,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.kitchenstories.Model.DBHelper;
 import com.example.kitchenstories.Model.Shopping.RecipeForShopping;
 import com.example.kitchenstories.R;
-import com.example.kitchenstories.View.Create;
-import com.example.kitchenstories.View.MainActivity;
-import com.example.kitchenstories.View.Profile;
-import com.example.kitchenstories.View.Search;
+import com.example.kitchenstories.View.profile.Profile;
 import com.example.kitchenstories.ViewModel.ShoppingActivity.ShoppingAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -33,10 +32,28 @@ public class Shopping extends AppCompatActivity {
     private RecyclerView rcvShopping;
     private DBHelper dbHelper;
     List<RecipeForShopping> recipeForShoppingList ;
+
+    TextView txt_ShoppingList;
+    ImageView image1_ShoppingActivity;
+    View image2_ShoppingActivity;
+    TextView tv1_ShoppingActivity;
+    TextView tv2_ShoppingActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping);
+
+        txt_ShoppingList = findViewById(R.id.txt_ShoppingList);
+        image1_ShoppingActivity = findViewById(R.id.image1_ShoppingActivity);
+        image2_ShoppingActivity = findViewById(R.id.image2_ShoppingActivity);
+        tv1_ShoppingActivity = findViewById(R.id.tv1_ShoppingActivity);
+        tv2_ShoppingActivity = findViewById(R.id.tv2_ShoppingActivity);
+
+        image1_ShoppingActivity.setVisibility(View.GONE);
+        image2_ShoppingActivity.setVisibility(View.GONE);
+        tv1_ShoppingActivity.setVisibility(View.GONE);
+        tv2_ShoppingActivity.setVisibility(View.GONE);
 
         dbHelper = new DBHelper(this);
         LoadDataRcv();
@@ -56,17 +73,17 @@ public class Shopping extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.today:
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         return true;
 
                     case R.id.search:
                         startActivity(new Intent(getApplicationContext(), Search.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         return true;
 
                     case R.id.create:
                         startActivity(new Intent(getApplicationContext(), Create.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         return true;
 
                     case R.id.shopping:
@@ -74,7 +91,7 @@ public class Shopping extends AppCompatActivity {
 
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(), Profile.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         return true;
                 }
 
@@ -131,13 +148,25 @@ public class Shopping extends AppCompatActivity {
 
         recipeForShoppingList = new ArrayList<>();
         getShoppingList();
+
+        if (recipeForShoppingList == null){
+
+            image1_ShoppingActivity.setVisibility(View.VISIBLE);
+            image2_ShoppingActivity.setVisibility(View.VISIBLE);
+            tv1_ShoppingActivity.setVisibility(View.VISIBLE);
+            tv2_ShoppingActivity.setVisibility(View.VISIBLE);
+
+        }
+
         if(recipeForShoppingList != null){
+
             ShoppingAdapter adapter = new ShoppingAdapter(this,recipeForShoppingList);
             rcvShopping.setAdapter(adapter);
 
             RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
             rcvShopping.addItemDecoration(itemDecoration);
         }
+
 
     }
 

@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.Fragment.fm_filterinsearch_recipe_tab2">
+    tools:context=".View.filterInSearch_AllRecipe.fm_filterinsearch_recipe_tab2">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recycleview_FilterInSearach_tab2"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="50dp"/>
 
     <View
         android:id="@+id/image_error_fm_filterinsearchAllRecipe_tab2"

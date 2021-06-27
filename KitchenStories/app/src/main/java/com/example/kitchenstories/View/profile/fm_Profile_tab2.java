@@ -1,4 +1,4 @@
-package com.example.kitchenstories.View.Fragment;
+package com.example.kitchenstories.View.profile;
 
 import android.os.Bundle;
 

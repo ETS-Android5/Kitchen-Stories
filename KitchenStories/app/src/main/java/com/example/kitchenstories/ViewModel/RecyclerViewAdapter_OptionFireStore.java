@@ -77,7 +77,7 @@ public class RecyclerViewAdapter_OptionFireStore extends FirestoreRecyclerAdapte
 
         holder.tv_periodCooking_itemRecipe.setText(String.valueOf(countPeriodTime) + " mins.");
 
-        holder.btn_likeAmount_itemRecipe.setText(model.getLikeAmount());
+        holder.btn_likeAmount_itemRecipe.setText(model.getLikeAmount().toString());
 
 
         // set btn selected
@@ -256,11 +256,11 @@ public class RecyclerViewAdapter_OptionFireStore extends FirestoreRecyclerAdapte
 
                         Recipe recipe = documentSnapshot.toObject(Recipe.class);
 
-                        int likeInt = Integer.valueOf(recipe.getLikeAmount());
+                        Long likeInt = recipe.getLikeAmount();
 
                         likeInt = likeInt + 1;
 
-                        recipe.setLikeAmount(String.valueOf(likeInt));
+                        recipe.setLikeAmount(likeInt);
 
                         // set again;
                         firebaseFirestore.collection("Recipe").document(recipeID).set(recipe);
@@ -280,11 +280,11 @@ public class RecyclerViewAdapter_OptionFireStore extends FirestoreRecyclerAdapte
 
                         Recipe recipe = documentSnapshot.toObject(Recipe.class);
 
-                        int likeInt = Integer.valueOf(recipe.getLikeAmount());
+                        Long likeInt = recipe.getLikeAmount();
 
                         likeInt = likeInt - 1;
 
-                        recipe.setLikeAmount(String.valueOf(likeInt));
+                        recipe.setLikeAmount(likeInt);
 
                         // set again;
                         firebaseFirestore.collection("Recipe").document(recipeID).set(recipe);
@@ -308,7 +308,7 @@ public class RecyclerViewAdapter_OptionFireStore extends FirestoreRecyclerAdapte
                         String name_author = recipe.getName_author();
                         String name_authorGroup = recipe.getName_authorGroup();
                         String url_image_author = recipe.getUrl_image_author();
-                        String likeAmount = recipe.getLikeAmount();
+                        Long likeAmount = recipe.getLikeAmount();
                         ArrayList<String> periodCooking = recipe.getPeriodCooking();
 
                         Recipe recipeToAdd = new Recipe(name_cooking_recipe,
