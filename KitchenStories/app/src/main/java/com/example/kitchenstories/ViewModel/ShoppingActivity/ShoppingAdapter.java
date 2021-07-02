@@ -71,8 +71,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.ViewHo
             public void onClick(View v) {
                 shoppingList.remove(position);
                 dbHelper.deleteShopping(recipe.getId());
-                Intent intent = new Intent(context, Shopping.class);
-                context.startActivity(intent);
+                notifyDataSetChanged();
             }
         });
     }

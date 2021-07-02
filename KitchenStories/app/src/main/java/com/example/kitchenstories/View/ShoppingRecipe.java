@@ -85,6 +85,7 @@ public class ShoppingRecipe extends AppCompatActivity {
         rcvIngredient.setLayoutManager(linearLayoutManager);
 
         adapter = new IngredientAdapter(this,GetListIngre());
+
         rcvIngredient.setAdapter(adapter);
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);

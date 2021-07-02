@@ -20,10 +20,12 @@
 
     <color name="Yellow50">#FFFDE7</color>
     <color name="Yellow100">#FFF9C4</color>
+    <color name="DeepOrange50">#FBE9E7</color>
 
     <color name="Amber50">#FFF8E1</color>
 
     <color name="orange50">#FFF3E0</color>
+    <color name="orange200">#FFCC80</color>
 
     <color name="Gray50">#FAFAFA</color>
     <color name="Gray100">#F5F5F5</color>

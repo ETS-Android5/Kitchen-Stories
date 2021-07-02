@@ -166,8 +166,6 @@ public class Shopping extends AppCompatActivity {
             RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
             rcvShopping.addItemDecoration(itemDecoration);
         }
-
-
     }
 
 }

@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_item_ingredent_Cooking_Recipe"
         android:text="Hello"
-        android:textSize="17sp"
+        android:textSize="19sp"
         android:fontFamily="@font/source_sans_pro_regular"
         android:textColor="@color/black"/>
 

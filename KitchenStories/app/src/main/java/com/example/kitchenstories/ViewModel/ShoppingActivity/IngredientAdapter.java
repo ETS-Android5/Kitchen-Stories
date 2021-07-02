@@ -57,16 +57,30 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
             @Override
             public void onClick(View v) {
                 if(ingreList.get(position).getStatus() == 0){
+                    IngredientShopping ingredientShopping = new IngredientShopping(ingre.getId(),
+                            ingre.getIdShopping(),
+                            ingre.getNameIngre(),
+                            ingre.getAmountIngre(),
+                            1);
                     dbHelper.updateStatusIngre(ingre.getId(),1);
-                    holder.cb_status.setChecked(true);
+                    ingreList.set(position,ingredientShopping);
+                    notifyDataSetChanged();
                 }
-                if (ingreList.get(position).getStatus() == 1) {
+                else{
+                    IngredientShopping ingredientShopping = new IngredientShopping(ingre.getId(),
+                            ingre.getIdShopping(),
+                            ingre.getNameIngre(),
+                            ingre.getAmountIngre(),
+                            0);
+                    ingreList.set(position,ingredientShopping);
                     dbHelper.updateStatusIngre(ingre.getId(), 0);
-                    holder.cb_status.setChecked(false);
+                    notifyDataSetChanged();
                 }
             }
         });
     }
+
+
 
     @Override
     public int getItemCount() {

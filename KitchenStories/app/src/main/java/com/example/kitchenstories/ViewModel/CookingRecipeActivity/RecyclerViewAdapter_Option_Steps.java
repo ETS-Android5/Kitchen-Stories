@@ -42,7 +42,6 @@ public class RecyclerViewAdapter_Option_Steps extends FirestoreRecyclerAdapter<S
                 .load(model.getUrl_image())
                 .into(holder.image_Steps_CookingRecipe_Activity);
 
-
     }
 
     @NonNull

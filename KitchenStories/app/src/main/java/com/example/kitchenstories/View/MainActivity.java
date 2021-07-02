@@ -1266,35 +1266,35 @@ public class MainActivity extends AppCompatActivity {
         tags.put("brunch", true);
         tags.put("spices", true);
         tags.put("gluten free", true);
-//        tags.put("crustacean and shellfish", true);
-//        tags.put("Asian", true);
-//        tags.put("soup", true);
-//        tags.put("spicy", true);
-//        tags.put("weeknight diner", true);
-//        tags.put("spices", true);
-//        tags.put("lactose free", true);
+        tags.put("crustacean and shellfish", true);
+        tags.put("Asian", true);
+        tags.put("soup", true);
+        tags.put("spicy", true);
+        tags.put("weeknight diner", true);
+        tags.put("spices", true);
+        tags.put("lactose free", true);
 
-//        Recipe recipe = new Recipe(
-//                name_cooking_recipe,
-//                url_image_CookingRecipe,
-//                name_author,
-//                name_authorGroup,
-//                contact_author,
-//                author_description,
-//                url_image_author,
-//                likeAmount,
-//                ratingAmount,
-//                difficulty_Level_Recipe,
-//                periodCooking,
-//                ingredients,
-//                amountOfIngredients,
-//                utensils,
-//                nutritionPerServing,
-//                tags);
+       // Recipe recipe = new Recipe(
+/*                name_cooking_recipe,
+                url_image_CookingRecipe,
+                name_author,
+                name_authorGroup,
+                contact_author,
+                author_description,
+                url_image_author,
+                likeAmount,
+                ratingAmount,
+                difficulty_Level_Recipe,
+                periodCooking,
+                ingredients,
+                amountOfIngredients,
+                utensils,
+                nutritionPerServing,
+                tags);*/
 
 
-//        firebaseFirestore.collection("Recipe").document("Recipe26")
-//                .set(recipe);
+/*       firebaseFirestore.collection("Recipe").document("Recipe26")
+               .set(recipe);*/
 
 
         // add steps
