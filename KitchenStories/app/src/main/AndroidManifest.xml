@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.CreateRecipe.AddNewStep"></activity>
-        <activity android:name=".View.CreateRecipe.CreateStep" />
+        <activity android:name=".View.createRecipe.AddNewStep"></activity>
+        <activity android:name=".View.createRecipe.CreateStep" />
         <activity android:name=".View.ShoppingRecipe" />
         <activity
             android:name=".View.SplashScreen"
@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.filterInSearch_AllRecipe.FilterInSearchAllRecipe" />
+        <activity android:name=".View.pk_filterInSearch_AllRecipe.FilterInSearchAllRecipe" />
         <activity android:name=".View.MainLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,10 +55,10 @@
         <activity android:name=".View.FilterInSearch" />
         <activity android:name=".View.Filter_Recipe" />
         <activity android:name=".View.CookingRecipe" />
-        <activity android:name=".View.allRecipe.All_recipes" />
+        <activity android:name=".View.pk_allRecipe.All_recipes" />
         <activity android:name=".View.Shopping" />
         <activity android:name=".View.Create" />
-        <activity android:name=".View.profile.Profile" />
+        <activity android:name=".View.pk_profile.Profile" />
         <activity android:name=".View.Search" />
         <activity android:name=".View.MainActivity" />
     </application>

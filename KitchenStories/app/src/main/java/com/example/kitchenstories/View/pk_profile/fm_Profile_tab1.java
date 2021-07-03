@@ -1,4 +1,4 @@
-package com.example.kitchenstories.View.profile;
+package com.example.kitchenstories.View.pk_profile;
 
 import android.os.Bundle;
 

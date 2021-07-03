@@ -1,4 +1,4 @@
-package com.example.kitchenstories.Model.Recipe;
+package com.example.kitchenstories.Model.recipe;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -17,6 +17,8 @@ public class Recipe {
 
     private Long likeAmount;
     private Long ratingAmount;
+    private Long preparationTimeSort;
+    private Long caloriesSort;
 
     private String difficulty_Level_Recipe;
     private ArrayList<String> periodCooking;
@@ -47,6 +49,8 @@ public class Recipe {
                   String url_image_author,
                   Long likeAmount,
                   Long ratingAmount,
+                  Long preparationTimeSort,
+                  Long caloriesSort,
                   String difficulty_Level_Recipe,
                   ArrayList<String> periodCooking,
                   ArrayList<String> ingredients,
@@ -64,6 +68,8 @@ public class Recipe {
         this.url_image_author = url_image_author;
         this.likeAmount = likeAmount;
         this.ratingAmount = ratingAmount;
+        this.preparationTimeSort = preparationTimeSort;
+        this.caloriesSort = caloriesSort;
         this.difficulty_Level_Recipe = difficulty_Level_Recipe;
         this.periodCooking = periodCooking;
         this.ingredients = ingredients;
@@ -229,6 +235,22 @@ public class Recipe {
 
     public void setTagsSort(ArrayList<String> tagsSort) {
         this.tagsSort = tagsSort;
+    }
+
+    public Long getPreparationTimeSort() {
+        return preparationTimeSort;
+    }
+
+    public void setPreparationTimeSort(Long preparationTimeSort) {
+        this.preparationTimeSort = preparationTimeSort;
+    }
+
+    public Long getCaloriesSort() {
+        return caloriesSort;
+    }
+
+    public void setCaloriesSort(Long caloriesSort) {
+        this.caloriesSort = caloriesSort;
     }
 }
 

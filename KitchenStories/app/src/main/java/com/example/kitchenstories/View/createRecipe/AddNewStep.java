@@ -1,9 +1,7 @@
-package com.example.kitchenstories.View.CreateRecipe;
+package com.example.kitchenstories.View.createRecipe;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.ContentResolver;
@@ -21,17 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.kitchenstories.Model.Recipe.Recipe;
-import com.example.kitchenstories.Model.Recipe.StepsForRecipe;
+import com.example.kitchenstories.Model.recipe.StepsForRecipe;
 import com.example.kitchenstories.R;
-import com.example.kitchenstories.View.Create;
 import com.example.kitchenstories.ViewModel.CookingRecipeActivity.RecyclerViewAdapter_Ingredient_CookingRecipe;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;

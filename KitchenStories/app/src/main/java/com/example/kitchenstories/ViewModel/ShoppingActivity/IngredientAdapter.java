@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kitchenstories.Model.DBHelper;
-import com.example.kitchenstories.Model.Shopping.IngredientShopping;
+import com.example.kitchenstories.Model.shopping.IngredientShopping;
 import com.example.kitchenstories.R;
 
 import java.util.List;

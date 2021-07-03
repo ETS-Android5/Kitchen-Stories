@@ -15,9 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.example.kitchenstories.Model.DBHelper;
-import com.example.kitchenstories.Model.Shopping.RecipeForShopping;
+import com.example.kitchenstories.Model.shopping.RecipeForShopping;
 import com.example.kitchenstories.R;
-import com.example.kitchenstories.View.Shopping;
 import com.example.kitchenstories.View.ShoppingRecipe;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.kitchenstories.View.profile;
+package com.example.kitchenstories.View.pk_profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.kitchenstories.Model.Recipe.Recipe;
+import com.example.kitchenstories.Model.recipe.Recipe;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.View.CookingRecipe;
 import com.example.kitchenstories.ViewModel.RecyclerViewAdapter_OptionFireStore;
@@ -28,10 +28,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fm_Profile_tab2#newInstance} factory method to
+ * Use the {@link fm_Profile_tab3#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fm_Profile_tab2 extends Fragment {
+public class fm_Profile_tab3 extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,7 +42,7 @@ public class fm_Profile_tab2 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public fm_Profile_tab2() {
+    public fm_Profile_tab3() {
         // Required empty public constructor
     }
 
@@ -52,11 +52,11 @@ public class fm_Profile_tab2 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment fm_Profile_tab2.
+     * @return A new instance of fragment fm_Profile_tab3.
      */
     // TODO: Rename and change types and number of parameters
-    public static fm_Profile_tab2 newInstance(String param1, String param2) {
-        fm_Profile_tab2 fragment = new fm_Profile_tab2();
+    public static fm_Profile_tab3 newInstance(String param1, String param2) {
+        fm_Profile_tab3 fragment = new fm_Profile_tab3();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,53 +73,57 @@ public class fm_Profile_tab2 extends Fragment {
         }
     }
 
-    RecyclerView recyclerView_tab2_ProfileActivity;
+    RecyclerView recyclerView_tab3_ProfileActivity;
     RecyclerViewAdapter_OptionFireStore adapterOptionFireStore;
 
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
-    ImageView image1_Tab2_ProfileActivity;
-    View image2_Tab2_ProfileActivity;
-    TextView tv1_Tab2_ProfileActivity;
-    TextView tv2_Tab2_ProfileActivity;
+    ImageView image1_Tab3_ProfileActivity;
+    View image2_Tab3_ProfileActivity;
+    TextView tv1_Tab3_ProfileActivity;
+    TextView tv2_Tab3_ProfileActivity;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_fm__profile_tab2, container, false);
+        View view = inflater.inflate(R.layout.fragment_fm__profile_tab3, container, false);
 
-        image1_Tab2_ProfileActivity = view.findViewById(R.id.image1_Tab2_ProfileActivity);
-        image2_Tab2_ProfileActivity = view.findViewById(R.id.image2_Tab2_ProfileActivity);
-        tv1_Tab2_ProfileActivity = view.findViewById(R.id.tv1_Tab2_ProfileActivity);
-        tv2_Tab2_ProfileActivity = view.findViewById(R.id.tv2_Tab2_ProfileActivity);
+        image1_Tab3_ProfileActivity = view.findViewById(R.id.image1_Tab3_ProfileActivity);
+        image2_Tab3_ProfileActivity = view.findViewById(R.id.image2_Tab3_ProfileActivity);
+        tv1_Tab3_ProfileActivity = view.findViewById(R.id.tv1_Tab3_ProfileActivity);
+        tv2_Tab3_ProfileActivity = view.findViewById(R.id.tv2_Tab3_ProfileActivity);
 
-        image1_Tab2_ProfileActivity.setVisibility(View.GONE);
-        image2_Tab2_ProfileActivity.setVisibility(View.GONE);
-        tv1_Tab2_ProfileActivity.setVisibility(View.GONE);
-        tv2_Tab2_ProfileActivity.setVisibility(View.GONE);
+        image1_Tab3_ProfileActivity.setVisibility(View.GONE);
+        image2_Tab3_ProfileActivity.setVisibility(View.GONE);
+        tv1_Tab3_ProfileActivity.setVisibility(View.GONE);
+        tv2_Tab3_ProfileActivity.setVisibility(View.GONE);
+
 
         // get data
         firebaseUser = firebaseAuth.getCurrentUser();
         String currentUser = firebaseUser.getEmail();
 
-        recyclerView_tab2_ProfileActivity = view.findViewById(R.id.recyclerView_tab2_ProfileActivity);
-        recyclerView_tab2_ProfileActivity.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerView_tab3_ProfileActivity = view.findViewById(R.id.recyclerView_tab3_ProfileActivity);
+        recyclerView_tab3_ProfileActivity.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
 
-        Query query = firebaseFirestore.collection("Recipe").whereEqualTo("contact_author",firebaseAuth.getUid());
+        Query query = firebaseFirestore.collection("User").document(currentUser)
+                .collection("RecipeLiked");
+
 
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if (queryDocumentSnapshots.isEmpty()) {
 
-                    image1_Tab2_ProfileActivity.setVisibility(View.VISIBLE);
-                    image2_Tab2_ProfileActivity.setVisibility(View.VISIBLE);
-                    tv1_Tab2_ProfileActivity.setVisibility(View.VISIBLE);
-                    tv2_Tab2_ProfileActivity.setVisibility(View.VISIBLE);
+                    image1_Tab3_ProfileActivity.setVisibility(View.VISIBLE);
+                    image2_Tab3_ProfileActivity.setVisibility(View.VISIBLE);
+                    tv1_Tab3_ProfileActivity.setVisibility(View.VISIBLE);
+                    tv2_Tab3_ProfileActivity.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -137,9 +141,12 @@ public class fm_Profile_tab2 extends Fragment {
             }
         });
 
-        recyclerView_tab2_ProfileActivity.setAdapter(adapterOptionFireStore);
+        recyclerView_tab3_ProfileActivity.setAdapter(adapterOptionFireStore);
+
+
         return view;
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -151,5 +158,10 @@ public class fm_Profile_tab2 extends Fragment {
         super.onStop();
         adapterOptionFireStore.stopListening();
     }
+
+    public void findByIdForComponents() {
+
+    }
+
 
 }

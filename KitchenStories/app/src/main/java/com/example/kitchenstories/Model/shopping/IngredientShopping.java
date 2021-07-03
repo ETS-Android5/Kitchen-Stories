@@ -1,4 +1,4 @@
-package com.example.kitchenstories.Model.Shopping;
+package com.example.kitchenstories.Model.shopping;
 
 public class IngredientShopping {
     private int id;

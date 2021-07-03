@@ -21,7 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.kitchenstories.R;
-import com.example.kitchenstories.View.filterInSearch_AllRecipe.FilterInSearchAllRecipe;
+import com.example.kitchenstories.View.pk_filterInSearch_AllRecipe.FilterInSearchAllRecipe;
 
 import java.util.ArrayList;
 

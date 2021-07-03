@@ -22,9 +22,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.kitchenstories.R;
-import com.example.kitchenstories.View.allRecipe.All_recipes;
-import com.example.kitchenstories.View.filterInSearch_AllRecipe.FilterInSearchAllRecipe;
-import com.example.kitchenstories.View.profile.Profile;
+import com.example.kitchenstories.View.pk_allRecipe.All_recipes;
+import com.example.kitchenstories.View.pk_filterInSearch_AllRecipe.FilterInSearchAllRecipe;
+import com.example.kitchenstories.View.pk_profile.Profile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Search extends AppCompatActivity {

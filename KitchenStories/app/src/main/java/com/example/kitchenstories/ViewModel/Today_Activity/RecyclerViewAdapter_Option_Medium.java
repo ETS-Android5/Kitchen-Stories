@@ -1,7 +1,6 @@
 package com.example.kitchenstories.ViewModel.Today_Activity;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,26 +12,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.kitchenstories.Model.Recipe.Likes;
-import com.example.kitchenstories.Model.Recipe.Recipe;
+import com.example.kitchenstories.Model.recipe.Likes;
+import com.example.kitchenstories.Model.recipe.Recipe;
 import com.example.kitchenstories.Model.User;
 import com.example.kitchenstories.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 
 public class RecyclerViewAdapter_Option_Medium extends FirestoreRecyclerAdapter<Recipe, RecyclerViewAdapter_Option_Medium.MyViewHolder> {

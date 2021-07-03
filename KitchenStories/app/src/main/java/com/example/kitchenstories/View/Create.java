@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,15 +23,18 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.kitchenstories.Model.Recipe.Recipe;
-import com.example.kitchenstories.Model.Recipe.StepsForRecipe;
+import com.example.kitchenstories.Model.recipe.Recipe;
 import com.example.kitchenstories.R;
-import com.example.kitchenstories.View.CreateRecipe.CreateStep;
+import com.example.kitchenstories.View.createRecipe.CreateStep;
+import com.example.kitchenstories.View.pk_allRecipe.All_recipes;
 import com.example.kitchenstories.ViewModel.CookingRecipeActivity.RecyclerViewAdapter_Ingredient_CookingRecipe;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,6 +62,8 @@ public class Create extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     private static final int Pick_Image_Request = 1;
+
+    private Toolbar toolbar;
 
     private EditText editText_nameRecipe;
 
@@ -104,6 +108,7 @@ public class Create extends AppCompatActivity {
 
     private StorageTask<UploadTask.TaskSnapshot> mUploadTask;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,47 +117,23 @@ public class Create extends AppCompatActivity {
         //
         transparentStatusAndNavigation();
 
+        Window window = Create.this.getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(ContextCompat.getColor(Create.this, R.color.Gray50));
+
+
         // FIND VIEW BY ID
         findByIdForComponents();
 
-
-        //
-        /*BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        bottomNavigationView.setSelectedItemId(R.id.create);
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        // Navigation Icon is Clicked
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch (item.getItemId()){
-                    case R.id.today:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                        return true;
-
-                    case R.id.search:
-                        startActivity(new Intent(getApplicationContext(), Search.class));
-                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                        return true;
-
-                    case R.id.create:
-                        return true;
-
-                    case R.id.shopping:
-                        startActivity(new Intent(getApplicationContext(), Shopping.class));
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        return true;
-
-                    case R.id.profile:
-                        startActivity(new Intent(getApplicationContext(), Profile.class));
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        return true;
-                }
-
-                return false;
+            public void onClick(View v) {
+                onBackPressed();
             }
-        });*/
+        });
+
 
     }
 
@@ -195,6 +176,8 @@ public class Create extends AppCompatActivity {
 
     public void findByIdForComponents() {
 
+        toolbar = findViewById(R.id.toolbar_Create_Activity);
+
         editText_nameRecipe = findViewById(R.id.editText_nameRecipe);
 
         imageView_recipe = findViewById(R.id.imageView_recipe);
@@ -236,6 +219,9 @@ public class Create extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 difficulty_recipe = "Easy ";
+                button_easy.setBackgroundColor(button_easy.getContext().getResources().getColor(R.color.DeepPurple900));
+                button_medium.setBackgroundColor(button_medium.getContext().getResources().getColor(R.color.Yellow50));
+                button_hard.setBackgroundColor(button_hard.getContext().getResources().getColor(R.color.Yellow50));
             }
         });
 
@@ -243,13 +229,20 @@ public class Create extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 difficulty_recipe = "Medium ";
+                button_medium.setBackgroundColor(button_medium.getContext().getResources().getColor(R.color.DeepPurple900));
+                button_easy.setBackgroundColor(button_easy.getContext().getResources().getColor(R.color.Yellow50));
+                button_hard.setBackgroundColor(button_hard.getContext().getResources().getColor(R.color.Yellow50));
             }
+
         });
 
         button_hard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 difficulty_recipe = "Hard ";
+                button_hard.setBackgroundColor(button_hard.getContext().getResources().getColor(R.color.DeepPurple900));
+                button_easy.setBackgroundColor(button_easy.getContext().getResources().getColor(R.color.Yellow50));
+                button_medium.setBackgroundColor(button_medium.getContext().getResources().getColor(R.color.Yellow50));
             }
         });
 
@@ -539,8 +532,8 @@ public class Create extends AppCompatActivity {
                     String author_description = editText_desRecipe.getText().toString();
                     String url_image_author = firebaseUser.getPhotoUrl().toString();;
 
-                    Long likeAmount = 11200L;
-                    Long ratingAmount = 51L;
+                    Long likeAmount = 0L;
+                    Long ratingAmount = 0L;
 
                     String[] prepTime = editText_prepTime.getText().toString().split(" ");
                     String[] bakingTime = editText_bakingTime.getText().toString().split(" ");
@@ -558,6 +551,13 @@ public class Create extends AppCompatActivity {
                     nutritionPerServing.add(editText_fat.getText().toString()+" g");
                     nutritionPerServing.add(editText_carb.getText().toString()+" g");
 
+                    Long preparationTimeSort = Long.valueOf(periodCooking.get(0))
+                            + Long.valueOf(periodCooking.get(1))
+                            + Long.valueOf(periodCooking.get(2));
+
+                    Long caloriesSort = Long.valueOf(nutritionPerServing.get(0));
+
+
                     Recipe recipe = new Recipe(name_cooking_recipe,
                             url_image_CookingRecipe,
                             name_author,
@@ -567,6 +567,8 @@ public class Create extends AppCompatActivity {
                             url_image_author,
                             likeAmount,
                             ratingAmount,
+                            preparationTimeSort,
+                            caloriesSort,
                             difficulty_recipe,
                             periodCooking,
                             ingredients,
@@ -587,6 +589,7 @@ public class Create extends AppCompatActivity {
 
                     Toast.makeText(Create.this, "Upload successful", Toast.LENGTH_LONG).show();
                 }
+
                 else { Toast.makeText(Create.this, "upload failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
             }

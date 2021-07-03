@@ -15,8 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.kitchenstories.Model.DBHelper;
-import com.example.kitchenstories.Model.Shopping.IngredientShopping;
-import com.example.kitchenstories.Model.Shopping.RecipeForShopping;
+import com.example.kitchenstories.Model.shopping.IngredientShopping;
+import com.example.kitchenstories.Model.shopping.RecipeForShopping;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.ViewModel.ShoppingActivity.IngredientAdapter;
 

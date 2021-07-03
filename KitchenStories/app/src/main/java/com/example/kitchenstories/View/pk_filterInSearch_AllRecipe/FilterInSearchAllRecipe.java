@@ -1,4 +1,4 @@
-package com.example.kitchenstories.View.filterInSearch_AllRecipe;
+package com.example.kitchenstories.View.pk_filterInSearch_AllRecipe;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -21,12 +21,11 @@ import com.example.kitchenstories.R;
 import com.example.kitchenstories.View.Create;
 import com.example.kitchenstories.View.Filter_Recipe;
 import com.example.kitchenstories.View.MainActivity;
-import com.example.kitchenstories.View.profile.Profile;
+import com.example.kitchenstories.View.pk_profile.Profile;
 import com.example.kitchenstories.View.Shopping;
 import com.example.kitchenstories.ViewModel.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 
@@ -121,6 +120,11 @@ public class FilterInSearchAllRecipe extends AppCompatActivity {
 
         Bundle bundle2 = new Bundle();
         bundle2.putString("KEYSEARCH_FOR_FRAGMENT_ALLRECIPE", keysearch);
+        bundle2.putString("sortExtra", sortExtra);
+        bundle2.putString("categoryExtra", categoryExtra);
+        bundle2.putString("dietExtra", dietExtra);
+        bundle2.putString("cuisineExtra", cuisineExtra);
+        bundle2.putStringArrayList("occasionExtra", occasionExtra);
 
         tab1.setArguments(bundle1);
         tab2.setArguments(bundle2);

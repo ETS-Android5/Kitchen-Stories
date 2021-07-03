@@ -1,4 +1,4 @@
-package com.example.kitchenstories.Model.Recipe;
+package com.example.kitchenstories.Model.recipe;
 
 public class StepsForRecipe {
 

@@ -1,4 +1,4 @@
-package com.example.kitchenstories.View.allRecipe;
+package com.example.kitchenstories.View.pk_allRecipe;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -20,7 +20,7 @@ import com.example.kitchenstories.R;
 import com.example.kitchenstories.View.Create;
 import com.example.kitchenstories.View.Filter_Recipe;
 import com.example.kitchenstories.View.MainActivity;
-import com.example.kitchenstories.View.profile.Profile;
+import com.example.kitchenstories.View.pk_profile.Profile;
 import com.example.kitchenstories.View.Shopping;
 import com.example.kitchenstories.ViewModel.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

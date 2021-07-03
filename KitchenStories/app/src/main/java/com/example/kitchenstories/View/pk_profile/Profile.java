@@ -1,4 +1,4 @@
-package com.example.kitchenstories.View.profile;
+package com.example.kitchenstories.View.pk_profile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,7 +69,7 @@ public class Profile extends AppCompatActivity {
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         // add fragment
-        viewPagerAdapter.AddFragment(new fm_Profile_tab1(), "Cookbooks");
+        //viewPagerAdapter.AddFragment(new fm_Profile_tab1(), "Cookbooks");
         viewPagerAdapter.AddFragment(new fm_Profile_tab2(), "Recipes");
         viewPagerAdapter.AddFragment(new fm_Profile_tab3(), "Likes");
 

@@ -6,9 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".View.Create">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_CreateActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_Create_Activity"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/Gray50"
+            android:elevation="4dp"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back"
+            app:navigationIconTint="@color/black"
+            app:title="Create"
+            app:titleMarginStart="110dp"
+            app:titleTextColor="@color/black"
+
+            >
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appbar_CreateActivity">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -20,16 +48,18 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:orientation="vertical">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardView_exhibit_today_activity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     app:cardCornerRadius="7dp"
                     app:cardElevation="7dp"
-                    app:rippleColor="@android:color/transparent"
-                    android:layout_margin="5dp">
+                    app:rippleColor="@android:color/transparent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -40,13 +70,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="We're excited to see your recipe! Let's start with the basics..."
-                            android:fontFamily="@font/source_sans_pro_regular"
-                            android:textSize="17dp"
-                            android:textColor="@color/black"
-                            android:layout_marginTop="5dp"
                             android:layout_marginLeft="5dp"
-                            />
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/source_sans_pro_regular"
+                            android:padding="5dp"
+                            android:text="We're excited to see your recipe! Let's start with the basics..."
+                            android:textColor="@color/black"
+                            android:textSize="17dp" />
 
                     </LinearLayout>
 
@@ -55,138 +85,122 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NAME YOUR RECIPE"
-                    android:fontFamily="@font/source_sans_pro_semi_bold"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
-                    />
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/source_sans_pro_semi_bold"
+                    android:text="NAME YOUR RECIPE"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/editText_nameRecipe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:fontFamily="@font/source_sans_pro_regular"
                     android:hint="E.g. Vietnamese beef noodle soup"
-                    />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/source_sans_pro_semi_bold"
                     android:text="ADD A RECIPE PHOTO"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/source_sans_pro_semi_bold"
-                    android:textSize="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="5dp"
-                    />
+                    android:textSize="20dp" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="420dp"
                     android:layout_height="420dp"
-                    app:cardCornerRadius="15dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
                     android:elevation="2dp"
-                    android:layout_gravity="center">
+                    app:cardCornerRadius="15dp">
 
                     <ImageView
                         android:id="@+id/imageView_recipe"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:src="@drawable/upload"
-                        android:scaleType="centerCrop"/>
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/upload" />
 
                 </com.google.android.material.card.MaterialCardView>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/Gray400" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DESCRIPTION"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/source_sans_pro_semi_bold"
-                    android:textSize="20dp"
+                    android:text="DESCRIPTION"
                     android:textColor="@color/black"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
-                    />
+                    android:textSize="20dp" />
 
                 <EditText
                     android:id="@+id/editText_desRecipe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/source_sans_pro_regular"
                     android:hint="E.g. You should try my recipe"
-                    />
+                    android:textSize="16sp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/Gray400" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DIFFICULTY"
-                    android:fontFamily="@font/source_sans_pro_semi_bold"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
                     android:layout_marginTop="15dp"
-                    android:layout_marginLeft="5dp"
-                    />
+                    android:fontFamily="@font/source_sans_pro_semi_bold"
+                    android:text="DIFFICULTY"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
                     android:layout_marginBottom="10dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/button_easy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/Yellow50"
                         android:drawableRight="@drawable/easy"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
                         android:text="Easy"
-                        android:textSize="11dp"
-                        />
+                        android:textColor="@color/black"
+                        android:textSize="12dp" />
+
                     <Button
                         android:id="@+id/button_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:backgroundTint="@color/Yellow50"
                         android:drawableRight="@drawable/medium"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
                         android:text="MEDIUM"
-                        android:textSize="11dp"
-                        />
+                        android:textColor="@color/black"
+                        android:textSize="12dp" />
+
                     <Button
                         android:id="@+id/button_hard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/Yellow50"
                         android:drawableRight="@drawable/hard"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
                         android:text="HARD"
-                        android:textSize="11dp"
-                        />
+                        android:textColor="@color/black"
+                        android:textSize="12dp" />
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/Gray400" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -195,36 +209,36 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PREP TIME"
-                        android:fontFamily="@font/source_sans_pro_semi_bold"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="15dp"
                         android:layout_marginLeft="5dp"
-                        />
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
+                        android:text="PREP TIME"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
                     <EditText
                         android:id="@+id/editText_prepTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:focusable="false"
                         android:layout_alignParentRight="true"
+                        android:focusable="false"
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
                         android:text="0 min"
-                        android:textColor="@color/black"
-                        />
+                        android:textColor="@color/DeepPurple900"
+                        android:textSize="20dp" />
 
                 </RelativeLayout>
 
                 <TextView
                     android:layout_width="260dp"
                     android:layout_height="wrap_content"
-                    android:text="How much time do you actively spend making the disk?"
-                    android:fontFamily="@font/source_sans_pro_regular"
-                    android:textSize="17dp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
-                    />
+                    android:fontFamily="@font/source_sans_pro_regular"
+                    android:text="How much time do you actively spend making the disk?"
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -240,36 +254,36 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="BAKING TIME"
-                        android:fontFamily="@font/source_sans_pro_semi_bold"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="15dp"
                         android:layout_marginLeft="5dp"
-                        />
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
+                        android:text="BAKING TIME"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
                     <EditText
                         android:id="@+id/editText_bakingTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:focusable="false"
                         android:layout_alignParentRight="true"
+                        android:focusable="false"
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
                         android:text="0 min"
-                        android:textColor="@color/black"
-                        />
+                        android:textColor="@color/DeepPurple900"
+                        android:textSize="20sp" />
 
                 </RelativeLayout>
 
                 <TextView
                     android:layout_width="260dp"
                     android:layout_height="wrap_content"
-                    android:text="How long does the dish need to bake for?"
-                    android:fontFamily="@font/source_sans_pro_regular"
-                    android:textSize="17dp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
-                    />
+                    android:fontFamily="@font/source_sans_pro_regular"
+                    android:text="How long does the dish need to bake for?"
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -285,36 +299,36 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="RESTING TIME"
-                        android:fontFamily="@font/source_sans_pro_semi_bold"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="15dp"
                         android:layout_marginLeft="5dp"
-                        />
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
+                        android:text="RESTING TIME"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
                     <EditText
                         android:id="@+id/editText_restTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:focusable="false"
                         android:layout_alignParentRight="true"
+                        android:focusable="false"
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
                         android:text="0 min"
-                        android:textColor="@color/black"
-                        />
+                        android:textColor="@color/DeepPurple900"
+                        android:textSize="20sp" />
 
                 </RelativeLayout>
 
                 <TextView
                     android:layout_width="260dp"
                     android:layout_height="wrap_content"
-                    android:text="Does the dish need to rest at any point?"
-                    android:fontFamily="@font/source_sans_pro_regular"
-                    android:textSize="17dp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
-                    />
+                    android:fontFamily="@font/source_sans_pro_regular"
+                    android:text="Does the dish need to rest at any point?"
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -326,13 +340,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="INGREDIENTS"
-                    android:fontFamily="@font/source_sans_pro_semi_bold"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="5dp"
-                    />
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/source_sans_pro_semi_bold"
+                    android:text="INGREDIENTS"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -340,16 +353,16 @@
                     android:layout_margin="10dp">
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView_amountOfIngredients_CreateActivity"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/recyclerView_amountOfIngredients_CreateActivity"/>
+                        android:layout_height="wrap_content" />
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView_Ingredients_CreateActivity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/recyclerView_amountOfIngredients_CreateActivity"
-                        android:id="@+id/recyclerView_Ingredients_CreateActivity"
-                        android:layout_marginStart="40dp"/>
+                        android:layout_marginStart="40dp"
+                        android:layout_toRightOf="@+id/recyclerView_amountOfIngredients_CreateActivity" />
                 </RelativeLayout>
 
                 <Button
@@ -357,6 +370,9 @@
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
                     android:fontFamily="@font/source_sans_pro_semi_bold"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
@@ -369,10 +385,7 @@
                     app:iconSize="20dp"
                     app:iconTint="@color/DeepPurple900"
                     app:strokeColor="@color/Indigo900"
-                    app:strokeWidth="1dp"
-                    android:layout_margin="10dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"/>
+                    app:strokeWidth="1dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -384,29 +397,31 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="UTENSILS"
-                    android:fontFamily="@font/source_sans_pro_semi_bold"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="5dp"
-                    />
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/source_sans_pro_semi_bold"
+                    android:text="UTENSILS"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
 
                 <TextView
-                    android:layout_marginTop="15dp"
                     android:id="@+id/txt_utensils_Create_Activity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/source_sans_pro_semi_bold"
                     android:textColor="@color/DeepPurple900"
-                    android:textSize="17sp"
-                    android:layout_marginLeft="10dp"/>
+                    android:textSize="17sp" />
 
                 <Button
                     android:id="@+id/btn_Add_Utensil_CreateActivity"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
                     android:fontFamily="@font/source_sans_pro_semi_bold"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
@@ -419,10 +434,7 @@
                     app:iconSize="20dp"
                     app:iconTint="@color/DeepPurple900"
                     app:strokeColor="@color/Indigo900"
-                    app:strokeWidth="1dp"
-                    android:layout_margin="10dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"/>
+                    app:strokeWidth="1dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -435,13 +447,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NUTRITION PER SERVING"
-                    android:fontFamily="@font/source_sans_pro_semi_bold"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="5dp"
-                    />
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/source_sans_pro_semi_bold"
+                    android:text="NUTRITION PER SERVING"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -449,25 +461,25 @@
                     <TextView
                         android:layout_width="260dp"
                         android:layout_height="wrap_content"
-                        android:text="Calories"
-                        android:fontFamily="@font/source_sans_pro_regular"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:fontFamily="@font/source_sans_pro_regular"
+                        android:text="Calories"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
 
                     <EditText
                         android:id="@+id/editText_cal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
+                        android:digits="0123456789,."
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
                         android:hint="0"
                         android:inputType="numberDecimal"
-                        android:digits="0123456789,."
-                        android:textColor="@color/black"
-                        />
+                        android:textColor="@color/DeepPurple900"
+                        android:textSize="18sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -477,37 +489,36 @@
                     <TextView
                         android:layout_width="260dp"
                         android:layout_height="wrap_content"
-                        android:text="Protein"
-                        android:fontFamily="@font/source_sans_pro_regular"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:fontFamily="@font/source_sans_pro_regular"
+                        android:text="Protein"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+
                     <TextView
                         android:id="@+id/txt_protein"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="g"
-                        android:fontFamily="@font/source_sans_pro_regular"
                         android:layout_alignParentRight="true"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
+                        android:text="g"
+                        android:textSize="18sp" />
+
                     <EditText
                         android:id="@+id/editText_protein"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toStartOf="@+id/txt_protein"
+                        android:digits="0123456789,."
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
                         android:hint="0"
                         android:inputType="numberDecimal"
-                        android:digits="0123456789,."
-                        android:textColor="@color/black"
-                        />
+                        android:textColor="@color/DeepPurple900" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -517,36 +528,39 @@
                     <TextView
                         android:layout_width="260dp"
                         android:layout_height="wrap_content"
-                        android:text="Fat"
-                        android:fontFamily="@font/source_sans_pro_regular"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:fontFamily="@font/source_sans_pro_regular"
+                        android:text="Fat"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
                     <TextView
                         android:id="@+id/txt_fat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="g"
-                        android:fontFamily="@font/source_sans_pro_regular"
                         android:layout_alignParentRight="true"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:fontFamily="@font/source_sans_pro_regular"
+                        android:text="g"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
                     <EditText
                         android:id="@+id/editText_fat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toStartOf="@+id/txt_fat"
+                        android:digits="0123456789,."
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
                         android:hint="0"
                         android:inputType="numberDecimal"
-                        android:digits="0123456789,."
-                        android:textColor="@color/black"
+                        android:textColor="@color/DeepPurple900"
+                        android:textSize="18sp"
+
                         />
                 </RelativeLayout>
 
@@ -557,36 +571,39 @@
                     <TextView
                         android:layout_width="260dp"
                         android:layout_height="wrap_content"
-                        android:text="Carbohydrate"
-                        android:fontFamily="@font/source_sans_pro_regular"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:fontFamily="@font/source_sans_pro_regular"
+                        android:text="Carbohydrate"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
                     <TextView
                         android:id="@+id/txt_carb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="g"
-                        android:fontFamily="@font/source_sans_pro_regular"
                         android:layout_alignParentRight="true"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:fontFamily="@font/source_sans_pro_regular"
+                        android:text="g"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
                     <EditText
                         android:id="@+id/editText_carb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toStartOf="@+id/txt_carb"
+                        android:digits="0123456789,."
+                        android:fontFamily="@font/source_sans_pro_semi_bold"
                         android:hint="0"
                         android:inputType="numberDecimal"
-                        android:digits="0123456789,."
-                        android:textColor="@color/black"
+                        android:textColor="@color/DeepPurple900"
+                        android:textSize="18sp"
+
                         />
                 </RelativeLayout>
 
@@ -600,29 +617,31 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tags"
-                    android:fontFamily="@font/source_sans_pro_semi_bold"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="5dp"
-                    />
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/source_sans_pro_semi_bold"
+                    android:text="Tags"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
 
                 <TextView
-                    android:layout_marginTop="15dp"
                     android:id="@+id/txt_Tags_Create_Activity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/source_sans_pro_semi_bold"
                     android:textColor="@color/DeepPurple900"
-                    android:textSize="17sp"
-                    android:layout_marginLeft="10dp"/>
+                    android:textSize="17sp" />
 
                 <Button
                     android:id="@+id/btn_Add_Tag_CreateActivity"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
                     android:fontFamily="@font/source_sans_pro_semi_bold"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
@@ -635,10 +654,7 @@
                     app:iconSize="20dp"
                     app:iconTint="@color/DeepPurple900"
                     app:strokeColor="@color/Indigo900"
-                    app:strokeWidth="1dp"
-                    android:layout_margin="10dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"/>
+                    app:strokeWidth="1dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -651,6 +667,9 @@
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
                     android:fontFamily="@font/source_sans_pro_semi_bold"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
@@ -663,10 +682,7 @@
                     app:iconSize="20dp"
                     app:iconTint="@color/DeepPurple900"
                     app:strokeColor="@color/Indigo900"
-                    app:strokeWidth="1dp"
-                    android:layout_margin="10dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"/>
+                    app:strokeWidth="1dp" />
 
             </LinearLayout>
 
@@ -677,52 +693,52 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-<!--    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Create!"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+    <!--    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Create!"
+            android:textSize="50sp"
+            android:textStyle="bold" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dung khung"/>-->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dung khung"/>-->
 
-<!--    <EditText-->
-<!--        android:id="@+id/edt_comment_CookingRecipe"-->
-<!--        android:layout_width="330dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@drawable/shape_bg_comment"-->
-<!--        android:drawableEnd="@drawable/ic_round_highlight_off_24"-->
-<!--        android:drawablePadding="20dp"-->
-<!--        android:hint="write a comment..."-->
-<!--        android:padding="15dp"-->
-<!--        android:fontFamily="@font/source_sans_pro_regular"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="15sp"-->
-<!--        android:imeOptions="actionDone"/>-->
+    <!--    <EditText-->
+    <!--        android:id="@+id/edt_comment_CookingRecipe"-->
+    <!--        android:layout_width="330dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@drawable/shape_bg_comment"-->
+    <!--        android:drawableEnd="@drawable/ic_round_highlight_off_24"-->
+    <!--        android:drawablePadding="20dp"-->
+    <!--        android:hint="write a comment..."-->
+    <!--        android:padding="15dp"-->
+    <!--        android:fontFamily="@font/source_sans_pro_regular"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="15sp"-->
+    <!--        android:imeOptions="actionDone"/>-->
 
-<!--    <ImageButton-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:id="@+id/btn_comment_CookingRecipe"-->
-<!--        android:layout_width="35dp"-->
-<!--        android:layout_height="35dp"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:layout_toRightOf="@+id/edt_comment_CookingRecipe"-->
-<!--        android:background="@android:color/transparent"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        android:src="@drawable/ic_outline_send_24"-->
-<!--        />-->
+    <!--    <ImageButton-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:id="@+id/btn_comment_CookingRecipe"-->
+    <!--        android:layout_width="35dp"-->
+    <!--        android:layout_height="35dp"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:layout_toRightOf="@+id/edt_comment_CookingRecipe"-->
+    <!--        android:background="@android:color/transparent"-->
+    <!--        android:scaleType="centerCrop"-->
+    <!--        android:src="@drawable/ic_outline_send_24"-->
+    <!--        />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_test_comment_CookingRecipe"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@id/edt_comment_CookingRecipe"-->
-<!--        android:text="hello"-->
-<!--        android:textSize="30sp" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_test_comment_CookingRecipe"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/edt_comment_CookingRecipe"-->
+    <!--        android:text="hello"-->
+    <!--        android:textSize="30sp" />-->
 
 
     <!--<LinearLayout

@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.kitchenstories.Model.Shopping.IngredientShopping;
-import com.example.kitchenstories.Model.Shopping.RecipeForShopping;
+import com.example.kitchenstories.Model.shopping.IngredientShopping;
+import com.example.kitchenstories.Model.shopping.RecipeForShopping;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;

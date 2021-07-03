@@ -30,10 +30,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.kitchenstories.Model.DBHelper;
-import com.example.kitchenstories.Model.Recipe.Likes;
-import com.example.kitchenstories.Model.Recipe.Recipe;
-import com.example.kitchenstories.Model.Recipe.StepsForRecipe;
-import com.example.kitchenstories.Model.Shopping.DownloadImage;
+import com.example.kitchenstories.Model.recipe.Likes;
+import com.example.kitchenstories.Model.recipe.Recipe;
+import com.example.kitchenstories.Model.recipe.StepsForRecipe;
+import com.example.kitchenstories.Model.shopping.DownloadImage;
 import com.example.kitchenstories.Model.User;
 import com.example.kitchenstories.R;
 import com.example.kitchenstories.ViewModel.CookingRecipeActivity.RecyclerViewAdapter_Ingredient_CookingRecipe;
@@ -53,10 +53,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;

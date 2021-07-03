@@ -18,9 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.kitchenstories.Model.DBHelper;
-import com.example.kitchenstories.Model.Shopping.RecipeForShopping;
+import com.example.kitchenstories.Model.shopping.RecipeForShopping;
 import com.example.kitchenstories.R;
-import com.example.kitchenstories.View.profile.Profile;
+import com.example.kitchenstories.View.pk_profile.Profile;
 import com.example.kitchenstories.ViewModel.ShoppingActivity.ShoppingAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

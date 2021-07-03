@@ -16,9 +16,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.example.kitchenstories.Model.Recipe.Recipe;
+import com.example.kitchenstories.Model.recipe.Recipe;
 import com.example.kitchenstories.R;
-import com.example.kitchenstories.View.filterInSearch_AllRecipe.FilterInSearchAllRecipe;
+import com.example.kitchenstories.View.pk_filterInSearch_AllRecipe.FilterInSearchAllRecipe;
 import com.example.kitchenstories.ViewModel.SearchActivity.RecyclerViewAdapter_Option_FilterInSearch;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;

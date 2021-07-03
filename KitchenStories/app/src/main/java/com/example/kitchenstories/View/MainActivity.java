@@ -34,14 +34,14 @@ import android.widget.VideoView;
 
 
 import com.bumptech.glide.Glide;
-import com.example.kitchenstories.Model.Recipe.Recipe;
-import com.example.kitchenstories.Model.Recipe.StepsForRecipe;
+import com.example.kitchenstories.Model.recipe.Recipe;
+import com.example.kitchenstories.Model.recipe.StepsForRecipe;
 import com.example.kitchenstories.Model.TypesOfRecipe;
 import com.example.kitchenstories.Model.User;
 import com.example.kitchenstories.R;
-import com.example.kitchenstories.View.allRecipe.All_recipes;
-import com.example.kitchenstories.View.filterInSearch_AllRecipe.FilterInSearchAllRecipe;
-import com.example.kitchenstories.View.profile.Profile;
+import com.example.kitchenstories.View.pk_allRecipe.All_recipes;
+import com.example.kitchenstories.View.pk_filterInSearch_AllRecipe.FilterInSearchAllRecipe;
+import com.example.kitchenstories.View.pk_profile.Profile;
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Option_Large;
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Option_Medium;
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Option_Part13;
