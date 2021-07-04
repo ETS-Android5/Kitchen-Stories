@@ -183,8 +183,7 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                         .whereEqualTo("tags." + categoryExtra, true)
                                         .whereEqualTo("tags." + dietExtra, true)
                                         .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
 
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
@@ -194,8 +193,7 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                         .whereEqualTo("tags." + categoryExtra, true)
                                         .whereEqualTo("tags." + dietExtra, true)
                                         .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
 
 
@@ -214,8 +212,7 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                         .orderBy(sortExtra, Query.Direction.DESCENDING)
                                         .whereEqualTo("tags." + categoryExtra, true)
                                         .whereEqualTo("tags." + dietExtra, true)
-                                        .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereEqualTo("tags." + cuisineExtra, true);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
@@ -223,8 +220,7 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                         .orderBy(sortExtra)
                                         .whereEqualTo("tags." + categoryExtra, true)
                                         .whereEqualTo("tags." + dietExtra, true)
-                                        .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereEqualTo("tags." + cuisineExtra, true);
                             }
 
                         }
@@ -241,8 +237,7 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                         .orderBy(sortExtra, Query.Direction.DESCENDING)
                                         .whereEqualTo("tags." + categoryExtra, true)
                                         .whereEqualTo("tags." + dietExtra, true)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
@@ -250,8 +245,7 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                         .orderBy(sortExtra)
                                         .whereEqualTo("tags." + categoryExtra, true)
                                         .whereEqualTo("tags." + dietExtra, true)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
 
 
@@ -265,16 +259,14 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra, Query.Direction.DESCENDING)
                                         .whereEqualTo("tags." + categoryExtra, true)
-                                        .whereEqualTo("tags." + dietExtra, true)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereEqualTo("tags." + dietExtra, true);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra)
                                         .whereEqualTo("tags." + categoryExtra, true)
-                                        .whereEqualTo("tags." + dietExtra, true)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereEqualTo("tags." + dietExtra, true);
                             }
 
 
@@ -298,8 +290,7 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                         .orderBy(sortExtra, Query.Direction.DESCENDING)
                                         .whereEqualTo("tags." + categoryExtra, true)
                                         .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
@@ -307,8 +298,7 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                         .orderBy(sortExtra)
                                         .whereEqualTo("tags." + categoryExtra, true)
                                         .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
 
 
@@ -325,16 +315,14 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra, Query.Direction.DESCENDING)
                                         .whereEqualTo("tags." + categoryExtra, true)
-                                        .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereEqualTo("tags." + cuisineExtra, true);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra)
                                         .whereEqualTo("tags." + categoryExtra, true)
-                                        .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereEqualTo("tags." + cuisineExtra, true);
                             }
 
                         }
@@ -350,16 +338,14 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra, Query.Direction.DESCENDING)
                                         .whereEqualTo("tags." + categoryExtra, true)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra)
                                         .whereEqualTo("tags." + categoryExtra, true)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
 
 
@@ -374,15 +360,13 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra, Query.Direction.DESCENDING)
-                                        .whereEqualTo("tags." + categoryExtra, true)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereEqualTo("tags." + categoryExtra, true);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra)
-                                        .whereEqualTo("tags." + categoryExtra, true)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereEqualTo("tags." + categoryExtra, true);
                             }
 
 
@@ -411,8 +395,7 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                         .orderBy(sortExtra, Query.Direction.DESCENDING)
                                         .whereEqualTo("tags." + dietExtra, true)
                                         .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
@@ -420,8 +403,7 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                         .orderBy(sortExtra)
                                         .whereEqualTo("tags." + dietExtra, true)
                                         .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
 
 
@@ -435,16 +417,14 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra, Query.Direction.DESCENDING)
                                         .whereEqualTo("tags." + dietExtra, true)
-                                        .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereEqualTo("tags." + cuisineExtra, true);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra)
                                         .whereEqualTo("tags." + dietExtra, true)
-                                        .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereEqualTo("tags." + cuisineExtra, true);
                             }
 
 
@@ -463,16 +443,14 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra, Query.Direction.DESCENDING)
                                         .whereEqualTo("tags." + dietExtra, true)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra)
                                         .whereEqualTo("tags." + dietExtra, true)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
 
 
@@ -487,15 +465,13 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra, Query.Direction.DESCENDING)
-                                        .whereEqualTo("tags." + dietExtra, true)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereEqualTo("tags." + dietExtra, true);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra)
-                                        .whereEqualTo("tags." + dietExtra, true)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereEqualTo("tags." + dietExtra, true);
                             }
 
                         }
@@ -517,16 +493,14 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra, Query.Direction.DESCENDING)
                                         .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra)
                                         .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
 
 
@@ -541,15 +515,14 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra, Query.Direction.DESCENDING)
-                                        .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereEqualTo("tags." + cuisineExtra, true);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra)
-                                        .whereEqualTo("tags." + cuisineExtra, true)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereEqualTo("tags." + cuisineExtra, true);
+
                             }
 
                         }
@@ -564,15 +537,13 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra, Query.Direction.DESCENDING)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
                                 query = firebaseFirestore.collection("Recipe")
                                         .orderBy(sortExtra)
-                                        .whereArrayContainsAny("tagsSort", occasionExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .whereArrayContainsAny("tagsSort", occasionExtra);
                             }
 
 
@@ -584,14 +555,12 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                             if(sortExtra.equals("likeAmount") || sortExtra.equals("ratingAmount")){
 
                                 query = firebaseFirestore.collection("Recipe")
-                                        .orderBy(sortExtra, Query.Direction.DESCENDING)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .orderBy(sortExtra, Query.Direction.DESCENDING);
                             }
                             else if (sortExtra.equals("caloriesSort") || sortExtra.equals("preparationTimeSort")){
 
                                 query = firebaseFirestore.collection("Recipe")
-                                        .orderBy(sortExtra)
-                                        .whereNotEqualTo("name_authorGroup", "Community");
+                                        .orderBy(sortExtra);
                             }
 
                             Log.d("TESTEXTRA", "null occasionExtra: " + occasionExtra);
