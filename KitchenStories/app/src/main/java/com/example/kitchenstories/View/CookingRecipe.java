@@ -40,6 +40,10 @@ import com.example.kitchenstories.ViewModel.CookingRecipeActivity.RecyclerViewAd
 import com.example.kitchenstories.ViewModel.CookingRecipeActivity.RecyclerViewAdapter_Option_Steps;
 import com.example.kitchenstories.ViewModel.RecyclerViewAdapter_OptionFireStore;
 import com.example.kitchenstories.ViewModel.Today_Activity.RecyclerViewAdapter_Option_Comment;
+import com.facebook.share.model.ShareHashtag;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareDialog;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -78,6 +82,9 @@ public class CookingRecipe extends AppCompatActivity {
 
     private Button btn_numberOfLikes_CookingRecipe_Activity;
     private TextView numberOfRating_CookingRecipe_Activity;
+
+    private Button btn_share_CookingRecipe_Activity;
+    ShareDialog shareDialog;
 
     private ImageView image_recipe_collapsingToolbar_CookingRecipe_Activity;
     private TextView name_recipe_collapsingToolbar_CookingRecipe_Activity;
@@ -140,6 +147,7 @@ public class CookingRecipe extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cooking_recipe);
+        shareDialog = new ShareDialog(this);
 
         //TransparentStatusAndNavigation
         //transparentStatusAndNavigation();
@@ -230,6 +238,8 @@ public class CookingRecipe extends AppCompatActivity {
 
     public void findByIdForComponents() {
 
+        btn_share_CookingRecipe_Activity = findViewById(R.id.btn_share_CookingRecipe_Activity);
+
         btn_numberOfLikes_CookingRecipe_Activity = findViewById(R.id.btn_numberOfLikes_CookingRecipe_Activity);
         numberOfRating_CookingRecipe_Activity = findViewById(R.id.numberOfRating_CookingRecipe_Activity);
 
@@ -291,6 +301,12 @@ public class CookingRecipe extends AppCompatActivity {
             }
         });
 
+        btn_share_CookingRecipe_Activity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                share();
+            }
+        });
 
     }
 
@@ -529,6 +545,20 @@ public class CookingRecipe extends AppCompatActivity {
                     .collection("RecipeLiked").document(recipeID).delete();
 
         }
+    }
+
+    public void share(){
+
+        SharePhoto sharePhoto = new SharePhoto.Builder()
+                .setBitmap(imageToStore)
+                .build();
+        SharePhotoContent sharePhotoContent = new SharePhotoContent.Builder()
+                .addPhoto(sharePhoto)
+                .setShareHashtag(new ShareHashtag.Builder()
+                        .setHashtag("#SE_UIT")
+                        .build())
+                .build();
+        ShareDialog.show(this, sharePhotoContent);
     }
 
 

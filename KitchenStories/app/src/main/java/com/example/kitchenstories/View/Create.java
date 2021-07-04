@@ -220,8 +220,11 @@ public class Create extends AppCompatActivity {
             public void onClick(View v) {
                 difficulty_recipe = "Easy ";
                 button_easy.setBackgroundColor(button_easy.getContext().getResources().getColor(R.color.DeepPurple900));
+                button_easy.setTextColor(button_easy.getContext().getResources().getColor(R.color.white));
                 button_medium.setBackgroundColor(button_medium.getContext().getResources().getColor(R.color.Yellow50));
+                button_medium.setTextColor(button_easy.getContext().getResources().getColor(R.color.black));
                 button_hard.setBackgroundColor(button_hard.getContext().getResources().getColor(R.color.Yellow50));
+                button_hard.setTextColor(button_easy.getContext().getResources().getColor(R.color.black));
             }
         });
 
@@ -230,8 +233,11 @@ public class Create extends AppCompatActivity {
             public void onClick(View v) {
                 difficulty_recipe = "Medium ";
                 button_medium.setBackgroundColor(button_medium.getContext().getResources().getColor(R.color.DeepPurple900));
+                button_medium.setTextColor(button_easy.getContext().getResources().getColor(R.color.white));
                 button_easy.setBackgroundColor(button_easy.getContext().getResources().getColor(R.color.Yellow50));
+                button_easy.setTextColor(button_easy.getContext().getResources().getColor(R.color.black));
                 button_hard.setBackgroundColor(button_hard.getContext().getResources().getColor(R.color.Yellow50));
+                button_hard.setTextColor(button_easy.getContext().getResources().getColor(R.color.black));
             }
 
         });
@@ -241,8 +247,10 @@ public class Create extends AppCompatActivity {
             public void onClick(View v) {
                 difficulty_recipe = "Hard ";
                 button_hard.setBackgroundColor(button_hard.getContext().getResources().getColor(R.color.DeepPurple900));
+                button_hard.setTextColor(button_easy.getContext().getResources().getColor(R.color.white));
                 button_easy.setBackgroundColor(button_easy.getContext().getResources().getColor(R.color.Yellow50));
                 button_medium.setBackgroundColor(button_medium.getContext().getResources().getColor(R.color.Yellow50));
+                button_medium.setTextColor(button_easy.getContext().getResources().getColor(R.color.black));
             }
         });
 
@@ -403,6 +411,7 @@ public class Create extends AppCompatActivity {
     private void displayDialogAddIngre() {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_add_ingre);
+        dialog.setCanceledOnTouchOutside(false);
 
         EditText editText_nameIngre = (EditText) dialog.findViewById(R.id.editText_nameIngre_dialog);
         EditText editText_amountIngre = (EditText) dialog.findViewById(R.id.editText_amountIngre_dialog);
@@ -425,16 +434,28 @@ public class Create extends AppCompatActivity {
         button_Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nameIngre=editText_nameIngre.getText().toString();
-                String amount = editText_amountIngre.getText().toString() +" "+spinner_unitIngre.getSelectedItem().toString();
+                if(editText_nameIngre.getText().toString().isEmpty()){
+                    editText_nameIngre.setError("Please input name ingredient");
+                    editText_nameIngre.requestFocus();
+                }
+                else {
+                    if(editText_amountIngre.getText().toString().isEmpty()){
+                        editText_amountIngre.setError("Please input amount ingredient");
+                        editText_amountIngre.requestFocus();
+                    }
+                    else {
+                        String nameIngre=editText_nameIngre.getText().toString();
+                        String amount = editText_amountIngre.getText().toString() +" "+spinner_unitIngre.getSelectedItem().toString();
 
-                ingredients.add(nameIngre);
-                amountOfIngredients.add(amount);
+                        ingredients.add(nameIngre);
+                        amountOfIngredients.add(amount);
 
-                adapter_ingredient_CreateActivity.notifyDataSetChanged();
-                adapter_amountOfIngredients_CreateActivity.notifyDataSetChanged();
+                        adapter_ingredient_CreateActivity.notifyDataSetChanged();
+                        adapter_amountOfIngredients_CreateActivity.notifyDataSetChanged();
 
-                dialog.cancel();
+                        dialog.cancel();
+                    }
+                }
             }
         });
 
@@ -444,6 +465,7 @@ public class Create extends AppCompatActivity {
     private void displayDialogAddTag(){
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_add_tag);
+        dialog.setCanceledOnTouchOutside(false);
 
         EditText editText_tag = (EditText) dialog.findViewById(R.id.editText_tag_dialog);
         Button button_Save = (Button) dialog.findViewById(R.id.btn_Save_dialog);
@@ -459,11 +481,17 @@ public class Create extends AppCompatActivity {
         button_Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tags.put(editText_tag.getText().toString(),true);
-                tagsSort.add(editText_tag.getText().toString());
-                //loadTags();
-                textView_tags.append("#" + editText_tag.getText().toString() + "     ");
-                dialog.cancel();
+                if(editText_tag.getText().toString().isEmpty()){
+                    editText_tag.setError("Please input tag");
+                    editText_tag.requestFocus();
+                }
+                else{
+                    tags.put(editText_tag.getText().toString(),true);
+                    tagsSort.add(editText_tag.getText().toString());
+                    //loadTags();
+                    textView_tags.append("#" + editText_tag.getText().toString() + "     ");
+                    dialog.cancel();
+                }
             }
         });
 
@@ -473,8 +501,9 @@ public class Create extends AppCompatActivity {
     private void displayDialogAddUtensil(){
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_add_utensil);
+        dialog.setCanceledOnTouchOutside(false);
 
-        EditText editText_tag = (EditText) dialog.findViewById(R.id.editText_utensil_dialog);
+        EditText editText_utensil = (EditText) dialog.findViewById(R.id.editText_utensil_dialog);
         Button button_Save = (Button) dialog.findViewById(R.id.btn_Save_dialog);
         Button button_Cancel = (Button) dialog.findViewById(R.id.btn_Cancel_dialog);
 
@@ -488,13 +517,19 @@ public class Create extends AppCompatActivity {
         button_Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(textView_utensils.getText()==""){
-                    textView_utensils.append(editText_tag.getText().toString());
+                if(editText_utensil.getText().toString().isEmpty()){
+                    editText_utensil.setError("Please input utensil");
+                    editText_utensil.requestFocus();
                 }
-                else
-                   textView_utensils.append(  " - " + editText_tag.getText().toString());
-                dialog.cancel();
+                else {
+                    if(textView_utensils.getText()==""){
+                        textView_utensils.append(editText_utensil.getText().toString());
+                    }
+                    else
+                        textView_utensils.append(  " - " + editText_utensil.getText().toString());
+                    dialog.cancel();
+                }
+
             }
         });
 
@@ -507,6 +542,50 @@ public class Create extends AppCompatActivity {
     }
 
     private void saveRecipe(){
+        if(editText_nameRecipe.getText().toString().isEmpty()){
+            editText_nameRecipe.setError("Name recipe required");
+            editText_nameRecipe.requestFocus();
+            return;
+        }
+        if(mImageUri==null){
+            Toast.makeText(Create.this, "Please choose image recipe", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(editText_desRecipe.getText().toString().isEmpty()){
+            editText_desRecipe.setError("Description recipe required");
+            editText_desRecipe.requestFocus();
+            return;
+        }
+        if(difficulty_recipe==null){
+            Toast.makeText(Create.this, "Please select difficult", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(editText_cal.getText().toString().isEmpty()){
+            editText_cal.setError("Please input calories of recipe");
+            editText_cal.requestFocus();
+            return;
+        }
+        if(editText_protein.getText().toString().isEmpty()){
+            editText_protein.setError("Please input protein nutrition of recipe");
+            editText_protein.requestFocus();
+            return;
+        }
+        if(editText_fat.getText().toString().isEmpty()){
+            editText_fat.setError("Please input fat nutrition of recipe");
+            editText_fat.requestFocus();
+            return;
+        }
+        if(editText_carb.getText().toString().isEmpty()){
+            editText_carb.setError("Description recipe required");
+            editText_carb.requestFocus();
+            return;
+        }
+
+        if(tagsSort==null){
+            Toast.makeText(Create.this, "Please input tags for us easy to find your recipe ", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         final StorageReference fileReference = FirebaseStorage.getInstance().getReference("Test").child(System.currentTimeMillis()
                 + "." + getFileExtension(mImageUri));
         mUploadTask = fileReference.putFile(mImageUri);

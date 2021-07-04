@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.kitchenstories.Model.recipe.StepsForRecipe;
 import com.example.kitchenstories.R;
+import com.example.kitchenstories.View.Create;
 import com.example.kitchenstories.ViewModel.CookingRecipeActivity.RecyclerViewAdapter_Ingredient_CookingRecipe;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -137,6 +138,7 @@ public class AddNewStep extends AppCompatActivity {
     private void displayDialogAddIngre() {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_add_ingre);
+        dialog.setCanceledOnTouchOutside(false);
 
         EditText editText_nameIngre = (EditText) dialog.findViewById(R.id.editText_nameIngre_dialog);
         EditText editText_amountIngre = (EditText) dialog.findViewById(R.id.editText_amountIngre_dialog);
@@ -159,20 +161,33 @@ public class AddNewStep extends AppCompatActivity {
         button_Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nameIngre=editText_nameIngre.getText().toString();
-                String amount = editText_amountIngre.getText().toString() +" "+spinner_unitIngre.getSelectedItem().toString();
-
-                String ingre = amount +" " + nameIngre;
-
-                ingredients.add(nameIngre);
-                amountOfIngredients.add(amount);
-
-                if(textView_ingre.getText()==""){
-                    textView_ingre.append(ingre);
+                if(editText_nameIngre.getText().toString().isEmpty()){
+                    editText_nameIngre.setError("Please input name ingredient");
+                    editText_nameIngre.requestFocus();
                 }
-                else
-                    textView_ingre.append(  " - " + ingre);
-                dialog.cancel();
+                else {
+                    if(editText_amountIngre.getText().toString().isEmpty()){
+                        editText_amountIngre.setError("Please input amount ingredient");
+                        editText_amountIngre.requestFocus();
+                    }
+                    else {
+                        String nameIngre=editText_nameIngre.getText().toString();
+                        String amount = editText_amountIngre.getText().toString() +" "+spinner_unitIngre.getSelectedItem().toString();
+
+                        String ingre = amount +" " + nameIngre;
+
+                        ingredients.add(nameIngre);
+                        amountOfIngredients.add(amount);
+
+                        if(textView_ingre.getText()==""){
+                            textView_ingre.append(ingre);
+                        }
+                        else
+                            textView_ingre.append(  " - " + ingre);
+                        dialog.cancel();
+                    }
+                }
+
             }
         });
 
@@ -181,8 +196,9 @@ public class AddNewStep extends AppCompatActivity {
     private void displayDialogAddUtensil(){
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_add_utensil);
+        dialog.setCanceledOnTouchOutside(false);
 
-        EditText editText_tag = (EditText) dialog.findViewById(R.id.editText_utensil_dialog);
+        EditText editText_utensil = (EditText) dialog.findViewById(R.id.editText_utensil_dialog);
         Button button_Save = (Button) dialog.findViewById(R.id.btn_Save_dialog);
         Button button_Cancel = (Button) dialog.findViewById(R.id.btn_Cancel_dialog);
 
@@ -192,17 +208,22 @@ public class AddNewStep extends AppCompatActivity {
                 dialog.cancel();
             }
         });
-
         button_Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(textView_utensils.getText()==""){
-                    textView_utensils.append(editText_tag.getText().toString());
+                if(editText_utensil.getText().toString().isEmpty()){
+                    editText_utensil.setError("Please input utensil");
+                    editText_utensil.requestFocus();
                 }
-                else
-                    textView_utensils.append(  " - " + editText_tag.getText().toString());
-                dialog.cancel();
+                else {
+                    if(textView_utensils.getText()==""){
+                        textView_utensils.append(editText_utensil.getText().toString());
+                    }
+                    else
+                        textView_utensils.append(  " - " + editText_utensil.getText().toString());
+                    dialog.cancel();
+                }
+
             }
         });
 
@@ -214,6 +235,22 @@ public class AddNewStep extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
     private void saveStep(){
+
+        if(editText_nameStep.getText().toString().isEmpty()){
+            editText_nameStep.setError("Please input name step");
+            editText_nameStep.requestFocus();
+            return;
+        }
+        if(mImageUri==null){
+            Toast.makeText(AddNewStep.this, "Please choose image recipe", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(editText_desStep.getText().toString().isEmpty()){
+            editText_desStep.setError("Please input des step");
+            editText_desStep.requestFocus();
+            return;
+        }
+
         final StorageReference fileReference = FirebaseStorage.getInstance().getReference("Test").child(System.currentTimeMillis()
                 + "." + getFileExtension(mImageUri));
         mUploadTask = fileReference.putFile(mImageUri);

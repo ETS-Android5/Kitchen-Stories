@@ -61,6 +61,9 @@
         <activity android:name=".View.pk_profile.Profile" />
         <activity android:name=".View.Search" />
         <activity android:name=".View.MainActivity" />
+        <provider android:authorities="com.facebook.app.FacebookContentProvider531850061176574"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
     </application>
 
 </manifest>
