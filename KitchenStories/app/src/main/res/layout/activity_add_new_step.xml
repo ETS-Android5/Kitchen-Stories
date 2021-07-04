@@ -61,7 +61,7 @@
                 android:id="@+id/editText_name_AddNewStepActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Add description"
+                android:hint="Add name"
                 android:textSize="20dp"
                 android:textColor="@color/black" />
 

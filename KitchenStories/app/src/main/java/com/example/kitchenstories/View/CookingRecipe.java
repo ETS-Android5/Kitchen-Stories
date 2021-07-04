@@ -54,6 +54,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.core.OrderBy;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -753,7 +754,7 @@ public class CookingRecipe extends AppCompatActivity {
 
     public void setDataForComponents_Steps(String idRecipe) {
 
-        Query query = firebaseFirestore.collection("Recipe").document(idRecipe).collection("Steps");
+        Query query = firebaseFirestore.collection("Recipe").document(idRecipe).collection("Steps").orderBy("step", Query.Direction.ASCENDING);
 
         FirestoreRecyclerOptions<StepsForRecipe> options = new FirestoreRecyclerOptions.Builder<StepsForRecipe>()
                 .setQuery(query, StepsForRecipe.class)

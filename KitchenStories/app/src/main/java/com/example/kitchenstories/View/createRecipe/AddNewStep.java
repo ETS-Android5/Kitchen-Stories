@@ -286,7 +286,7 @@ public class AddNewStep extends AppCompatActivity {
                 Toast.makeText(AddNewStep.this, "Photo upload failed ", Toast.LENGTH_SHORT).show();
             }
         });
-        Toast.makeText(this, "Recipe added", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Step added", Toast.LENGTH_SHORT).show();
         finish();
     }
 }
