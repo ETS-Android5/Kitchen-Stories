@@ -593,8 +593,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                                     .whereEqualTo("tags." + categoryExtra, true)
                                     .whereEqualTo("tags." + dietExtra, true)
                                     .whereEqualTo("tags." + cuisineExtra, true)
-                                    .whereArrayContainsAny("tagsSort", occasionExtra)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereArrayContainsAny("tagsSort", occasionExtra);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
 
                             for (int i = 0; i < occasionExtra.size(); i++) {
                                 Log.d("TESTEXTRA", occasionExtra.get(i).toString());
@@ -606,8 +606,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                             query = firebaseFirestore.collection("Recipe")
                                     .whereEqualTo("tags." + categoryExtra, true)
                                     .whereEqualTo("tags." + dietExtra, true)
-                                    .whereEqualTo("tags." + cuisineExtra, true)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereEqualTo("tags." + cuisineExtra, true);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
 
                         }
 
@@ -620,8 +620,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                             query = firebaseFirestore.collection("Recipe")
                                     .whereEqualTo("tags." + categoryExtra, true)
                                     .whereEqualTo("tags." + dietExtra, true)
-                                    .whereArrayContainsAny("tagsSort", occasionExtra)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereArrayContainsAny("tagsSort", occasionExtra);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
 
                             for (int i = 0; i < occasionExtra.size(); i++) {
                                 Log.d("TESTEXTRA", occasionExtra.get(i).toString());
@@ -632,8 +632,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
                             query = firebaseFirestore.collection("Recipe")
                                     .whereEqualTo("tags." + categoryExtra, true)
-                                    .whereEqualTo("tags." + dietExtra, true)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereEqualTo("tags." + dietExtra, true);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
 
                         }
 
@@ -651,8 +651,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                             query = firebaseFirestore.collection("Recipe")
                                     .whereEqualTo("tags." + categoryExtra, true)
                                     .whereEqualTo("tags." + cuisineExtra, true)
-                                    .whereArrayContainsAny("tagsSort", occasionExtra)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereArrayContainsAny("tagsSort", occasionExtra);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
 
                             for (int i = 0; i < occasionExtra.size(); i++) {
                                 Log.d("TESTEXTRA", occasionExtra.get(i).toString());
@@ -663,8 +663,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
                             query = firebaseFirestore.collection("Recipe")
                                     .whereEqualTo("tags." + categoryExtra, true)
-                                    .whereEqualTo("tags." + cuisineExtra, true)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereEqualTo("tags." + cuisineExtra, true);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
                         }
 
                     } else if (cuisineExtra.isEmpty()) {
@@ -675,8 +675,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
                             query = firebaseFirestore.collection("Recipe")
                                     .whereEqualTo("tags." + categoryExtra, true)
-                                    .whereArrayContainsAny("tagsSort", occasionExtra)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereArrayContainsAny("tagsSort", occasionExtra);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
 
                             for (int i = 0; i < occasionExtra.size(); i++) {
                                 Log.d("TESTEXTRA", occasionExtra.get(i).toString());
@@ -686,8 +686,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                             Log.d("TESTEXTRA", "null occasionExtra: " + occasionExtra);
 
                             query = firebaseFirestore.collection("Recipe")
-                                    .whereEqualTo("tags." + categoryExtra, true)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereEqualTo("tags." + categoryExtra, true);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
                         }
 
                     }
@@ -710,8 +710,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                             query = firebaseFirestore.collection("Recipe")
                                     .whereEqualTo("tags." + dietExtra, true)
                                     .whereEqualTo("tags." + cuisineExtra, true)
-                                    .whereArrayContainsAny("tagsSort", occasionExtra)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereArrayContainsAny("tagsSort", occasionExtra);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
 
                             for (int i = 0; i < occasionExtra.size(); i++) {
                                 Log.d("TESTEXTRA", occasionExtra.get(i).toString());
@@ -722,8 +722,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
                             query = firebaseFirestore.collection("Recipe")
                                     .whereEqualTo("tags." + dietExtra, true)
-                                    .whereEqualTo("tags." + cuisineExtra, true)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereEqualTo("tags." + cuisineExtra, true);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
                         }
 
                     } else if (cuisineExtra.isEmpty()) {
@@ -734,8 +734,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
                             query = firebaseFirestore.collection("Recipe")
                                     .whereEqualTo("tags." + dietExtra, true)
-                                    .whereArrayContainsAny("tagsSort", occasionExtra)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereArrayContainsAny("tagsSort", occasionExtra);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
 
                             for (int i = 0; i < occasionExtra.size(); i++) {
                                 Log.d("TESTEXTRA", occasionExtra.get(i).toString());
@@ -746,8 +746,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                             Log.d("TESTEXTRA", "null occasionExtra: " + occasionExtra);
 
                             query = firebaseFirestore.collection("Recipe")
-                                    .whereEqualTo("tags." + dietExtra, true)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereEqualTo("tags." + dietExtra, true);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
                         }
 
                     }
@@ -764,8 +764,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
                             query = firebaseFirestore.collection("Recipe")
                                     .whereEqualTo("tags." + cuisineExtra, true)
-                                    .whereArrayContainsAny("tagsSort", occasionExtra)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereArrayContainsAny("tagsSort", occasionExtra);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
 
                             for (int i = 0; i < occasionExtra.size(); i++) {
                                 Log.d("TESTEXTRA", occasionExtra.get(i).toString());
@@ -775,8 +775,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                             Log.d("TESTEXTRA", "null occasionExtra: " + occasionExtra);
 
                             query = firebaseFirestore.collection("Recipe")
-                                    .whereEqualTo("tags." + cuisineExtra, true)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereEqualTo("tags." + cuisineExtra, true);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
                         }
 
                     } else if (cuisineExtra.isEmpty()) {
@@ -786,8 +786,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
                         if (!occasionExtra.isEmpty()) {
 
                             query = firebaseFirestore.collection("Recipe")
-                                    .whereArrayContainsAny("tagsSort", occasionExtra)
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                                    .whereArrayContainsAny("tagsSort", occasionExtra);
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
 
                             for (int i = 0; i < occasionExtra.size(); i++) {
                                 Log.d("TESTEXTRA", occasionExtra.get(i).toString());
@@ -796,8 +796,8 @@ public class fm_filterinsearch_recipe_tab1 extends Fragment {
 
                             Log.d("TESTEXTRA", "null occasionExtra: " + occasionExtra);
 
-                            query = firebaseFirestore.collection("Recipe")
-                                    .whereNotEqualTo("name_authorGroup", "Community");
+                            query = firebaseFirestore.collection("Recipe");
+//                                    .whereNotEqualTo("name_authorGroup", "Community");
                         }
 
                     }
