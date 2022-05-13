@@ -59,10 +59,7 @@ A few of the things you can do with **Kitchen Stories**:
 - Comment in post realtime
 - Create recipe 
 
-<br />
-<img width="500" alt="image4" src="assets/4.png"><img width="500" alt="image5" src="assets/5.png"> <br />
-<img width="500" alt="image6" src="assets/6.png"><img width="500" alt="image7" src="assets/7.png">
-<br />
+
 
 ## How to install and run the project
 To clone and run this application, you'll need [Android Studio](https://developer.android.com/studio) installed on your computer. <br />
