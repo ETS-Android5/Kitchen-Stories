@@ -23,11 +23,11 @@
 This is the [Software Requirements Document](https://docs.google.com/document/d/1bj_LPkkpx9Cc0hroui2W9OegKTkgXD3O/edit?usp=sharing&ouid=116992013396456829835&rtpof=true&sd=true)
 
 
- <br />
+
 <img width="300" alt="image1" src="assets/1.png"><img width="300" alt="image2" src="assets/2.png"><img width="300" alt="image3" src="assets/3.png">
 <img width="300" alt="image4" src="assets/4.png"><img width="300" alt="image5" src="assets/5.png"><img width="300" alt="image6" src="assets/6.png">
 <img width="300" alt="image7" src="assets/7.png"><img width="300" alt="image8" src="assets/8.png"><img width="300" alt="image9" src="assets/9.png"><img width="300" alt="image" src="assets/10.png">
-<br />
+
 
 
 ## Video Demo
